@@ -36,3 +36,8 @@ Extend JS & CSS features of Twitter Bootstrap
 - class for modal transition effect
 - [data-toggle=ajax-load|ajax-submit][data-toggle-loading={custom-class}]
 - refresh url on push-state of [data-toggle=ajax-load|ajax-submit]
+
+
+### CDN
+- https://cdn.statically.io/bb/henrygotmojo/bootstrap-extend/{VERSION}/bootstrap.extend.css
+- https://cdn.statically.io/bb/henrygotmojo/bootstrap-extend/{VERSION}/bootstrap.extend.js
