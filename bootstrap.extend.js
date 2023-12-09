@@ -115,55 +115,52 @@ $(document).on('hidden.bs.modal', '.modal', () => $('.modal:visible').length && 
 
 [Usage]
 Auto-click corresponding buttons one-by-one (by monitoring the AJAX call progress)
-===> data-toggle = {auto-submit}
-===> data-target = ~buttonsToClick~
-===> data-confirm = ~confirmationMessage~
-===> data-meta-title = ~metaTitleMessage~
-===> data-(toggle-)stop = ~stopButton~
-===> data-(toggle-)progress = ~progressElement~
+===> data-toggle            = {auto-submit}
+===> data-target            = ~autoClickButtons~
+===> data-(toggle-)stop     = ~stopButton~
+===> data-(toggle-)confirm  = ~confirmationMessage~
+===> data-(toggle-)heading  = ~progressMessagePrefix~
+===> data-(toggle-)progress = ~progressElements~
 ===> data-(toggle-)callback = ~function|functionName~
 
 [Event]
 ===> autoSubmit.bsx
+===> autoSubmitUpdated.bsx
 ===> autoSubmitStopped.bsx
-===> autoSubmitCallback.bsx
+===> autoSubmitCompleted.bsx
 
 [Example]
 <div id="row-1"><a href="foo.php?id=1" class="btn-submit" data-toggle="ajax-load" data-target="#row-1">...</a></div>
 <div id="row-2"><a href="foo.php?id=2" class="btn-submit" data-toggle="ajax-load" data-target="#row-2">...</a></div>
 <div id="row-3"><a href="foo.php?id=3" class="btn-submit" data-toggle="ajax-load" data-target="#row-3">...</a></div>
 ...
-<button type="button" data-toggle="auto-submit" data-target=".btn-submit">...</button>
+<button type="button" data-toggle="auto-submit" data-target=".btn-submit" data-progress="html>title>head">...</button>
 
 */
 $(document).on('click', '[data-toggle=auto-submit]', function(evt){
 	evt.preventDefault();
-	// core elements
+	// core element which triggered the auto process
+	// ===> all settings specified in this element
 	var $btnStart = $(this);
+	// target elements to be clicked one-by-one
+	// ===> determine before the auto process begins
+	// ===> number should be fixed throughout the process
+	// ===> mark flag to all target elements to monitor the progress
 	var $targetElements = $( $btnStart.attr('data-target') );
-	// fire event
-	$btnStart.trigger('autoSubmit.bsx');
-	// confirmation
-	if ( $btnStart.is('[data-confirm]') ) {
-		var msg = $btnStart.attr('data-confirm').length ? $btnStart.attr('data-confirm') : 'Are you sure?';
-		if ( !confirm(msg) ) return false;
-	}
 	// options
-	var toggleStop = function(){
-		if ( $btnStart.is('[data-toggle-stop]') ) return $btnStart.attr('data-toggle-stop');
-		if ( $btnStart.is('[data-stop]')        ) return $btnStart.attr('data-stop');
-		return null;
-	}();
-	var toggleProgress = function(){
-		if ( $btnStart.is('[data-toggle-progress]') ) return $btnStart.attr('data-toggle-progress');
-		if ( $btnStart.is('[data-progress]')        ) return $btnStart.attr('data-progress');
-		return null;
-	}();
-	var toggleCallback = function(){
-		if ( $btnStart.is('[data-toggle-callback]') ) return $btnStart.attr('data-toggle-callback');
-		if ( $btnStart.is('[data-callback]')        ) return $btnStart.attr('data-callback');
-		return '';
-	}();
+	var toggleStop     = $btnStart.attr('data-toggle-stop')     || $btnStart.attr('data-stop')     || null;
+	var toggleConfirm  = $btnStart.attr('data-toggle-confirm')  || $btnStart.attr('data-confirm')  || null;
+	var toggleHeading  = $btnStart.attr('data-toggle-heading')  || $btnStart.attr('data-heading')  || null;
+	var toggleProgress = $btnStart.attr('data-toggle-progress') || $btnStart.attr('data-progress') || null;
+	var toggleCallback = $btnStart.attr('data-toggle-callback') || $btnStart.attr('data-callback') || '';
+	// confirmation
+	if ( $btnStart.is('[data-toggle-confirm],[data-confirm]') ) {
+		if ( !confirm(toggleConfirm || 'Are you sure?') ) return false;
+	}
+	// fire event when started
+	$btnStart.trigger('autoSubmit.bsx');
+	// mark flag to all target elements to monitor the progress
+	$targetElements.addClass('pending-autosubmit b-danger');
 	// convert [toggle-callback] to function
 	if ( toggleCallback.trim() == '' ) {
 		// attribute is empty...
@@ -179,70 +176,71 @@ $(document).on('click', '[data-toggle=auto-submit]', function(evt){
 		eval('var callbackFunc = function(){ '+toggleCallback+' };');
 	}
 	// other elements
+	// ===> element to stop the auto process
+	// ===> element to display the progress message
 	var $btnStop = $(toggleStop);
-	var $progress = $(toggleProgress);
-	var $metaTitle = $('html > head > title');
-	// remember original meta title
-	$metaTitle.attr('data-original', $metaTitle.text());
-	// assign tag to all target elements
-	$targetElements.addClass('pending-autosubmit');
+	var $progressElements = $(toggleProgress);
+	// remember original content (before any progress update)
+	$progressElements.each(function(){ $(this).attr('data-original', $(this).html()); });
 	// stop button behavior
-	$btnStop.filter(':not(.stop-button-ready)').on('click', function(evt){
+	// ===> mark flag to avoid assigning the behavior again
+	// ===> mark flag to instruct the timer to kill itself
+	$btnStop.not('.stop-button-ready').on('click', function(evt){
 		evt.preventDefault();
-		// mark flag to avoid assign the same behavior again (when stop & restart)
 		$btnStop.addClass('stop-button-ready');
-		// mark flag to instruct the timer to kill itself
 		$btnStart.addClass('stopped');
-		// restore to original meta title
-		$metaTitle.html( $metaTitle.attr('data-original') ).removeAttr('data-original');
-		// (un)block buttons
-		$btnStart.prop('disabled', false).removeClass('disabled');
-		$btnStop.prop('disabled', true).addClass('disabled');
-		// trigger event
-		$btnStart.trigger('autoSubmitStopped.bsx');
 	});
 	// create timer
-	// ===> monitor each target element
 	// ===> keep repeating until all done
 	var timer = window.setInterval(function(){
-		// NOTE : cannot remove (invisible) after-run-item 
-		// ===> below script didn't work (jQuery bug?)
-		// ===> $targetElements.filter('.active-autosubmit:not(:visible)'').remove();
-		// ===> apply [:visible] when counting undone items
-		var countTotal   = $targetElements.length;
-		var countUndone  = $targetElements.filter('.pending-autosubmit,.active-autosubmit:visible').length;
-		var countDone    = countTotal - countUndone;
-		var progressText = countDone+'/'+countTotal;
-		// update progress & meta title (when necessary)
-		$progress.html(progressText);
-		if ( $btnStart.attr('data-meta-title') ) $metaTitle.html($btnStart.attr('data-meta-title')+' ('+progressText+')');
+		// determine progress
+		// ===> count block-overlay to monitor any active item
+		// ===> because cannot ensure jQuery properly remove the element after run
+		var countTotal      = $targetElements.length;
+		var countActive     = $('.blockOverlay').length;
+		var countUndone     = $targetElements.filter('.pending-autosubmit').length + countActive;
+		var countDone       = countTotal - countUndone;
+		var progressRatio   = countDone+'/'+countTotal;
+		var progressHeading = toggleHeading;
+		var progressMessage = progressHeading ? (progressHeading+' ('+progressRatio+')') : progressRatio;
+		// when repeat again
+		// ===> update progress
+		// ===> trigger event
+		$progressElements.html(progressMessage);
+		$btnStart.trigger('autoSubmitUpdated.bsx');
 		// when stopped
+		// ===> kill timer to stop repeating
+		// ===> clear flag
+		// ===> restore to original content
+		// ===> unblock start & block stop
+		// ===> trigger event
 		if ( $btnStart.is('.stopped') ) {
-			// kill the timer abruptly
 			window.clearInterval(timer);
-			// clear flag
 			$btnStart.removeClass('stopped');
-		// when no more outstanding item
-		// ===> considered as finished
-		} else if ( !countUndone ) {
-			// stop repeating
-			window.clearInterval(timer);
-			// restore to original meta title (when necessary)
-			if ( $metaTitle.attr('data-original') ) $metaTitle.html( $metaTitle.attr('data-original') ).removeAttr('data-original');
-			// (un)block buttons
+			$progressElements.each(function(){ $(this).html( $(this).attr('data-original') ).removeAttr('data-original'); });
 			$btnStart.prop('disabled', false).removeClass('disabled');
 			$btnStop.prop('disabled', true).addClass('disabled');
-			// trigger callback & event
+			$btnStart.trigger('autoSubmitStopped.bsx');
+		// when no more pending (considered as completed)
+		// ===> kill timer to stop repeating
+		// ===> restore to original content
+		// ===> unblock start & block stop
+		// ===> trigger callback & event
+		} else if ( !countUndone ) {
+			window.clearInterval(timer);
+			$progressElements.each(function(){ $(this).html( $(this).attr('data-original') ).removeAttr('data-original'); });
+			$btnStart.prop('disabled', false).removeClass('disabled');
+			$btnStop.prop('disabled', true).addClass('disabled');
 			callbackFunc();
-			$btnStart.trigger('autoSubmitCallback.bsx');
-		// when no active item
-		// ===> still in progress
-		} else if ( !$targetElements.filter('.active-autosubmit:visible').length ) {
+			$btnStart.trigger('autoSubmitCompleted.bsx');
+		// when has pending & no item is running
+		// ===> invoke first pending item
+		// ===> mark running item as active
+		// ===> block start button & unblock stop button
+		} else if ( !countActive ) {
 			var $firstPending = $targetElements.filter('.pending-autosubmit:first');
-			// invoke first pending element & mark active
-			$firstPending.removeClass('pending-autosubmit').addClass('active-autosubmit');
 			$firstPending.trigger( $firstPending.is('form') ? 'submit' : 'click' );
-			// (un)block buttons
+			$firstPending.removeClass('pending-autosubmit').addClass('active-autosubmit');
 			$btnStart.prop('disabled', true).addClass('disabled');
 			$btnStop.prop('disabled', false).removeClass('disabled');
 		}
