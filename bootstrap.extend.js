@@ -160,7 +160,7 @@ $(document).on('click', '[data-toggle=auto-submit]', function(evt){
 	// fire event when started
 	$btnStart.trigger('autoSubmit.bsx');
 	// mark flag to all target elements to monitor the progress
-	$targetElements.addClass('pending-autosubmit b-danger');
+	$targetElements.addClass('pending-autosubmit');
 	// convert [toggle-callback] to function
 	if ( toggleCallback.trim() == '' ) {
 		// attribute is empty...
