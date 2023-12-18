@@ -29,7 +29,6 @@ var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
 			$('<div id="bsx-error-alert" class="alert" role="alert"></div>')
 				.prependTo( $modalVisible.find('.modal-body') )
 				.on('click', function(){ $(this).slideUp(); })
-				.addClass(ajaxErrorModalClass)
 				.hide();
 		}
 		// show message
