@@ -495,7 +495,7 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 @keyframes hourglassAnimationContainer {
 	87.5% { transform: rotate(0deg); }
-	100%  { transform: rotate(-180deg); }
+	100%  { transform: rotate(180deg); }
 }
 @keyframes hourglassAnimation {
 	10%  { content:"\f251"; }
