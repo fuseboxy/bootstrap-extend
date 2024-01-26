@@ -485,3 +485,23 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .cursor-zoom-out     { cursor: zoom-out !important; }
 /* others */
 .transition-none { transition: none !important; }
+
+
+
+
+/*-----------------------+
+| FONT-AWESOME ANIMATION |
++-----------------------*/
+
+@keyframes hourglassAnimationContainer {
+	87.5% { transform: rotate(0deg); }
+	100%  { transform: rotate(-180deg); }
+}
+@keyframes hourglassAnimation {
+	10%  { content:"\f251"; }
+	45%  { content:"\f252"; }
+	75%  { content:"\f253"; }
+	100% { content:"\f253"; }
+}
+.fa-hourglass-animated { animation: hourglassAnimationContainer 4s infinite linear; }
+.fa-hourglass-animated::before { animation: hourglassAnimation 4s infinite linear; content: "\f251"; }
