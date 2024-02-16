@@ -13,8 +13,8 @@ Extend CSS & JS Features of Bootstrap 5.x
 
 
 ## CDN
-* https://cdn.statically.io/bb/henrygotmojo/bootstrap-extend/{VERSION}/bootstrap.extend.css
-* https://cdn.statically.io/bb/henrygotmojo/bootstrap-extend/{VERSION}/bootstrap.extend.js
+* https://cdn.jsdelivr.net/gh/fuseboxy/bootstrap-extend@{VERSION}/bootstrap.extend.css
+* https://cdn.jsdelivr.net/gh/fuseboxy/bootstrap-extend@{VERSION}/bootstrap.extend.js
 
 
 -----
