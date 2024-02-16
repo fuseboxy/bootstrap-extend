@@ -1,15 +1,15 @@
-Bootstrap-Extend (v4.x)
-=======================
+Bootstrap-Extend (5.x)
+======================
 
-Extend CSS & JS Features of Twitter Bootstrap 4.x
+Extend CSS & JS Features of Bootstrap 5.x
 
 
 -----
 
 
 ## Dependencies
-* Bootstrap 4.x
-* jQuery 1.9.x (or above)
+* Bootstrap 5.x
+* jQuery 3.x
 
 
 ## CDN
