@@ -1,5 +1,5 @@
-Bootstrap-Extend (v4.x)
-=======================
+Bootstrap-Extend (4.x)
+======================
 
 Extend CSS & JS Features of Twitter Bootstrap 4.x
 
@@ -13,8 +13,8 @@ Extend CSS & JS Features of Twitter Bootstrap 4.x
 
 
 ## CDN
-* https://cdn.statically.io/bb/henrygotmojo/bootstrap-extend/{VERSION}/bootstrap.extend.css
-* https://cdn.statically.io/bb/henrygotmojo/bootstrap-extend/{VERSION}/bootstrap.extend.js
+* https://cdn.jsdelivr.net/gh/fuseboxy/bootstrap-extend@{VERSION}/bootstrap.extend.css
+* https://cdn.jsdelivr.net/gh/fuseboxy/bootstrap-extend@{VERSION}/bootstrap.extend.js
 
 
 -----
