@@ -409,6 +409,21 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .shadow    { box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.125) !important; }
 .shadow-lg { box-shadow: 0 0.500rem 1.00rem rgba(0, 0, 0, 0.150) !important; }
 .shadow-xl { box-shadow: 0 1.000rem 3.00rem rgba(0, 0, 0, 0.175) !important; }
+.top-shadow-xs { box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important; }
+.top-shadow-sm { box-shadow: 0 -0.250rem 0.50rem rgba(0, 0, 0, 0.100) !important; }
+.top-shadow    { box-shadow: 0 -0.375rem 0.75rem rgba(0, 0, 0, 0.125) !important; }
+.top-shadow-lg { box-shadow: 0 -0.500rem 1.00rem rgba(0, 0, 0, 0.150) !important; }
+.top-shadow-xl { box-shadow: 0 -1.000rem 3.00rem rgba(0, 0, 0, 0.175) !important; }
+.left-shadow-xs { box-shadow: -0.125rem 0 0.25rem rgba(0, 0, 0, 0.075) !important; }
+.left-shadow-sm { box-shadow: -0.250rem 0 0.50rem rgba(0, 0, 0, 0.100) !important; }
+.left-shadow    { box-shadow: -0.375rem 0 0.75rem rgba(0, 0, 0, 0.125) !important; }
+.left-shadow-lg { box-shadow: -0.500rem 0 1.00rem rgba(0, 0, 0, 0.150) !important; }
+.left-shadow-xl { box-shadow: -1.000rem 0 3.00rem rgba(0, 0, 0, 0.175) !important; }
+.right-shadow-xs { box-shadow: 0.125rem 0 0.25rem rgba(0, 0, 0, 0.075) !important; }
+.right-shadow-sm { box-shadow: 0.250rem 0 0.50rem rgba(0, 0, 0, 0.100) !important; }
+.right-shadow    { box-shadow: 0.375rem 0 0.75rem rgba(0, 0, 0, 0.125) !important; }
+.right-shadow-lg { box-shadow: 0.500rem 0 1.00rem rgba(0, 0, 0, 0.150) !important; }
+.right-shadow-xl { box-shadow: 1.000rem 0 3.00rem rgba(0, 0, 0, 0.175) !important; }
 /* opacity */
 .op-100 { opacity: 1 !important; }
 .op-95 { opacity: .95 !important; }
@@ -510,6 +525,13 @@ https://codepen.io/jasongardner/pen/gxprVQ
 }
 .bi-hourglass-animated { animation: hourglassAnimationContainer 4s infinite linear; }
 .bi-hourglass-animated::before { animation: hourglassAnimation 4s infinite linear; content: "\F420"; }
+
+
+
+
+/*------------------+
+|  NEGATIVE MARGIN  |
++------------------*/
 
 
 
