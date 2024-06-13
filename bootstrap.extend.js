@@ -730,6 +730,22 @@ $(function(){
 
 
 
+/*-----------+
+|  BLOCK-UI  |
++------------+
+
+[Usage]
+Overlay UI element by a layer to and prevent user click the UI element multiple times mistakenly
+Used by {ajax-load} and {ajax-submit} and such
+*/
+
+function bootstrapExtend__blockUI(){
+
+}
+
+
+
+
 /*!
  * jQuery blockUI plugin
  * Version 2.70.0-2014.11.23
