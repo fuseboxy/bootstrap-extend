@@ -1,3 +1,27 @@
+/*-----------------------+
+|  MAIN ELEMENT HEIGHTS  |
++------------------------+
+
+[Usage]
+Allow using CSS variables to make content stretches from header to bottom
+The CSS variables are updated by Javascript in realtime
+
+[Example]
+#content {
+	height: calc(100vh - var(--bsx-banner-height) - var(--bsx-footer-height));
+}
+*/
+
+:root {
+	--bsx-banner-height: 0px;
+	--bsx-header-height: 0px;
+	--bsx-subnav-height: 0px;
+	--bsx-footer-height: 0px;
+}
+
+
+
+
 /*------------------+
 |  MODAL NEW SIZES  |
 +-------------------+
@@ -256,7 +280,8 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .em { font-style: italic; }
 .del { text-decoration: line-through; }
 .strong { font-weight: bolder; }
-.sub, .sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+.sub,
+.sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
 .sub { bottom: -.25em; }
 .sup { top: -.5em; }
 /* border 5 (additive) */

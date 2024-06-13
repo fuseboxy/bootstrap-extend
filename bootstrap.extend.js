@@ -1,590 +1,327 @@
 $(function(){
 
 
-/*----------------------+
-| AUTO AJAX-ERROR ALERT |
-+-----------------------+
+	/*-----------------------+
+	|  CORE ELEMENTS HEIGHT  |
+	+------------------------+
 
-[Usage]
-I show error dialog whenever there is an ajax error
-===> default showing as modal
-===> simply die() in server-script and error message will auto-show in modal
-===> applicable to whole site
+	[Usage]
+	Realtime tracking elements and update corresponding CSS variables
+	Allow using CSS calc() to make content stretches from header to bottom
+	*/
 
-[Example]
-<body data-ajax-error="{modal|alert|console}"> ... </body>
+	$(window).on('resize', function(){
+		$(':root').css({
+			'--bsx-banner-height' : ( $('#banner').outerHeight() || 0 )+'px',
+			'--bsx-header-height' : ( $('#header').outerHeight() || 0 )+'px',
+			'--bsx-subnav-height' : ( $('#subnav').outerHeight() || 0 )+'px',
+			'--bsx-footer-height' : ( $('#footer').outerHeight() || 0 )+'px',
+		});
+	}).resize();
 
-*/
-var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
-	var $body = $('body');
-	// options
-	var ajaxErrorMode  = $body.attr('data-ajax-error')       || 'modal';
-	var ajaxErrorTitle = $body.attr('data-ajax-error-title') || 'Error';
-	var ajaxErrorUrl   = $body.attr('data-ajax-error-url')   || true;
-	// display error as flash in an opened modal
-	if ( ajaxErrorMode == 'modal' && $('body.modal-open').length ) {
-		var $modalVisible = $('.modal.show');
-		// create alert box (when necessary)
-		if ( !$('#bsx-error-alert').length ) {
-			$('<div id="bsx-error-alert" class="alert alert-danger" role="alert"></div>')
-				.prependTo( $modalVisible.find('.modal-body') )
-				.on('click', function(){ $(this).slideUp(); })
-				.hide();
-		}
-		// show message
-		var $errAlert = $('#bsx-error-alert');
-		$errAlert.html('');
-		if ( ajaxErrorTitle != 'none' ) $errAlert.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
-		$errAlert.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
-		if ( ajaxErrorUrl != 'none' ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
-		$errAlert.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
-		// scroll to message
-		$modalVisible.animate({ scrollTop : 0 });
-	// display error in modal
-	} else if ( ajaxErrorMode == 'modal' ) {
-		// create modal (when necessary)
-		if ( !$('#bsx-error-modal').length ) {
-			$('body').append(`
-				<div id="bsx-error-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bsx-error-modal" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content bg-danger">
-							<div class="modal-body"></div>
+
+
+
+	/*------------------------+
+	|  AUTO AJAX-ERROR ALERT  |
+	+-------------------------+
+
+	[Usage]
+	I show error dialog whenever there is an ajax error
+	===> default showing as modal
+	===> simply die() in server-script and error message will auto-show in modal
+	===> applicable to whole site
+
+	[Example]
+	<body data-ajax-error="{modal|alert|console}"> ... </body>
+	*/
+
+	var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
+		var $body = $('body');
+		// options
+		var ajaxErrorMode  = $body.attr('data-ajax-error')       || 'modal';
+		var ajaxErrorTitle = $body.attr('data-ajax-error-title') || 'Error';
+		var ajaxErrorUrl   = $body.attr('data-ajax-error-url')   || true;
+		// display error as flash in an opened modal
+		if ( ajaxErrorMode == 'modal' && $('body.modal-open').length ) {
+			var $modalVisible = $('.modal.show');
+			// create alert box (when necessary)
+			if ( !$('#bsx-error-alert').length ) {
+				$('<div id="bsx-error-alert" class="alert alert-danger" role="alert"></div>')
+					.prependTo( $modalVisible.find('.modal-body') )
+					.on('click', function(){ $(this).slideUp(); })
+					.hide();
+			}
+			// show message
+			var $errAlert = $('#bsx-error-alert');
+			$errAlert.html('');
+			if ( ajaxErrorTitle != 'none' ) $errAlert.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
+			$errAlert.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
+			if ( ajaxErrorUrl != 'none' ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
+			$errAlert.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
+			// scroll to message
+			$modalVisible.animate({ scrollTop : 0 });
+		// display error in modal
+		} else if ( ajaxErrorMode == 'modal' ) {
+			// create modal (when necessary)
+			if ( !$('#bsx-error-modal').length ) {
+				$('body').append(`
+					<div id="bsx-error-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bsx-error-modal" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content bg-danger">
+								<div class="modal-body"></div>
+							</div>
 						</div>
 					</div>
-				</div>
-			`);
+				`);
+			}
+			// show message
+			var $errModal = $('#bsx-error-modal');
+			var $errModalBody = $errModal.find('.modal-body');
+			$errModal.modal('show');
+			$errModalBody.html('');
+			if ( ajaxErrorTitle != 'none' ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
+			$errModalBody.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>')
+			if ( ajaxErrorUrl != 'none' ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
+		// display error as javascript console log
+		} else if ( ajaxErrorMode == 'console' ) {
+			var errMsg = '';
+			if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+'] ';
+			errMsg += jqXHR.responseText;
+			if ( ajaxErrorUrl != 'none' ) errMsg += ' ('+ajaxSettings.url+')';
+			console.log(errMsg);
+		// display error as javascript alert
+		} else {
+			var errMsg = '';
+			if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+']\n';
+			errMsg += jqXHR.responseText;
+			if ( ajaxErrorUrl != 'none' ) errMsg += '\n\n'+ajaxSettings.url;
+			alert(errMsg);
 		}
-		// show message
-		var $errModal = $('#bsx-error-modal');
-		var $errModalBody = $errModal.find('.modal-body');
-		$errModal.modal('show');
-		$errModalBody.html('');
-		if ( ajaxErrorTitle != 'none' ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
-		$errModalBody.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>')
-		if ( ajaxErrorUrl != 'none' ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
-	// display error as javascript console log
-	} else if ( ajaxErrorMode == 'console' ) {
-		var errMsg = '';
-		if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+'] ';
-		errMsg += jqXHR.responseText;
-		if ( ajaxErrorUrl != 'none' ) errMsg += ' ('+ajaxSettings.url+')';
-		console.log(errMsg);
-	// display error as javascript alert
-	} else {
-		var errMsg = '';
-		if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+']\n';
-		errMsg += jqXHR.responseText;
-		if ( ajaxErrorUrl != 'none' ) errMsg += '\n\n'+ajaxSettings.url;
-		alert(errMsg);
-	}
-};
-// apply to document
-$(document).ajaxError(ajaxErrorHandler);
+	};
+	// apply to document
+	$(document).ajaxError(ajaxErrorHandler);
 
 
 
 
-/*------------------------+
-| MULTIPLE MODALS OVERLAY |
-+-------------------------+
+	/*--------------------------+
+	|  MULTIPLE MODALS OVERLAY  |
+	+---------------------------+
 
-[Usage]
-Fix overlay order when multiple modals launched
+	[Usage]
+	Fix overlay order when multiple modals launched
 
-[Reference]
-https://stackoverflow.com/questions/19305821/multiple-modals-overlay
+	[Reference]
+	https://stackoverflow.com/questions/19305821/multiple-modals-overlay
+	*/
 
-*/
-$(document).on('show.bs.modal', '.modal', function (event) {
-	var zIndex = 1040 + (10 * $('.modal:visible').length);
-	$(this).css('z-index', zIndex);
-	setTimeout(function() {
-		$('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-	}, 0);
-});
+	$(document).on('show.bs.modal', '.modal', function (event) {
+		var zIndex = 1040 + (10 * $('.modal:visible').length);
+		$(this).css('z-index', zIndex);
+		setTimeout(function() {
+			$('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+		}, 0);
+	});
 
-$(document).on('hidden.bs.modal', '.modal', () => $('.modal:visible').length && $(document.body).addClass('modal-open'));
-
-
+	$(document).on('hidden.bs.modal', '.modal', () => $('.modal:visible').length && $(document.body).addClass('modal-open'));
 
 
-/*--------------------------+
-| DATA-TOGGLE : AUTO-SUBMIT |
-+---------------------------+
 
-[Usage]
-Auto-click corresponding buttons one-by-one (by monitoring the AJAX call progress)
-===> data-toggle            = {auto-submit}
-===> data-target            = ~autoClickButtons~
-===> data-(toggle-)stop     = ~stopButton~
-===> data-(toggle-)confirm  = ~confirmationMessage~
-===> data-(toggle-)heading  = ~progressMessagePrefix~
-===> data-(toggle-)progress = ~progressElements~
-===> data-(toggle-)callback = ~function|functionName~
 
-[Event]
-===> autoSubmit.bsx
-===> autoSubmitUpdated.bsx
-===> autoSubmitStopped.bsx
-===> autoSubmitCompleted.bsx
+	/*----------------------------+
+	|  DATA-TOGGLE : AUTO-SUBMIT  |
+	+-----------------------------+
 
-[Example]
-<div id="row-1"><a href="foo.php?id=1" class="btn-submit" data-toggle="ajax-load" data-target="#row-1">...</a></div>
-<div id="row-2"><a href="foo.php?id=2" class="btn-submit" data-toggle="ajax-load" data-target="#row-2">...</a></div>
-<div id="row-3"><a href="foo.php?id=3" class="btn-submit" data-toggle="ajax-load" data-target="#row-3">...</a></div>
-...
-<button type="button" data-toggle="auto-submit" data-target=".btn-submit" data-progress="html>title>head">...</button>
+	[Usage]
+	Auto-click corresponding buttons one-by-one (by monitoring the AJAX call progress)
+	===> data-toggle            = {auto-submit}
+	===> data-target            = ~autoClickButtons~
+	===> data-(toggle-)stop     = ~stopButton~
+	===> data-(toggle-)confirm  = ~confirmationMessage~
+	===> data-(toggle-)heading  = ~progressMessagePrefix~
+	===> data-(toggle-)progress = ~progressElements~
+	===> data-(toggle-)callback = ~function|functionName~
 
-*/
-$(document).on('click', '[data-toggle=auto-submit]', function(evt){
-	evt.preventDefault();
-	// core element which triggered the auto process
-	// ===> all settings specified in this element
-	var $btnStart = $(this);
-	// target elements to be clicked one-by-one
-	// ===> determine before the auto process begins
-	// ===> number should be fixed throughout the process
-	// ===> mark flag to all target elements to monitor the progress
-	var $targetElements = $( $btnStart.attr('data-target') );
-	// options
-	var toggleStop     = $btnStart.attr('data-toggle-stop')     || $btnStart.attr('data-stop')     || null;
-	var toggleConfirm  = $btnStart.attr('data-toggle-confirm')  || $btnStart.attr('data-confirm')  || null;
-	var toggleHeading  = $btnStart.attr('data-toggle-heading')  || $btnStart.attr('data-heading')  || null;
-	var toggleProgress = $btnStart.attr('data-toggle-progress') || $btnStart.attr('data-progress') || null;
-	var toggleCallback = $btnStart.attr('data-toggle-callback') || $btnStart.attr('data-callback') || '';
-	// confirmation
-	if ( $btnStart.is('[data-toggle-confirm],[data-confirm]') ) {
-		if ( !confirm(toggleConfirm || 'Are you sure?') ) return false;
-	}
-	// fire event when started
-	$btnStart.trigger('autoSubmit.bsx');
-	// mark flag to all target elements to monitor the progress
-	$targetElements.addClass('pending-autosubmit');
-	// convert [toggle-callback] to function
-	if ( toggleCallback.trim() == '' ) {
-		// attribute is empty...
-		var callbackFunc = function(){};
-	} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
-		// attribute is function name...
-		eval('var callbackFunc = '+toggleCallback+'();');
-	} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
-		// attribute is anonymous function...
-		eval('var callbackFunc = '+toggleCallback+';');
-	} else {
-		// attribute is function content...
-		eval('var callbackFunc = function(){ '+toggleCallback+' };');
-	}
-	// other elements
-	// ===> element to stop the auto process
-	// ===> element to display the progress message
-	var $btnStop = $(toggleStop);
-	var $progressElements = $(toggleProgress);
-	// remember original content (before any progress update)
-	$progressElements.each(function(){ $(this).attr('data-original', $(this).html()); });
-	// stop button behavior
-	// ===> mark flag to avoid assigning the behavior again
-	// ===> mark flag to instruct the timer to kill itself
-	$btnStop.not('.stop-button-ready').on('click', function(evt){
+	[Event]
+	===> autoSubmit.bsx
+	===> autoSubmitUpdated.bsx
+	===> autoSubmitStopped.bsx
+	===> autoSubmitCompleted.bsx
+
+	[Example]
+	<div id="row-1"><a href="foo.php?id=1" class="btn-submit" data-toggle="ajax-load" data-target="#row-1">...</a></div>
+	<div id="row-2"><a href="foo.php?id=2" class="btn-submit" data-toggle="ajax-load" data-target="#row-2">...</a></div>
+	<div id="row-3"><a href="foo.php?id=3" class="btn-submit" data-toggle="ajax-load" data-target="#row-3">...</a></div>
+	...
+	<button type="button" data-toggle="auto-submit" data-target=".btn-submit" data-progress="html>title>head">...</button>
+	*/
+
+	$(document).on('click', '[data-toggle=auto-submit]', function(evt){
 		evt.preventDefault();
-		$btnStop.addClass('stop-button-ready');
-		$btnStart.addClass('stopped');
-	});
-	// create timer
-	// ===> keep repeating until all done
-	var timer = window.setInterval(function(){
-		// determine progress
-		// ===> count block-overlay to monitor any active item
-		// ===> because cannot ensure jQuery properly remove the element after run
-		var countTotal      = $targetElements.length;
-		var countActive     = $('.blockOverlay').length;
-		var countUndone     = $targetElements.filter('.pending-autosubmit').length + countActive;
-		var countDone       = countTotal - countUndone;
-		var progressRatio   = countDone+'/'+countTotal;
-		var progressHeading = toggleHeading;
-		var progressMessage = progressHeading ? (progressHeading+' ('+progressRatio+')') : progressRatio;
-		// when repeat again
-		// ===> update progress
-		// ===> trigger event
-		$progressElements.html(progressMessage);
-		$btnStart.trigger('autoSubmitUpdated.bsx');
-		// when stopped
-		// ===> kill timer to stop repeating
-		// ===> clear flag
-		// ===> restore to original content
-		// ===> unblock start & block stop
-		// ===> trigger event
-		if ( $btnStart.is('.stopped') ) {
-			window.clearInterval(timer);
-			$btnStart.removeClass('stopped');
-			$progressElements.each(function(){ $(this).html( $(this).attr('data-original') ).removeAttr('data-original'); });
-			$btnStart.prop('disabled', false).removeClass('disabled');
-			$btnStop.prop('disabled', true).addClass('disabled');
-			$btnStart.trigger('autoSubmitStopped.bsx');
-		// when no more pending (considered as completed)
-		// ===> kill timer to stop repeating
-		// ===> restore to original content
-		// ===> unblock start & block stop
-		// ===> trigger callback & event
-		} else if ( !countUndone ) {
-			window.clearInterval(timer);
-			$progressElements.each(function(){ $(this).html( $(this).attr('data-original') ).removeAttr('data-original'); });
-			$btnStart.prop('disabled', false).removeClass('disabled');
-			$btnStop.prop('disabled', true).addClass('disabled');
-			callbackFunc();
-			$btnStart.trigger('autoSubmitCompleted.bsx');
-		// when has pending & no item is running
-		// ===> invoke first pending item
-		// ===> mark running item as active
-		// ===> block start button & unblock stop button
-		} else if ( !countActive ) {
-			var $firstPending = $targetElements.filter('.pending-autosubmit:first');
-			$firstPending.trigger( $firstPending.is('form') ? 'submit' : 'click' );
-			$firstPending.removeClass('pending-autosubmit').addClass('active-autosubmit');
-			$btnStart.prop('disabled', true).addClass('disabled');
-			$btnStop.prop('disabled', false).removeClass('disabled');
+		// core element which triggered the auto process
+		// ===> all settings specified in this element
+		var $btnStart = $(this);
+		// target elements to be clicked one-by-one
+		// ===> determine before the auto process begins
+		// ===> number should be fixed throughout the process
+		// ===> mark flag to all target elements to monitor the progress
+		var $targetElements = $( $btnStart.attr('data-target') );
+		// options
+		var toggleStop     = $btnStart.attr('data-toggle-stop')     || $btnStart.attr('data-stop')     || null;
+		var toggleConfirm  = $btnStart.attr('data-toggle-confirm')  || $btnStart.attr('data-confirm')  || null;
+		var toggleHeading  = $btnStart.attr('data-toggle-heading')  || $btnStart.attr('data-heading')  || null;
+		var toggleProgress = $btnStart.attr('data-toggle-progress') || $btnStart.attr('data-progress') || null;
+		var toggleCallback = $btnStart.attr('data-toggle-callback') || $btnStart.attr('data-callback') || '';
+		// confirmation
+		if ( $btnStart.is('[data-toggle-confirm],[data-confirm]') ) {
+			if ( !confirm(toggleConfirm || 'Are you sure?') ) return false;
 		}
-	}, 100);
-});
-
-
-
-
-/*-------------------------+
-| DATA-TOGGLE : AJAX-MODAL |
-+--------------------------+
-
-[Usage]
-Auto-load remote content into modal
-===> data-toggle = {ajax-modal}
-===> data-target = ~targetModal~
-===> data-(toggle-)selector = ~partialResponseToShow~
-
-[Example]
-<a href="foo.html" data-toggle="ajax-modal" data-target="#my-modal">...</div>
-<button data-href="bar.html" data-toggle="ajax-modal" data-target="#my-modal">...</button>
-
-*/
-// load content to modal
-$(document).on('click', ':not(form)[data-toggle=ajax-modal]', function(evt){
-	evt.preventDefault();
-	ajaxModal(this);
-});
-// submit form & show content in modal
-$(document).on('submit', 'form[data-toggle=ajax-modal]', function(evt){
-	evt.preventDefault();
-	ajaxModal(this);
-});
-// actual behavior of [ajax-modal]
-var ajaxModal = function(triggerElement) {
-	var $triggerElement = $(triggerElement);
-	// validation
-	if ( !$triggerElement.attr('data-target') ) {
-		console.log('[ERROR] ajaxModal.bsx - Attribute [data-target] was not specified');
-		return false;
-	}
-	// determine options
-	var toggleSelector = function(){
-		if ( $triggerElement.is('[data-toggle-selector]') ) return $btn.attr('data-toggle-selector');
-		else if ( $triggerElement.is('[data-selector]'  ) ) return $btn.attr('data-selector');
-		else return '';
-	}();
-	// determine target element
-	var $modal = $( $triggerElement.attr('data-target') );
-	if ( !$modal.length ) {
-		console.log('[ERROR] ajaxModal.bsx - Target modal not found ('+$triggerElement.attr('data-target')+')');
-		return false;
-	} else if ( !$modal.is('.modal') ) {
-		console.log('[ERROR] ajaxModal.bsx - Target modal does not have <.modal> class ('+$triggerElement.attr('data-target')+')');
-		return false;
-	} else if ( !$modal.find('.modal-dialog').length ) {
-		console.log('[ERROR] ajaxModal.bsx - Target modal does not have <.modal-dialog> child element ('+$triggerElement.attr('data-target')+')');
-		return false;
-	}
-	// determine target url
-	var url;
-	if ( $triggerElement.is('form') ) {
-		url = $triggerElement.attr('action');
-	} else if ( $triggerElement.is('[type=button]') ) {
-		url = $triggerElement.is('[href]') ? $triggerElement.attr('href') : $triggerElement.attr('data-href');
-	} else if ( $triggerElement.is('a') ) {
-		url = $triggerElement.attr('href');
-	} else {
-		console.log('[Error] ajaxModal.bsx - Type of trigger element not support');
-	}
-	// serialize form data (when necessary)
-	var formData;
-	if ( $triggerElement.is('form') && $triggerElement.attr('enctype') == 'multipart/form-data' ) {
-		formData = new FormData( $triggerElement[0] );
-	} else if ( $triggerElement.is('form') ) {
-		formData = $triggerElement.serialize();
-	} else {
-		formData = {};
-	}
-	// create essential modal structure (when necessary)
-	if ( !$modal.find('.modal-content').length ) {
-		$modal.find('.modal-dialog').append('<div class="modal-content"></div>');
-	}
-	// clear modal content first (when necessary)
-	$modal.find('.modal-content').html(`
-		<div class="modal-header">
-			<div class="modal-title text-muted"><i class="fa fa-spinner fa-pulse"></i><span class="ml-2">Loading...</span></div>
-		</div>
-		<div class="modal-body">
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-		</div>
-	`);
-	// show modal
-	$modal.modal('show');
-	// load or submit
-	$.ajax({
-		'url' : url,
-		'data' : formData,
-		'cache' : false,
-		'processData' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ),
-		'contentType' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ) ? 'application/x-www-form-urlencoded; charset=UTF-8' : false,
-		'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
-		'error' : function(jqXHR, textStatus, errorThrown) {
-			window.setTimeout(function(){
-				ajaxErrorHandler(null, jqXHR, { url : url }, errorThrown);
-			}, 1000);
-		},
-		'success' : function(data, textStatus, jqXHR){
-			// wrap by dummy element (when necessary)
-			// ===> avoid multiple elements
-			// ===> avoid response is plain text
-			// ===> avoid selector find against base element
-			if ( $(data).length != 1 || toggleSelector ) data = '<div>'+data+'</div>';
-			// show full response or specific element only
-			$modal.find('.modal-content').html( toggleSelector ? $(data).find(toggleSelector) : data );
-		},
-	});
-}; // function-ajaxModal
-
-
-
-
-/*----------------------------+
-| DATA-TOGGLE : AJAX-DROPDOWN |
-+-----------------------------+
-
-[Usage]
-Auto-load remote content into dropdown (load-once-and-keep)
-===> data-toggle = {ajax-dropdown}
-===> data-target = ~targetDropdown~
-===> data-(toggle-)align = {left*|right}
-===> data-(toggle-)selector = ~partialResponseToShow~
-
-[Example]
-<div class="dropdown">
-	<a href="my/dropdown/menu.php" class="dropdown-toggle" data-toggle="ajax-dropdown">...</a>
-	<div class="dropdown-menu"></div>
-</div>
-
-*/
-$(document).on('click', '[href][data-toggle=ajax-dropdown],[data-href][data-toggle=ajax-dropdown]', function(evt){
-	evt.preventDefault();
-	var $btn = $(this);
-	var $parent = $btn.closest('.dropdown,.dropup,.dropleft,.dropright');
-	var $target = $parent.find('.dropdown-menu').length ? $parent.find('.dropdown-menu:first') : $('<div class="dropdown-menu"></div>').insertAfter($btn);
-	// options
-	var toggleAlign = function(){
-		if ( $btn.is('[data-toggle-align]') ) return $btn.attr('data-toggle-align');
-		else if ( $btn.is('[data-align]'  ) ) return $btn.attr('data-align');
-		else return 'left';
-	}();
-	var toggleSelector = function(){
-		if ( $btn.is('[data-toggle-selector]') ) return $btn.attr('data-toggle-selector');
-		else if ( $btn.is('[data-selector]'  ) ) return $btn.attr('data-selector');
-		else return '';
-	}();
-	// apply alignment
-	if ( toggleAlign == 'right' ) $target.addClass('dropdown-menu-right');
-	// show loading message
-	$target.html('<div class="dropdown-item text-muted"><i class="fa fa-spinner fa-pulse"></i><em class="ml-2">Loading</em></div>');
-	// load content remotely
-	var url = $btn.attr( $btn.is('[href]') ? 'href' : 'data-href' );
-	$.ajax({
-		'url' : url,
-		'cache' : false,
-		'method' : 'get',
-		'error' : function(jqXHR, textStatus, errorThrown) {
-			window.setTimeout(function(){
-				ajaxErrorHandler(null, jqXHR, { url : url }, errorThrown);
-			}, 1000);
-		},
-		'success' : function(data, textStatus, jqXHR){
-			// wrap by dummy element (when necessary)
-			// ===> avoid multiple elements
-			// ===> avoid response is plain text
-			// ===> avoid selector find against base element
-			if ( $(data).length != 1 || toggleSelector ) data = '<div>'+data+'</div>';
-			// show full response or specific element only
-			$target.html( toggleSelector ? $(data).find(toggleSelector) : data );
-			// refresh
-			$btn.dropdown('update');
-		},
-	});
-	// transform to standard bootstrap-dropdown
-	$btn.attr('data-toggle', 'dropdown');
-	// show dropdown (after dropdown constructed)
-	window.setTimeout(function(){ $btn.click(); }, 0);
-});
-
-
-
-
-/*--------------------------------------+
-| DATA-TOGGLE : AJAX-LOAD / AJAX-SUBMIT |
-+---------------------------------------+
-
-[Usage]
-I allow ajax-load/ajax-submit content to specific element by defining data attributes
-===> data-toggle = {ajax-load|ajax-submit}
-===> data-target = ~targetElement|targetForm~
-===> data-confirm = ~confirmationMessage~
-===> data-(toggle-)mode = {replace*|prepend|append|before|after}
-===> data-(toggle-)overlay = {progress*|loading|loading-large|spinner|spinner-large|overlay|gray|grayer|dim|dimmer|white|whiter|light|lighter|none}
-===> data-(toggle-)transition = {slide*|fade|none}
-===> data-(toggle-)callback = ~function|functionName~
-===> data-(toggle-)selector = ~partialResponseToShow~
-
-[Event]
-===> ajaxLoad.bsx
-===> ajaxLoadCallback.bsx
-===> ajaxSubmit.bsx
-===> ajaxSubmitCallback.bsx
-
-[Example]
-<!-- ajax load -->
-<a href="/url/to/go" class="btn btn-default" data-toggle="ajax-load" data-target="#element"> ... </a>
-<!-- ajax submit -->
-<form method="post" action="/url/to/go" data-toggle="ajax-submit" data-target="#element"> ... </form>
-
-*/
-// remote load
-$(document).on('click', '[data-toggle=ajax-load]', function(evt){
-	evt.preventDefault();
-	ajaxLoadOrSubmit(this);
-});
-// remote submit
-// ===> [BUG] when pass to custom event
-// ===> element becomes BUTTON (instead of FORM)
-// ===> use closest() as dirty fix
-$(document).on('submit', '[data-toggle=ajax-submit]', function(evt){
-	evt.preventDefault();
-	ajaxLoadOrSubmit( $(this).closest('form') );
-});
-// when form is [ajax-submit]
-// ===> update form [action] with button [formaction]
-// ===> because [ajax-submit] relies on the form [action] attribute
-$(document).on('click', ':submit[formaction]', function(evt){
-	$(this.form).filter('[data-toggle=ajax-submit]').attr('action', $(this).attr('formaction'));
-});
-// actual behavior of [ajax-load|ajax-submit]
-var ajaxLoadOrSubmit = function(triggerElement) {
-	var $triggerElement = $(triggerElement);
-	// determine event type (by camelize [data-toggle] attribute)
-	var eventType = $triggerElement.attr('data-toggle').split('-').map(function(word,index){
-		if(index == 0) return word.toLowerCase();
-		return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-	}).join('');
-	// fire event
-	$triggerElement.trigger(eventType+'.bsx');
-	// confirmation
-	if ( $triggerElement.is('[data-confirm]') ) {
-		var msg = $triggerElement.attr('data-confirm').length ? $triggerElement.attr('data-confirm') : 'Are you sure?';
-		if ( !confirm(msg) ) return false;
-	}
-	// options
-	var toggleTarget = $triggerElement.attr('data-target');
-	var toggleMode = function(){
-		if ( $triggerElement.is('[data-toggle-mode]') ) return $triggerElement.attr('data-toggle-mode');
-		if ( $triggerElement.is('[data-mode]')        ) return $triggerElement.attr('data-mode');
-		return 'replace';
-	}();
-	var toggleTransition = function(){
-		if ( $triggerElement.is('[data-toggle-transition]') ) return $triggerElement.attr('data-toggle-transition');
-		if ( $triggerElement.is('[data-transition]')        ) return $triggerElement.attr('data-transition');
-		return 'slide';
-	}();
-	var toggleCallback = function(){
-		if ( $triggerElement.is('[data-toggle-callback]') ) return $triggerElement.attr('data-toggle-callback');
-		if ( $triggerElement.is('[data-callback]')        ) return $triggerElement.attr('data-callback');
-		return '';
-	}();
-	var toggleOverlay = function(){
-		if ( $triggerElement.is('[data-toggle-loading]')      ) return $triggerElement.attr('data-toggle-loading');
-		if ( $triggerElement.is('[data-toggle-overlay]')      ) return $triggerElement.attr('data-toggle-overlay');
-		if ( $triggerElement.is('[data-loading]')             ) return $triggerElement.attr('data-loading');
-		if ( $triggerElement.is('[data-overlay]')             ) return $triggerElement.attr('data-overlay');
-		return 'progress';
-	}();
-	var toggleSelector = function(){
-		if ( $triggerElement.is('[data-toggle-selector]') ) return $triggerElement.attr('data-toggle-selector');
-		if ( $triggerElement.is('[data-selector]')        ) return $triggerElement.attr('data-selector');
-		return '';
-	}();
-	// apply block-ui when ajax load (if any)
-	var configBlockUI;
-	if ( $.fn.block ) {
-		// default loading style (progress)
-		configBlockUI = {
-			'message'     : false,
-			'css'         : { 'background-color' : 'none', 'border' : 'none' },
-			'fadeIn'      : 0,
-			'showOverlay' : true
-		};
-		// overlay style : none
-		if ( toggleOverlay == 'none' ) {
-			configBlockUI['overlayCSS'] = { 'background-color' : 'white', 'opacity' : 0 };
-		// overlay style : loading
-		} else if ( toggleOverlay == 'loading' || toggleOverlay == 'spinner' ) {
-			configBlockUI['message'] = '<i class="fa fa-spin fa-spinner text-muted"></i>';
-			configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
-		} else if ( toggleOverlay == 'loading-large' || toggleOverlay == 'spinner-large' ) {
-			configBlockUI['message'] = '<i class="fa fa-spin fa-spinner fa-4x text-muted"></i>';
-			configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
-		// overlay style : dim
-		} else if ( toggleOverlay == 'gray' || toggleOverlay == 'dim' || toggleOverlay == 'overlay' ) {
-			configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
-		} else if ( toggleOverlay == 'grayer' || toggleOverlay == 'dimmer' ) {
-			configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .4 };
-		// overlay style : light
-		} else if ( toggleOverlay == 'white' || toggleOverlay == 'light' ) {
-			configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .3 };
-		} else if ( toggleOverlay == 'whiter' || toggleOverlay == 'lighter' ) {
-			configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .6 };
-		// overlay style : progress (default)
+		// fire event when started
+		$btnStart.trigger('autoSubmit.bsx');
+		// mark flag to all target elements to monitor the progress
+		$targetElements.addClass('pending-autosubmit');
+		// convert [toggle-callback] to function
+		if ( toggleCallback.trim() == '' ) {
+			// attribute is empty...
+			var callbackFunc = function(){};
+		} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
+			// attribute is function name...
+			eval('var callbackFunc = '+toggleCallback+'();');
+		} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
+			// attribute is anonymous function...
+			eval('var callbackFunc = '+toggleCallback+';');
 		} else {
-			configBlockUI['overlayCSS'] = {
-				'-webkit-animation' : 'progress-bar-stripes 1s linear infinite',
-				'animation'         : 'progress-bar-stripes 1s linear infinite',
-				'background-color'  : '#bbb',
-				'background-image'  : '-webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
-				'background-image'  : 'linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
-				'background-size'   : '1rem 1rem',
-			};
+			// attribute is function content...
+			eval('var callbackFunc = function(){ '+toggleCallback+' };');
 		}
-	}
-	// check target
-	if ( !toggleTarget ) {
-		console.log('[Error] '+eventType+'.bsx - Attribute [data-target] was not specified');
-	} else if ( !$(toggleTarget).length ) {
-		console.log('[Error] '+eventType+'.bsx - Target not found ('+toggleTarget+')');
-	}
-	// normal redirect or submit when target element was not properly specified
-	if ( !toggleTarget || !$(toggleTarget).length ) {
-		$triggerElement.removeAttr('data-toggle');
-		if ( eventType == 'ajaxSubmit' ) {
-			$triggerElement.submit();
-		} else {
-			document.location.href = $triggerElement.is('[href]') ? $triggerElement.attr('href') : $triggerElement.attr('data-href');
+		// other elements
+		// ===> element to stop the auto process
+		// ===> element to display the progress message
+		var $btnStop = $(toggleStop);
+		var $progressElements = $(toggleProgress);
+		// remember original content (before any progress update)
+		$progressElements.each(function(){ $(this).attr('data-original', $(this).html()); });
+		// stop button behavior
+		// ===> mark flag to avoid assigning the behavior again
+		// ===> mark flag to instruct the timer to kill itself
+		$btnStop.not('.stop-button-ready').on('click', function(evt){
+			evt.preventDefault();
+			$btnStop.addClass('stop-button-ready');
+			$btnStart.addClass('stopped');
+		});
+		// create timer
+		// ===> keep repeating until all done
+		var timer = window.setInterval(function(){
+			// determine progress
+			// ===> count block-overlay to monitor any active item
+			// ===> because cannot ensure jQuery properly remove the element after run
+			var countTotal      = $targetElements.length;
+			var countActive     = $('.blockOverlay').length;
+			var countUndone     = $targetElements.filter('.pending-autosubmit').length + countActive;
+			var countDone       = countTotal - countUndone;
+			var progressRatio   = countDone+'/'+countTotal;
+			var progressHeading = toggleHeading;
+			var progressMessage = progressHeading ? (progressHeading+' ('+progressRatio+')') : progressRatio;
+			// when repeat again
+			// ===> update progress
+			// ===> trigger event
+			$progressElements.html(progressMessage);
+			$btnStart.trigger('autoSubmitUpdated.bsx');
+			// when stopped
+			// ===> kill timer to stop repeating
+			// ===> clear flag
+			// ===> restore to original content
+			// ===> unblock start & block stop
+			// ===> trigger event
+			if ( $btnStart.is('.stopped') ) {
+				window.clearInterval(timer);
+				$btnStart.removeClass('stopped');
+				$progressElements.each(function(){ $(this).html( $(this).attr('data-original') ).removeAttr('data-original'); });
+				$btnStart.prop('disabled', false).removeClass('disabled');
+				$btnStop.prop('disabled', true).addClass('disabled');
+				$btnStart.trigger('autoSubmitStopped.bsx');
+			// when no more pending (considered as completed)
+			// ===> kill timer to stop repeating
+			// ===> restore to original content
+			// ===> unblock start & block stop
+			// ===> trigger callback & event
+			} else if ( !countUndone ) {
+				window.clearInterval(timer);
+				$progressElements.each(function(){ $(this).html( $(this).attr('data-original') ).removeAttr('data-original'); });
+				$btnStart.prop('disabled', false).removeClass('disabled');
+				$btnStop.prop('disabled', true).addClass('disabled');
+				callbackFunc();
+				$btnStart.trigger('autoSubmitCompleted.bsx');
+			// when has pending & no item is running
+			// ===> invoke first pending item
+			// ===> mark running item as active
+			// ===> block start button & unblock stop button
+			} else if ( !countActive ) {
+				var $firstPending = $targetElements.filter('.pending-autosubmit:first');
+				$firstPending.trigger( $firstPending.is('form') ? 'submit' : 'click' );
+				$firstPending.removeClass('pending-autosubmit').addClass('active-autosubmit');
+				$btnStart.prop('disabled', true).addClass('disabled');
+				$btnStop.prop('disabled', false).removeClass('disabled');
+			}
+		}, 100);
+	});
+
+
+
+
+	/*---------------------------+
+	|  DATA-TOGGLE : AJAX-MODAL  |
+	+----------------------------+
+
+	[Usage]
+	Auto-load remote content into modal
+	===> data-toggle = {ajax-modal}
+	===> data-target = ~targetModal~
+	===> data-(toggle-)selector = ~partialResponseToShow~
+
+	[Example]
+	<a href="foo.html" data-toggle="ajax-modal" data-target="#my-modal">...</div>
+	<button data-href="bar.html" data-toggle="ajax-modal" data-target="#my-modal">...</button>
+	*/
+
+	// load content to modal
+	$(document).on('click', ':not(form)[data-toggle=ajax-modal]', function(evt){
+		evt.preventDefault();
+		ajaxModal(this);
+	});
+	// submit form & show content in modal
+	$(document).on('submit', 'form[data-toggle=ajax-modal]', function(evt){
+		evt.preventDefault();
+		ajaxModal(this);
+	});
+	// actual behavior of [ajax-modal]
+	var ajaxModal = function(triggerElement) {
+		var $triggerElement = $(triggerElement);
+		// validation
+		if ( !$triggerElement.attr('data-target') ) {
+			console.log('[ERROR] ajaxModal.bsx - Attribute [data-target] was not specified');
+			return false;
 		}
-	// proceed...
-	} else {
-		var $targetElement = $(toggleTarget);
+		// determine options
+		var toggleSelector = function(){
+			if ( $triggerElement.is('[data-toggle-selector]') ) return $btn.attr('data-toggle-selector');
+			else if ( $triggerElement.is('[data-selector]'  ) ) return $btn.attr('data-selector');
+			else return '';
+		}();
+		// determine target element
+		var $modal = $( $triggerElement.attr('data-target') );
+		if ( !$modal.length ) {
+			console.log('[ERROR] ajaxModal.bsx - Target modal not found ('+$triggerElement.attr('data-target')+')');
+			return false;
+		} else if ( !$modal.is('.modal') ) {
+			console.log('[ERROR] ajaxModal.bsx - Target modal does not have <.modal> class ('+$triggerElement.attr('data-target')+')');
+			return false;
+		} else if ( !$modal.find('.modal-dialog').length ) {
+			console.log('[ERROR] ajaxModal.bsx - Target modal does not have <.modal-dialog> child element ('+$triggerElement.attr('data-target')+')');
+			return false;
+		}
+		// determine target url
 		var url;
 		if ( $triggerElement.is('form') ) {
 			url = $triggerElement.attr('action');
@@ -593,7 +330,7 @@ var ajaxLoadOrSubmit = function(triggerElement) {
 		} else if ( $triggerElement.is('a') ) {
 			url = $triggerElement.attr('href');
 		} else {
-			console.log('[Error] '+eventType+'.bsx - Type of trigger element not support');
+			console.log('[Error] ajaxModal.bsx - Type of trigger element not support');
 		}
 		// serialize form data (when necessary)
 		var formData;
@@ -604,19 +341,24 @@ var ajaxLoadOrSubmit = function(triggerElement) {
 		} else {
 			formData = {};
 		}
-		// block
-		if ( $triggerElement.is('form') ) {
-			if ( configBlockUI ) {
-				$triggerElement.block( configBlockUI );
-			}
-			$triggerElement.find('[type=submit]').attr('disabled', true);
-		} else {
-			$triggerElement.attr('disabled', true);
+		// create essential modal structure (when necessary)
+		if ( !$modal.find('.modal-content').length ) {
+			$modal.find('.modal-dialog').append('<div class="modal-content"></div>');
 		}
-		if ( configBlockUI ) {
-			$targetElement.block( configBlockUI );
-		}
-		// load result remotely
+		// clear modal content first (when necessary)
+		$modal.find('.modal-content').html(`
+			<div class="modal-header">
+				<div class="modal-title text-muted"><i class="fa fa-spinner fa-pulse"></i><span class="ml-2">Loading...</span></div>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+			</div>
+		`);
+		// show modal
+		$modal.modal('show');
+		// load or submit
 		$.ajax({
 			'url' : url,
 			'data' : formData,
@@ -624,6 +366,11 @@ var ajaxLoadOrSubmit = function(triggerElement) {
 			'processData' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ),
 			'contentType' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ) ? 'application/x-www-form-urlencoded; charset=UTF-8' : false,
 			'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
+			'error' : function(jqXHR, textStatus, errorThrown) {
+				window.setTimeout(function(){
+					ajaxErrorHandler(null, jqXHR, { url : url }, errorThrown);
+				}, 1000);
+			},
 			'success' : function(data, textStatus, jqXHR){
 				// wrap by dummy element (when necessary)
 				// ===> avoid multiple elements
@@ -631,80 +378,354 @@ var ajaxLoadOrSubmit = function(triggerElement) {
 				// ===> avoid selector find against base element
 				if ( $(data).length != 1 || toggleSelector ) data = '<div>'+data+'</div>';
 				// show full response or specific element only
-				var $newElement = toggleSelector ? $(data).find(toggleSelector) : $(data);
-				// determine position of new element
-				if ( toggleMode == 'prepend' ) {
-					$newElement.prependTo( $targetElement );
-				} else if ( toggleMode == 'append' ) {
-					$newElement.appendTo( $targetElement );
-				} else if ( toggleMode == 'before' ) {
-					$newElement.insertBefore( $targetElement );
-				} else {
-					// current element will be hidden later (when [replace] mode)
-					$newElement.insertAfter( $targetElement );
-				}
-				// turn [toggle-callback] attribute to function
-				if ( toggleCallback.trim() == '' ) {
-					// attribute is empty...
-					var callbackFunc = function(){};
-				} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
-					// attribute is function name...
-					eval('var callbackFunc = '+toggleCallback+'();');
-				} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
-					// attribute is anonymous function...
-					eval('var callbackFunc = '+toggleCallback+';');
-				} else {
-					// attribute is function content...
-					eval('var callbackFunc = function(){ '+toggleCallback+' };');
-				}
-				// show new element with effect
-				// ===> fire event after new element shown
-				var callbackEvent = eventType + 'Callback.bsx';
-				if ( toggleTransition == 'fade' ) {
-					// fade effect...
-					$newElement.hide().fadeIn(400, function(){
-						callbackFunc();
-						$triggerElement.trigger(callbackEvent);
-					});
-				} else if ( toggleTransition == 'slide' ) {
-					// slide effect...
-					$newElement.hide().slideDown(400, function(){
-						callbackFunc();
-						$triggerElement.trigger(callbackEvent);
-					});
-				} else {
-					// no effect...
-					$newElement.hide().show();
-					callbackFunc();
-					$triggerElement.trigger(callbackEvent);
-				}
-				// hide current element (when necessary)
-				if ( toggleMode == 'replace' ) {
-					if ( toggleTransition == 'slide' ) {
-						// make sure element totally removed (tiny bit) later than callback fired
-						$targetElement.slideUp(401, function(){ $targetElement.remove(); });
-					} else {
-						$targetElement.hide().remove();
-					}
-				}
+				$modal.find('.modal-content').html( toggleSelector ? $(data).find(toggleSelector) : data );
 			},
-			'complete' : function(){
-				// unblock trigger element
-				if ( $triggerElement.is('form') ) {
-					if ( configBlockUI ) $triggerElement.unblock();
-					$triggerElement.find('[type=submit]').attr('disabled', false);
-				} else {
-					$triggerElement.attr('disabled', false);
-				}
-				// unblock old element
-				if ( configBlockUI ) $targetElement.unblock();
-			}
 		});
-	}
-}; // function-ajaxLoadOrSubmit
+	}; // function-ajaxModal
 
 
-}); // function-$
+
+
+	/*------------------------------+
+	|  DATA-TOGGLE : AJAX-DROPDOWN  |
+	+-------------------------------+
+
+	[Usage]
+	Auto-load remote content into dropdown (load-once-and-keep)
+	===> data-toggle = {ajax-dropdown}
+	===> data-target = ~targetDropdown~
+	===> data-(toggle-)align = {left*|right}
+	===> data-(toggle-)selector = ~partialResponseToShow~
+
+	[Example]
+	<div class="dropdown">
+		<a href="my/dropdown/menu.php" class="dropdown-toggle" data-toggle="ajax-dropdown">...</a>
+		<div class="dropdown-menu"></div>
+	</div>
+	*/
+
+	$(document).on('click', '[href][data-toggle=ajax-dropdown],[data-href][data-toggle=ajax-dropdown]', function(evt){
+		evt.preventDefault();
+		var $btn = $(this);
+		var $parent = $btn.closest('.dropdown,.dropup,.dropleft,.dropright');
+		var $target = $parent.find('.dropdown-menu').length ? $parent.find('.dropdown-menu:first') : $('<div class="dropdown-menu"></div>').insertAfter($btn);
+		// options
+		var toggleAlign = function(){
+			if ( $btn.is('[data-toggle-align]') ) return $btn.attr('data-toggle-align');
+			else if ( $btn.is('[data-align]'  ) ) return $btn.attr('data-align');
+			else return 'left';
+		}();
+		var toggleSelector = function(){
+			if ( $btn.is('[data-toggle-selector]') ) return $btn.attr('data-toggle-selector');
+			else if ( $btn.is('[data-selector]'  ) ) return $btn.attr('data-selector');
+			else return '';
+		}();
+		// apply alignment
+		if ( toggleAlign == 'right' ) $target.addClass('dropdown-menu-right');
+		// show loading message
+		$target.html('<div class="dropdown-item text-muted"><i class="fa fa-spinner fa-pulse"></i><em class="ml-2">Loading</em></div>');
+		// load content remotely
+		var url = $btn.attr( $btn.is('[href]') ? 'href' : 'data-href' );
+		$.ajax({
+			'url' : url,
+			'cache' : false,
+			'method' : 'get',
+			'error' : function(jqXHR, textStatus, errorThrown) {
+				window.setTimeout(function(){
+					ajaxErrorHandler(null, jqXHR, { url : url }, errorThrown);
+				}, 1000);
+			},
+			'success' : function(data, textStatus, jqXHR){
+				// wrap by dummy element (when necessary)
+				// ===> avoid multiple elements
+				// ===> avoid response is plain text
+				// ===> avoid selector find against base element
+				if ( $(data).length != 1 || toggleSelector ) data = '<div>'+data+'</div>';
+				// show full response or specific element only
+				$target.html( toggleSelector ? $(data).find(toggleSelector) : data );
+				// refresh
+				$btn.dropdown('update');
+			},
+		});
+		// transform to standard bootstrap-dropdown
+		$btn.attr('data-toggle', 'dropdown');
+		// show dropdown (after dropdown constructed)
+		window.setTimeout(function(){ $btn.click(); }, 0);
+	});
+
+
+
+
+	/*----------------------------------------+
+	|  DATA-TOGGLE : AJAX-LOAD / AJAX-SUBMIT  |
+	+-----------------------------------------+
+
+	[Usage]
+	I allow ajax-load/ajax-submit content to specific element by defining data attributes
+	===> data-toggle = {ajax-load|ajax-submit}
+	===> data-target = ~targetElement|targetForm~
+	===> data-confirm = ~confirmationMessage~
+	===> data-(toggle-)mode = {replace*|prepend|append|before|after}
+	===> data-(toggle-)overlay = {progress*|loading|loading-large|spinner|spinner-large|overlay|gray|grayer|dim|dimmer|white|whiter|light|lighter|none}
+	===> data-(toggle-)transition = {slide*|fade|none}
+	===> data-(toggle-)callback = ~function|functionName~
+	===> data-(toggle-)selector = ~partialResponseToShow~
+
+	[Event]
+	===> ajaxLoad.bsx
+	===> ajaxLoadCallback.bsx
+	===> ajaxSubmit.bsx
+	===> ajaxSubmitCallback.bsx
+
+	[Example]
+	<!-- ajax load -->
+	<a href="/url/to/go" class="btn btn-default" data-toggle="ajax-load" data-target="#element"> ... </a>
+	<!-- ajax submit -->
+	<form method="post" action="/url/to/go" data-toggle="ajax-submit" data-target="#element"> ... </form>
+	*/
+
+	// remote load
+	$(document).on('click', '[data-toggle=ajax-load]', function(evt){
+		evt.preventDefault();
+		ajaxLoadOrSubmit(this);
+	});
+	// remote submit
+	// ===> [BUG] when pass to custom event
+	// ===> element becomes BUTTON (instead of FORM)
+	// ===> use closest() as dirty fix
+	$(document).on('submit', '[data-toggle=ajax-submit]', function(evt){
+		evt.preventDefault();
+		ajaxLoadOrSubmit( $(this).closest('form') );
+	});
+	// when form is [ajax-submit]
+	// ===> update form [action] with button [formaction]
+	// ===> because [ajax-submit] relies on the form [action] attribute
+	$(document).on('click', ':submit[formaction]', function(evt){
+		$(this.form).filter('[data-toggle=ajax-submit]').attr('action', $(this).attr('formaction'));
+	});
+	// actual behavior of [ajax-load|ajax-submit]
+	var ajaxLoadOrSubmit = function(triggerElement) {
+		var $triggerElement = $(triggerElement);
+		// determine event type (by camelize [data-toggle] attribute)
+		var eventType = $triggerElement.attr('data-toggle').split('-').map(function(word,index){
+			if(index == 0) return word.toLowerCase();
+			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+		}).join('');
+		// fire event
+		$triggerElement.trigger(eventType+'.bsx');
+		// confirmation
+		if ( $triggerElement.is('[data-confirm]') ) {
+			var msg = $triggerElement.attr('data-confirm').length ? $triggerElement.attr('data-confirm') : 'Are you sure?';
+			if ( !confirm(msg) ) return false;
+		}
+		// options
+		var toggleTarget = $triggerElement.attr('data-target');
+		var toggleMode = function(){
+			if ( $triggerElement.is('[data-toggle-mode]') ) return $triggerElement.attr('data-toggle-mode');
+			if ( $triggerElement.is('[data-mode]')        ) return $triggerElement.attr('data-mode');
+			return 'replace';
+		}();
+		var toggleTransition = function(){
+			if ( $triggerElement.is('[data-toggle-transition]') ) return $triggerElement.attr('data-toggle-transition');
+			if ( $triggerElement.is('[data-transition]')        ) return $triggerElement.attr('data-transition');
+			return 'slide';
+		}();
+		var toggleCallback = function(){
+			if ( $triggerElement.is('[data-toggle-callback]') ) return $triggerElement.attr('data-toggle-callback');
+			if ( $triggerElement.is('[data-callback]')        ) return $triggerElement.attr('data-callback');
+			return '';
+		}();
+		var toggleOverlay = function(){
+			if ( $triggerElement.is('[data-toggle-loading]')      ) return $triggerElement.attr('data-toggle-loading');
+			if ( $triggerElement.is('[data-toggle-overlay]')      ) return $triggerElement.attr('data-toggle-overlay');
+			if ( $triggerElement.is('[data-loading]')             ) return $triggerElement.attr('data-loading');
+			if ( $triggerElement.is('[data-overlay]')             ) return $triggerElement.attr('data-overlay');
+			return 'progress';
+		}();
+		var toggleSelector = function(){
+			if ( $triggerElement.is('[data-toggle-selector]') ) return $triggerElement.attr('data-toggle-selector');
+			if ( $triggerElement.is('[data-selector]')        ) return $triggerElement.attr('data-selector');
+			return '';
+		}();
+		// apply block-ui when ajax load (if any)
+		var configBlockUI;
+		if ( $.fn.block ) {
+			// default loading style (progress)
+			configBlockUI = {
+				'message'     : false,
+				'css'         : { 'background-color' : 'none', 'border' : 'none' },
+				'fadeIn'      : 0,
+				'showOverlay' : true
+			};
+			// overlay style : none
+			if ( toggleOverlay == 'none' ) {
+				configBlockUI['overlayCSS'] = { 'background-color' : 'white', 'opacity' : 0 };
+			// overlay style : loading
+			} else if ( toggleOverlay == 'loading' || toggleOverlay == 'spinner' ) {
+				configBlockUI['message'] = '<i class="fa fa-spin fa-spinner text-muted"></i>';
+				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
+			} else if ( toggleOverlay == 'loading-large' || toggleOverlay == 'spinner-large' ) {
+				configBlockUI['message'] = '<i class="fa fa-spin fa-spinner fa-4x text-muted"></i>';
+				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
+			// overlay style : dim
+			} else if ( toggleOverlay == 'gray' || toggleOverlay == 'dim' || toggleOverlay == 'overlay' ) {
+				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
+			} else if ( toggleOverlay == 'grayer' || toggleOverlay == 'dimmer' ) {
+				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .4 };
+			// overlay style : light
+			} else if ( toggleOverlay == 'white' || toggleOverlay == 'light' ) {
+				configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .3 };
+			} else if ( toggleOverlay == 'whiter' || toggleOverlay == 'lighter' ) {
+				configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .6 };
+			// overlay style : progress (default)
+			} else {
+				configBlockUI['overlayCSS'] = {
+					'-webkit-animation' : 'progress-bar-stripes 1s linear infinite',
+					'animation'         : 'progress-bar-stripes 1s linear infinite',
+					'background-color'  : '#bbb',
+					'background-image'  : '-webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
+					'background-image'  : 'linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
+					'background-size'   : '1rem 1rem',
+				};
+			}
+		}
+		// check target
+		if ( !toggleTarget ) {
+			console.log('[Error] '+eventType+'.bsx - Attribute [data-target] was not specified');
+		} else if ( !$(toggleTarget).length ) {
+			console.log('[Error] '+eventType+'.bsx - Target not found ('+toggleTarget+')');
+		}
+		// normal redirect or submit when target element was not properly specified
+		if ( !toggleTarget || !$(toggleTarget).length ) {
+			$triggerElement.removeAttr('data-toggle');
+			if ( eventType == 'ajaxSubmit' ) {
+				$triggerElement.submit();
+			} else {
+				document.location.href = $triggerElement.is('[href]') ? $triggerElement.attr('href') : $triggerElement.attr('data-href');
+			}
+		// proceed...
+		} else {
+			var $targetElement = $(toggleTarget);
+			var url;
+			if ( $triggerElement.is('form') ) {
+				url = $triggerElement.attr('action');
+			} else if ( $triggerElement.is('[type=button]') ) {
+				url = $triggerElement.is('[href]') ? $triggerElement.attr('href') : $triggerElement.attr('data-href');
+			} else if ( $triggerElement.is('a') ) {
+				url = $triggerElement.attr('href');
+			} else {
+				console.log('[Error] '+eventType+'.bsx - Type of trigger element not support');
+			}
+			// serialize form data (when necessary)
+			var formData;
+			if ( $triggerElement.is('form') && $triggerElement.attr('enctype') == 'multipart/form-data' ) {
+				formData = new FormData( $triggerElement[0] );
+			} else if ( $triggerElement.is('form') ) {
+				formData = $triggerElement.serialize();
+			} else {
+				formData = {};
+			}
+			// block
+			if ( $triggerElement.is('form') ) {
+				if ( configBlockUI ) {
+					$triggerElement.block( configBlockUI );
+				}
+				$triggerElement.find('[type=submit]').attr('disabled', true);
+			} else {
+				$triggerElement.attr('disabled', true);
+			}
+			if ( configBlockUI ) {
+				$targetElement.block( configBlockUI );
+			}
+			// load result remotely
+			$.ajax({
+				'url' : url,
+				'data' : formData,
+				'cache' : false,
+				'processData' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ),
+				'contentType' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ) ? 'application/x-www-form-urlencoded; charset=UTF-8' : false,
+				'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
+				'success' : function(data, textStatus, jqXHR){
+					// wrap by dummy element (when necessary)
+					// ===> avoid multiple elements
+					// ===> avoid response is plain text
+					// ===> avoid selector find against base element
+					if ( $(data).length != 1 || toggleSelector ) data = '<div>'+data+'</div>';
+					// show full response or specific element only
+					var $newElement = toggleSelector ? $(data).find(toggleSelector) : $(data);
+					// determine position of new element
+					if ( toggleMode == 'prepend' ) {
+						$newElement.prependTo( $targetElement );
+					} else if ( toggleMode == 'append' ) {
+						$newElement.appendTo( $targetElement );
+					} else if ( toggleMode == 'before' ) {
+						$newElement.insertBefore( $targetElement );
+					} else {
+						// current element will be hidden later (when [replace] mode)
+						$newElement.insertAfter( $targetElement );
+					}
+					// turn [toggle-callback] attribute to function
+					if ( toggleCallback.trim() == '' ) {
+						// attribute is empty...
+						var callbackFunc = function(){};
+					} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
+						// attribute is function name...
+						eval('var callbackFunc = '+toggleCallback+'();');
+					} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
+						// attribute is anonymous function...
+						eval('var callbackFunc = '+toggleCallback+';');
+					} else {
+						// attribute is function content...
+						eval('var callbackFunc = function(){ '+toggleCallback+' };');
+					}
+					// show new element with effect
+					// ===> fire event after new element shown
+					var callbackEvent = eventType + 'Callback.bsx';
+					if ( toggleTransition == 'fade' ) {
+						// fade effect...
+						$newElement.hide().fadeIn(400, function(){
+							callbackFunc();
+							$triggerElement.trigger(callbackEvent);
+						});
+					} else if ( toggleTransition == 'slide' ) {
+						// slide effect...
+						$newElement.hide().slideDown(400, function(){
+							callbackFunc();
+							$triggerElement.trigger(callbackEvent);
+						});
+					} else {
+						// no effect...
+						$newElement.hide().show();
+						callbackFunc();
+						$triggerElement.trigger(callbackEvent);
+					}
+					// hide current element (when necessary)
+					if ( toggleMode == 'replace' ) {
+						if ( toggleTransition == 'slide' ) {
+							// make sure element totally removed (tiny bit) later than callback fired
+							$targetElement.slideUp(401, function(){ $targetElement.remove(); });
+						} else {
+							$targetElement.hide().remove();
+						}
+					}
+				},
+				'complete' : function(){
+					// unblock trigger element
+					if ( $triggerElement.is('form') ) {
+						if ( configBlockUI ) $triggerElement.unblock();
+						$triggerElement.find('[type=submit]').attr('disabled', false);
+					} else {
+						$triggerElement.attr('disabled', false);
+					}
+					// unblock old element
+					if ( configBlockUI ) $targetElement.unblock();
+				}
+			});
+		}
+	}; // function-ajaxLoadOrSubmit
+
+
+}); // document-ready
 
 
 
