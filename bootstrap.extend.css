@@ -832,11 +832,11 @@ https://codepen.io/jasongardner/pen/gxprVQ
 @keyframes hourglassAnimation {
 	10% { content:"\F420"; }
 	45% { content:"\F41F"; }
-	75% { content:"\F41F"; }
-	100% { content:"\F41F"; }
+	75% { content:"\F41E"; }
+	100% { content:"\F41E"; }
 }
-.bi-hourglass-animated { animation: hourglassAnimationContainer 4s infinite linear; }
-.bi-hourglass-animated::before { animation: hourglassAnimation 4s infinite linear; content: "\F420"; }
+.bi-hourglass-animated { animation: hourglassAnimationContainer 4s infinite linear; display: inline-block; }
+.bi-hourglass-animated::before { animation: hourglassAnimation 4s infinite linear; content: "\F420"; display: inline-block; }
 
 
 
