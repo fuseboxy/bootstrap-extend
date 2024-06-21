@@ -830,12 +830,12 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 @keyframes hourglassAnimationContainer {
 	87.5% { transform: rotate(0deg); }
-	100% { transform: rotate(180deg); }
+	100%  { transform: rotate(180deg); }
 }
 @keyframes hourglassAnimation {
-	10% { content:"\F420"; }
-	45% { content:"\F41F"; }
-	75% { content:"\F41E"; }
+	10%  { content:"\F420"; }
+	45%  { content:"\F41F"; }
+	75%  { content:"\F41E"; }
 	100% { content:"\F41E"; }
 }
 .bi-hourglass-animated { animation: hourglassAnimationContainer 4s infinite linear; display: inline-block; }
@@ -847,6 +847,67 @@ https://codepen.io/jasongardner/pen/gxprVQ
 /*------------------+
 |  NEGATIVE MARGIN  |
 +------------------*/
+
+.m-n1,
+.my-n1,
+.mt-n1 { margin-top: -.25rem !important; }
+.m-n2,
+.my-n2,
+.mt-n2 { margin-top: -.5rem !important; }
+.m-n3,
+.my-n3,
+.mt-n3 { margin-top: -1rem !important; }
+.m-n4,
+.my-n4,
+.mt-n4 { margin-top: -1.5rem !important; }
+.m-n5,
+.my-n5,
+.mt-n5 { margin-top: -3rem !important; }
+.m-n1,
+.my-n1,
+.mb-n1 { margin-bottom: -.25rem !important; }
+.m-n2,
+.my-n2,
+.mb-n2 { margin-bottom: -.5rem !important; }
+.m-n3,
+.my-n3,
+.mb-n3 { margin-bottom: -1rem !important; }
+.m-n4,
+.my-n4,
+.mb-n4 { margin-bottom: -1.5rem !important; }
+.m-n5,
+.my-n5,
+.mb-n5 { margin-bottom: -3rem !important; }
+.m-n1,
+.mx-n1,
+.ml-n1 { margin-left: -.25rem !important; }
+.m-n2,
+.mx-n2,
+.ml-n2 { margin-left: -.5rem !important; }
+.m-n3,
+.mx-n3,
+.ml-n3 { margin-left: -1rem !important; }
+.m-n4,
+.mx-n4,
+.ml-n4 { margin-left: -1.5rem !important; }
+.m-n5,
+.mx-n5,
+.ml-n5 { margin-left: -3rem !important; }
+.m-n1,
+.mx-n1,
+.mr-n1 { margin-right: -.25rem !important; }
+.m-n2,
+.mx-n2,
+.mr-n2 { margin-right: -.5rem !important; }
+.m-n3,
+.mx-n3,
+.mr-n3 { margin-right: -1rem !important; }
+.m-n4,
+.mx-n4,
+.mr-n4 { margin-right: -1.5rem !important; }
+.m-n5,
+.mx-n5,
+.mr-n5 { margin-right: -3rem !important; }
 
 
 
@@ -981,11 +1042,11 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .border-left { border-left: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important; }
 .border-left-0 { border-left: 0 !important; }
 /* positioning */
-.left-0 { left: 0 !important; }
-.left-50 { left: 50% !important; }
-.left-100 { left: 100% !important; }
-.right-0 { right: 0 !important; }
-.right-50 { right: 50% !important; }
+.left-0    { left: 0 !important; }
+.left-50   { left: 50% !important; }
+.left-100  { left: 100% !important; }
+.right-0   { right: 0 !important; }
+.right-50  { right: 50% !important; }
 .right-100 { right: 100% !important; }
 /* spacing */
 .ml-0 { margin-left: 0 !important; }
