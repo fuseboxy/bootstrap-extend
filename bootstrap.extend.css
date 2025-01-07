@@ -1,5 +1,10 @@
+https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.css
+
+https://getbootstrap.com/docs/5.3/utilities/borders/
+
+
 /*-----------------------+
-|  CORE ELEMENTS HEIGHT  |
+|  CORE ELEMENTS HEIGHT  |    ====>   WORK-IN-PROGRESS
 +------------------------+
 
 [Usage]
@@ -23,7 +28,7 @@ The CSS variables are updated by Javascript in realtime
 
 
 /*------------------+
-|  MODAL NEW SIZES  |
+|  MODAL NEW SIZES  |    ====>   WORK-IN-PROGRESS
 +-------------------+
 
 [Details]
@@ -74,7 +79,7 @@ The CSS variables are updated by Javascript in realtime
 
 
 /*-------------------+
-|  BUTTON NEW SIZES  |
+|  BUTTON NEW SIZES  |    ====>   WORK-IN-PROGRESS
 +--------------------+
 
 [Example]
@@ -107,7 +112,7 @@ The CSS variables are updated by Javascript in realtime
 
 
 /*---------------------------------------+
-|  FORM CONTROL & INPUT GROUP NEW SIZES  |
+|  FORM CONTROL & INPUT GROUP NEW SIZES  |    ====>   WORK-IN-PROGRESS
 +----------------------------------------+
 
 [Example]
@@ -138,7 +143,7 @@ The CSS variables are updated by Javascript in realtime
 
 
 /*----------------------+
-|  MULTILEVEL DROPDOWN  |
+|  MULTILEVEL DROPDOWN  |    ====>   WORK-IN-PROGRESS
 +-----------------------+
 
 [Reference]
@@ -205,7 +210,7 @@ https://bootstrapious.com/p/bootstrap-multilevel-dropdown
 
 
 /*------------------------+
-|  TAB VERTICAL & BOTTOM  |
+|  TAB VERTICAL & BOTTOM  |    ====>   WORK-IN-PROGRESS
 +-------------------------+
 
 [Reference]
@@ -272,21 +277,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
-/*------------------------------+
-|  UTILITY CLASSES FOR STYLING  |
-+------------------------------*/
-
-/* styling */
-.em { font-style: italic; }
-.del { text-decoration: line-through; }
-.strong { font-weight: bolder; }
-.sub,
-.sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-.sub { bottom: -.25em; }
-.sup { top: -.5em; }
-/* font size */
-.smaller { font-size: .75rem; }
-.smallest { font-size: .675rem; }
+/*-------------------------+
+|  UTILITY : BORDER WIDTH  |    ====>   WORK-IN-PROGRESS
++-------------------------*/
 /* border 5 (additive) */
 .b-5  { border: 5px solid #dee2e6 !important; }
 .bx-5 { border-left: 5px solid #dee2e6 !important; border-right: 5px solid #dee2e6 !important; }
@@ -431,6 +424,137 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .bb-transparent { border-bottom-color: transparent !important; }
 .bl-transparent { border-left-color: transparent !important; }
 .br-transparent { border-right-color: transparent !important; }
+
+
+
+
+/*---------------------------+
+|  UTILITY : BORDER OPACITY  |
++---------------------------*/
+.b-op-0   { --bs-border-opacity:   0; }
+.b-op-5   { --bs-border-opacity: .05; }
+.b-op-10  { --bs-border-opacity: .10; }
+.b-op-15  { --bs-border-opacity: .15; }
+.b-op-20  { --bs-border-opacity: .20; }
+.b-op-25  { --bs-border-opacity: .25; }
+.b-op-30  { --bs-border-opacity: .30; }
+.b-op-35  { --bs-border-opacity: .35; }
+.b-op-40  { --bs-border-opacity: .40; }
+.b-op-45  { --bs-border-opacity: .45; }
+.b-op-50  { --bs-border-opacity: .50; }
+.b-op-55  { --bs-border-opacity: .55; }
+.b-op-60  { --bs-border-opacity: .60; }
+.b-op-65  { --bs-border-opacity: .65; }
+.b-op-70  { --bs-border-opacity: .70; }
+.b-op-75  { --bs-border-opacity: .75; }
+.b-op-80  { --bs-border-opacity: .80; }
+.b-op-85  { --bs-border-opacity: .85; }
+.b-op-90  { --bs-border-opacity: .90; }
+.b-op-95  { --bs-border-opacity: .95; }
+.b-op-100 { --bs-border-opacity:   1; }
+
+
+
+
+/*--------------------------+
+|  UTILITY : BORDER RADIUS  |    ====>   WORK-IN-PROGRESS
++--------------------------*/
+.r-0 { border-radius: 0 !important; }
+.r-1 { border-radius: var(--bs-border-radius-sm)  !important; }
+.r-2 { border-radius: var(--bs-border-radius)     !important; }
+.r-3 { border-radius: var(--bs-border-radius-lg)  !important; }
+.r-4 { border-radius: var(--bs-border-radius-xl)  !important; }
+.r-5 { border-radius: var(--bs-border-radius-xxl) !important; }
+.r-pill { border-radius: var(--bs-border-radius-pill) !important; }
+.r-circle { border-radius: 50% !important; }
+/* rounded-bottom */
+.rb-0 {}
+.rb-1 {}
+.rb-2 {}
+.rb-3 {}
+.rb-4 {}
+.rb-5 {}
+.rb-pill {}
+.rb-circle {}
+/* rounded-left */
+.rl-0 {}
+.rl-1 {}
+.rl-2 {}
+.rl-3 {}
+.rl-4 {}
+.rl-5 {}
+.rl-pill {}
+.rl-circle {}
+/* rounded-right */
+.rr-0 {}
+.rr-1 {}
+.rr-2 {}
+.rr-3 {}
+.rr-4 {}
+.rr-5 {}
+.rr-pill {}
+.rr-circle {}
+/* rounded-top */
+.rt-0 { border-top-left-radius: 0 !important; border-top-right-radius: 0 !important; }
+.rt-1 { border-top-left-radius: var(--bs-border-radius-sm) !important; border-top-right-radius: var(--bs-border-radius-sm) !important; }
+.rt-2 { border-top-left-radius: var(--bs-border-radius) !important; border-top-right-radius: var(--bs-border-radius) !important; }
+.rt-3 { border-top-left-radius: var(--bs-border-radius-lg) !important; border-top-right-radius: var(--bs-border-radius-lg) !important; }
+.rt-4 { border-top-left-radius: var(--bs-border-radius-xl) !important; border-top-right-radius: var(--bs-border-radius-xl) !important; }
+.rt-5 { border-top-left-radius: var(--bs-border-radius-xxl) !important; border-top-right-radius: var(--bs-border-radius-xxl) !important; }
+.rt-pill {}
+.rt-circle {}
+
+
+
+
+/*-------------------------+
+|  UTILITY : BUTTON COLOR  |    ====>   WORK-IN-PROGRESS
++-------------------------*/
+.btn-primary-subtle {}
+.btn-secondary-subtle {}
+.btn-success-subtle {}
+.btn-info-subtle {}
+.btn-warning-subtle {}
+.btn-danger-subtle {}
+.btn-light-subtle {}
+.btn-dark-subtle {}
+
+.btn-outline-primary-subtle {}
+.btn-outline-secondary-subtle {}
+.btn-outline-success-subtle {}
+.btn-outline-info-subtle {}
+.btn-outline-warning-subtle {}
+.btn-outline-danger-subtle {}
+.btn-outline-light-subtle {}
+.btn-outline-dark-subtle {}
+
+
+
+
+/*-----------------------+
+|  UTILITY : BACKGROUND  |    ====>   WORK-IN-PROGRESS
++-----------------------*/
+
+.bg-hover-primary {}
+.bg-hover-primary-subtle {}
+
+
+/*------------------------------+
+|  UTILITY CLASSES FOR STYLING  |    ====>   WORK-IN-PROGRESS
++------------------------------*/
+
+/* styling */
+.em { font-style: italic; }
+.del { text-decoration: line-through; }
+.strong { font-weight: bolder; }
+.sub,
+.sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+.sub { bottom: -.25em; }
+.sup { top: -.5em; }
+/* font size */
+.smaller { font-size: .75rem; }
+.smallest { font-size: .675rem; }
+
 /* shadow */
 .shadow-xs { box-shadow: 0 .125rem .25rem 0 rgba(0, 0, 0, .075) !important; }
 .shadow-sm { box-shadow: 0 .25rem  .5rem  0 rgba(0, 0, 0, .1) !important; }
@@ -524,7 +648,7 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 /*------------------+
-|  ADVANCED SHADOW  |
+|  ADVANCED SHADOW  |    ====>   WORK-IN-PROGRESS
 +------------------*/
 
 .s-1,
@@ -913,7 +1037,7 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 /*--------------------------+
-|  START-END TO LEFT-RIGHT  |
+|  START-END TO LEFT-RIGHT  |    ====>   WORK-IN-PROGRESS
 +--------------------------*/
 
 /* dropdown */
