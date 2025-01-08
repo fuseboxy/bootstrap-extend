@@ -359,6 +359,12 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .mr-n3 { margin-right: calc( -1 * var(--bsx-margin-lg) ) !important; }
 .mr-n4 { margin-right: calc( -1 * var(--bsx-margin-xl) ) !important; }
 .mr-n5 { margin-right: calc( -1 * var(--bsx-margin-xxl) ) !important; }
+/* margin-top */
+.mt-n1 { margin-top: calc( -1 * var(--bsx-margin-sm) ) !important; }
+.mt-n2 { margin-top: calc( -1 * var(--bsx-margin) ) !important; }
+.mt-n3 { margin-top: calc( -1 * var(--bsx-margin-lg) ) !important; }
+.mt-n4 { margin-top: calc( -1 * var(--bsx-margin-xl) ) !important; }
+.mt-n5 { margin-top: calc( -1 * var(--bsx-margin-xxl) ) !important; }
 /* margin-left-right */
 .mx-n1 { margin-left: calc( -1 * var(--bsx-margin-sm) ) !important; margin-right: calc( -1 * var(--bsx-margin-sm) ) !important; }
 .mx-n2 { margin-left: calc( -1 * var(--bsx-margin) ) !important; margin-right: calc( -1 * var(--bsx-margin) ) !important; }
