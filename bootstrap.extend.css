@@ -39,13 +39,13 @@ The CSS variables are updated by Javascript in realtime
 
 
 
-/*------------------+
-|  MODAL NEW SIZES  |    ====>   WORK-IN-PROGRESS
-+-------------------+
+/*--------------------+
+|  (MORE) MODAL SIZE  | 
++---------------------+
 
 [Details]
 +---------------+--------------+----------------------------+
-|  Size         |  Class       |  Modal max-width           |
+|  Size         |  Class       |  Modal Max Size            |
 +---------------+--------------+----------------------------+
 |  Extra Small  |  .modal-xs   |  300px                     |
 |  Small        |  .modal-sm   |  500px (originally 300px)  |
@@ -63,28 +63,35 @@ The CSS variables are updated by Javascript in realtime
 	</div>
 </div>
 */
-
-.modal-dialog { max-width: 800px; }
+/* sm */
 @media (min-width: 576px) {
-	.modal-xs { max-width: 300px; }
-	.modal-sm { max-width: 500px; }
+	.modal-xs { --bs-modal-width: 300px; }
+	.modal-sm,
+	.modal { --bs-modal-width: 500px; }
 }
+/* md */
+@media (min-width 768px) {
+	.modal { --bs-modal-width: 700px; }
+}
+/* lg */
 @media (min-width: 992px) {
-	.modal-lg,
+	.modal,
+	.modal-lg { --bs-modal-width: 800px; }
 	.modal-xl,
-	.modal-xxl { max-width: 800px; }
+	.modal-xxl,
+	.modal-max { --bs-modal-width: 960px; }
 }
+/* xl */
 @media (min-width: 1200px) {
-	.modal-lg { max-width: 960px; }
+	.modal-lg { --bs-modal-width: 960px; }
 	.modal-xl,
-	.modal-xxl { max-width: 1140px; }
+	.modal-xxl,
+	.modal-max { --bs-modal-width: 1140px; }
 }
+/* xxl */
 @media (min-width: 1400px) {
-	.modal-xxl { max-width: 1320px; }
-}
-.modal .modal-dialog.modal-max {
-	max-width: none;
-	width: calc(100% - 2rem);
+	.modal-xxl { --bs-modal-width: 1320px; }
+	.modal-max { --bs-modal-width: calc(100% - 2rem); }
 }
 
 
