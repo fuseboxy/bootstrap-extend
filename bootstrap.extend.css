@@ -14,6 +14,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*-----------------------+
 |  CORE ELEMENTS HEIGHT  |    ====>   WORK-IN-PROGRESS
@@ -36,6 +39,9 @@ The CSS variables are updated by Javascript in realtime
 	--bsx-footer-height: 0px;
 }
 
+
+
+/*======================================================================================================================================================*/
 
 
 
@@ -96,6 +102,9 @@ The CSS variables are updated by Javascript in realtime
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*-------------------+
 |  BUTTON SIZE (XS)  |
@@ -121,6 +130,9 @@ The CSS variables are updated by Javascript in realtime
 .btn-xs + .dropdown-toggle-split,
 .btn-group-xs > .btn + .dropdown-toggle-split { padding-left: .375rem; padding-right: .375rem; }
 
+
+
+/*======================================================================================================================================================*/
 
 
 
@@ -151,6 +163,9 @@ The CSS variables are updated by Javascript in realtime
 .input-group-xs > .input-group-text { font-size: .785rem; }
 .input-group-xs > .form-select { padding-right: 3rem; }
 
+
+
+/*======================================================================================================================================================*/
 
 
 
@@ -218,6 +233,9 @@ https://bootstrapious.com/p/bootstrap-multilevel-dropdown
 	right: 100%;
 }
 
+
+
+/*======================================================================================================================================================*/
 
 
 
@@ -288,6 +306,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*-----------------------------+
 |  ICON ANIMATION : HOURGLASS  |
@@ -305,6 +326,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .bi-hourglass-animated { animation: hourglassAnimationContainer 4s infinite linear; display: inline-block; }
 .bi-hourglass-animated::before { animation: hourglassAnimation 4s infinite linear; content: "\F420"; display: inline-block; }
 
+
+
+/*======================================================================================================================================================*/
 
 
 
@@ -350,60 +374,77 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
 
 
 
 /*----------------------------------+
-|  UTILITY SHORTCUT : BORDER WIDTH  |    ====>   WORK-IN-PROGRESS
+|  UTILITY SHORTCUT : BORDER WIDTH  |
 +----------------------------------*/
-/* border 5 (additive) */
-.b-5  { border: 5px solid #dee2e6 !important; }
-.bx-5 { border-left: 5px solid #dee2e6 !important; border-right: 5px solid #dee2e6 !important; }
-.by-5 { border-top: 5px solid #dee2e6 !important; border-bottom: 5px solid #dee2e6 !important; }
-.bt-5 { border-top: 5px solid #dee2e6 !important; }
-.bb-5 { border-bottom: 5px solid #dee2e6 !important; }
-.bl-5 { border-left: 5px solid #dee2e6 !important; }
-.br-5 { border-right: 5px solid #dee2e6 !important; }
-/* border 4 (additive) */
-.b-4  { border: 4px solid #dee2e6 !important; }
-.bx-4 { border-left: 4px solid #dee2e6 !important; border-right: 4px solid #dee2e6 !important; }
-.by-4 { border-top: 4px solid #dee2e6 !important; border-bottom: 4px solid #dee2e6 !important; }
-.bt-4 { border-top: 4px solid #dee2e6 !important; }
-.bb-4 { border-bottom: 4px solid #dee2e6 !important; }
-.bl-4 { border-left: 4px solid #dee2e6 !important; }
-.br-4 { border-right: 4px solid #dee2e6 !important; }
-/* border 3 (additive) */
-.b-3  { border: 3px solid #dee2e6 !important; }
-.bx-3 { border-left: 3px solid #dee2e6 !important; border-right: 3px solid #dee2e6 !important; }
-.by-3 { border-top: 3px solid #dee2e6 !important; border-bottom: 3px solid #dee2e6 !important; }
-.bt-3 { border-top: 3px solid #dee2e6 !important; }
-.bb-3 { border-bottom: 3px solid #dee2e6 !important; }
-.bl-3 { border-left: 3px solid #dee2e6 !important; }
-.br-3 { border-right: 3px solid #dee2e6 !important; }
-/* border 2 (additive) */
-.b-2  { border: 2px solid #dee2e6 !important; }
-.bx-2 { border-left: 2px solid #dee2e6 !important; border-right: 2px solid #dee2e6 !important; }
-.by-2 { border-top: 2px solid #dee2e6 !important; border-bottom: 2px solid #dee2e6 !important; }
-.bt-2 { border-top: 2px solid #dee2e6 !important; }
-.bb-2 { border-bottom: 2px solid #dee2e6 !important; }
-.bl-2 { border-left: 2px solid #dee2e6 !important; }
-.br-2 { border-right: 2px solid #dee2e6 !important; }
-/* border 1 (additive) */
-.b-1  { border: 1px solid #dee2e6 !important; }
-.bx-1 { border-left: 1px solid #dee2e6 !important; border-right: 1px solid #dee2e6 !important; }
-.by-1 { border-top: 1px solid #dee2e6 !important; border-bottom: 1px solid #dee2e6 !important; }
-.bt-1 { border-top: 1px solid #dee2e6 !important; }
-.bb-1 { border-bottom: 1px solid #dee2e6 !important; }
-.bl-1 { border-left: 1px solid #dee2e6 !important; }
-.br-1 { border-right: 1px solid #dee2e6 !important; }
-/* border 0 (subtractive) */
-.b-0  { border: 0 !important; }
-.bx-0 { border-left: 0 !important; border-right: 0 !important; }
-.by-0 { border-top: 0 !important; border-bottom: 0 !important; }
-.bt-0 { border-top: 0 !important; }
-.bb-0 { border-bottom: 0 !important; }
-.bl-0 { border-left: 0 !important; }
-.br-0 { border-right: 0 !important; }
+/* additive (common) */
+.b-5, .bb-5, .bl-5, .br-5, .bt-5, .bx-5, .by-5,
+.b-4, .bb-4, .bl-4, .br-4, .bt-4, .bx-4, .by-4,
+.b-3, .bb-3, .bl-3, .br-3, .bt-3, .bx-3, .by-3,
+.b-2, .bb-2, .bl-2, .br-2, .bt-2, .bx-2, .by-2,
+.b-1, .bb-1, .bl-1, .br-1, .bt-1, .bx-1, .by-1 { border-color: var(--bs-border-color); border-style: var(--bs-border-style); }
+/* additive (5) */
+.b-5  { border-width: 5px !important; }
+.bb-5 { border-bottom-width: 5px !important; }
+.bl-5 { border-left-width: 5px !important; }
+.br-5 { border-right-width: 5px !important; }
+.bt-5 { border-top-width: 5px !important; }
+.bx-5 { border-left-width: 5px !important; border-right-width: 5px !important; }
+.by-5 { border-bottom-width: 5px !important; border-top-width: 5px !important; }
+/* additive (4) */
+.b-4  { border-width: 4px !important; }
+.bb-4 { border-bottom-width: 4px !important; }
+.bl-4 { border-left-width: 4px !important; }
+.br-4 { border-right-width: 4px !important; }
+.bt-4 { border-top-width: 4px !important; }
+.bx-4 { border-left-width: 4px !important; border-right-width: 4px !important; }
+.by-4 { border-bottom-width: 4px !important; border-top-width: 4px !important; }
+/* additive (3) */
+.b-3  { border-width: 3px !important; }
+.bb-3 { border-bottom-width: 3px !important; }
+.bl-3 { border-left-width: 3px !important; }
+.br-3 { border-right-width: 3px !important; }
+.bt-3 { border-top-width: 3px !important; }
+.bx-3 { border-left-width: 3px !important; border-right-width: 3px !important; }
+.by-3 { border-bottom-width: 3px !important; border-top-width: 3px !important; }
+/* additive (2) */
+.b-2  { border-width: 2px !important; }
+.bb-2 { border-bottom-width: 2px !important; }
+.bl-2 { border-left-width: 2px !important; }
+.br-2 { border-right-width: 2px !important; }
+.bt-2 { border-top-width: 2px !important; }
+.bx-2 { border-left-width: 2px !important; border-right-width: 2px !important; }
+.by-2 { border-bottom-width: 2px !important; border-top-width: 2px !important; }
+/* additive (1) */
+.b-1  { border-width: 1px !important; }
+.bb-1 { border-bottom-width: 1px !important; }
+.bl-1 { border-left-width: 1px !important; }
+.br-1 { border-right-width: 1px !important; }
+.bt-1 { border-top-width: 1px !important; }
+.bx-1 { border-left-width: 1px !important; border-right-width: 1px !important; }
+.by-1 { border-bottom-width: 1px !important; border-top-width: 1px !important; }
+/* subtractive */
+.b-0  { border-width: 0 !important; }
+.bb-0 { border-bottom-width: 0 !important; }
+.bl-0 { border-left-width: 0 !important; }
+.br-0 { border-right-width: 0 !important; }
+.bt-0 { border-top-width: 0 !important; }
+.bx-0 { border-left-width: 0 !important; border-right-width: 0 !important; }
+.by-0 { border-bottom-width: 0 !important; border-top-width: 0 !important; }
+
+
+
+/*======================================================================================================================================================*/
+
+
+
+/*----------------------------------+
+|  UTILITY SHORTCUT : BORDER COLOR  |  ====> WORK-IN-PROGRESS
++----------------------------------*/
 /**
  *  specify border color full class name again
  *  ===> override above border additive/subtractive classes
@@ -503,6 +544,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*------------------------------------+
 |  UTILITY SHORTCUT : BORDER OPACITY  |
@@ -529,6 +573,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .b-op-95  { --bs-border-opacity: .95; }
 .b-op-100 { --bs-border-opacity:   1; }
 
+
+
+/*======================================================================================================================================================*/
 
 
 
@@ -583,6 +630,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*--------------------------------+
 |  UTILITY : (MORE) BUTTON COLOR  |    ====>   WORK-IN-PROGRESS
@@ -608,6 +658,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*-----------------------------------+
 |  UTILITY : BACKGROUND HOVER COLOR  |    ====>   WORK-IN-PROGRESS
@@ -631,6 +684,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .bg-hover-light-subtle {}
 .bg-hover-dark-subtle {}
 
+
+
+/*======================================================================================================================================================*/
 
 
 
@@ -661,6 +717,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*----------------------------------+
 |  UTILITY SHORTCUT : (MORE) WIDTH  |
@@ -688,6 +747,8 @@ https://codepen.io/jasongardner/pen/gxprVQ
 .w-100 {  /* already exists */  }
 
 
+
+/*======================================================================================================================================================*/
 
 
 
@@ -732,6 +793,9 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*------------------------------+
 |  UTILITY CLASSES FOR STYLING  |    ====>   WORK-IN-PROGRESS
@@ -765,10 +829,104 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
+/*======================================================================================================================================================*/
+
+
 
 /*------------------+
 |  ADVANCED SHADOW  |    ====>   WORK-IN-PROGRESS
 +------------------*/
+
+.s-0,
+.sb-0,
+.sl-0,
+.sr-0,
+.st-0,
+.sx-0,
+.sy-0,
+.s-inset-0,
+.sb-inset-0,
+.sl-inset-0,
+.sr-inset-0,
+.st-inset-0,
+.sx-inset-0,
+.sy-inset-0 {}
+
+.s-1,
+.sb-1,
+.sl-1,
+.sr-1,
+.st-1,
+.sx-1,
+.sy-1,
+.s-inset-1,
+.sb-inset-1,
+.sl-inset-1,
+.sr-inset-1,
+.st-inset-1,
+.sx-inset-1,
+.sy-inset-1 {}
+
+.s-2,
+.sb-2,
+.sl-2,
+.sr-2,
+.st-2,
+.sx-2,
+.sy-2,
+.s-inset-2,
+.sb-inset-2,
+.sl-inset-2,
+.sr-inset-2,
+.st-inset-2,
+.sx-inset-2,
+.sy-inset-2 {}
+
+.s-3,
+.sb-3,
+.sl-3,
+.sr-3,
+.st-3,
+.sx-3,
+.sy-3,
+.s-inset-3,
+.sb-inset-3,
+.sl-inset-3,
+.sr-inset-3,
+.st-inset-3,
+.sx-inset-3,
+.sy-inset-3 {}
+
+.s-4,
+.sb-4,
+.sl-4,
+.sr-4,
+.st-4,
+.sx-4,
+.sy-4,
+.s-inset-4,
+.sb-inset-4,
+.sl-inset-4,
+.sr-inset-4,
+.st-inset-4,
+.sx-inset-4,
+.sy-inset-4 {}
+
+.s-5,
+.sb-5,
+.sl-5,
+.sr-5,
+.st-5,
+.sx-5,
+.sy-5,
+.s-inset-5,
+.sb-inset-5,
+.sl-inset-5,
+.sr-inset-5,
+.st-inset-5,
+.sx-inset-5,
+.sy-inset-5 {}
+
 
 .s-1,
 .sx-1,
@@ -1066,11 +1224,7 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 
-
-
-
-
-
+/*======================================================================================================================================================*/
 
 
 
