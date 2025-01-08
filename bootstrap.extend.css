@@ -740,26 +740,29 @@ https://codepen.io/jasongardner/pen/gxprVQ
 
 
 /*-------------------------------------+
-|  UTILITY : (HOVER) BACKGROUND COLOR  |    ====>   WORK-IN-PROGRESS
+|  UTILITY : (HOVER) BACKGROUND COLOR  |
 +-------------------------------------*/
 /* standard */
-.bg-hover-primary {}
-.bg-hover-secondary {}
-.bg-hover-success {}
-.bg-hover-info {}
-.bg-hover-warning {}
-.bg-hover-danger {}
-.bg-hover-light {}
-.bg-hover-dark {}
+.bg-hover-primary:hover { background-color: rgb(var(--bs-primary-rgb)) !important; }
+.bg-hover-secondary:hover { background-color: rgb(var(--bs-secondary-rgb)) !important; }
+.bg-hover-success:hover { background-color: rgb(var(--bs-success-rgb)) !important; }
+.bg-hover-info:hover { background-color: rgb(var(--bs-info-rgb)) !important; }
+.bg-hover-warning:hover { background-color: rgb(var(--bs-warning-rgb)) !important; }
+.bg-hover-danger:hover { background-color: rgb(var(--bs-danger-rgb)) !important; }
+.bg-hover-light:hover { background-color: rgb(var(--bs-light-rgb)) !important; }
+.bg-hover-dark:hover { background-color: rgb(var(--bs-dark-rgb)) !important; }
+.bg-hover-black:hover { background-color: rgb(var(--bs-black-rgb)) !important; }
+.bg-hover-white:hover { background-color: rgb(var(--bs-white-rgb)) !important; }
+.bg-hover-transparent:hover { background-color: transparent !important; }
 /* subtle */
-.bg-hover-primary-subtle {}
-.bg-hover-secondary-subtle {}
-.bg-hover-success-subtle {}
-.bg-hover-info-subtle {}
-.bg-hover-warning-subtle {}
-.bg-hover-danger-subtle {}
-.bg-hover-light-subtle {}
-.bg-hover-dark-subtle {}
+.bg-hover-primary-subtle:hover { background-color: var(--bs-primary-bg-subtle) !important; }
+.bg-hover-secondary-subtle:hover { background-color: var(--bs-secondary-bg-subtle) !important; }
+.bg-hover-success-subtle:hover { background-color: var(--bs-success-bg-subtle) !important; }
+.bg-hover-info-subtle:hover { background-color: var(--bs-info-bg-subtle) !important; }
+.bg-hover-warning-subtle:hover { background-color: var(--bs-warning-bg-subtle) !important; }
+.bg-hover-danger-subtle:hover { background-color: var(--bs-danger-bg-subtle) !important; }
+.bg-hover-light-subtle:hover { background-color: var(--bs-light-bg-subtle) !important; }
+.bg-hover-dark-subtle:hover { background-color: var(--bs-dark-bg-subtle) !important; }
 
 
 
