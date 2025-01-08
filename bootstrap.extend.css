@@ -710,17 +710,32 @@ https://codepen.io/jasongardner/pen/gxprVQ
   --bs-btn-border-color: var(--bs-primary-border-subtle);
   --bs-btn-hover-color: rgb(var(--bs-primary-rgb));
   --bs-btn-hover-bg: var(--bs-btn-bg);
-  --bs-btn-hover-border-color: #7ea5de;
+  --bs-btn-hover-border-color: rgb(var(--bs-primary-rgb));
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
   --bs-btn-active-color: var(--bs-btn-color);
   --bs-btn-active-bg: rgba(var(--bs-btn-focus-shadow-rgb), 1);
   --bs-btn-active-border-color: #8eb5ee;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: rgb(var(--bs-secondary-rgb));
-  --bs-btn-disabled-bg: var(--bs-primary-bg-subtle);
-  --bs-btn-disabled-border-color: var(--bs-primary-bg-subtle);
+  --bs-btn-disabled-bg: var(--bs-btn-bg);
+  --bs-btn-disabled-border-color: var(--bs-btn-bg);
 }
-.btn-secondary-subtle {}
+.btn-secondary-subtle {
+  --bs-btn-color: rgb(var(--bs-secondary-rgb));
+  --bs-btn-bg: var(--bs-secondary-bg-subtle);
+  --bs-btn-border-color: var(--bs-secondary-border-subtle);
+  --bs-btn-hover-color: rgb(var(--bs-dark-rgb));
+  --bs-btn-hover-bg: var(--bs-btn-bg);
+  --bs-btn-hover-border-color: rgb(var(--bs-secondary-rgb));
+  --bs-btn-focus-shadow-rgb: 130, 138, 145;
+  --bs-btn-active-color: var(--bs-btn-color);
+  --bs-btn-active-bg: rgba(var(--bs-btn-focus-shadow-rgb), 1);
+  --bs-btn-active-border-color: #51585e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: rgb(var(--bs-secondary-rgb));
+  --bs-btn-disabled-bg: var(--bs-btn-bg);
+  --bs-btn-disabled-border-color: var(--bs-btn-bg);
+}
 .btn-success-subtle {}
 .btn-info-subtle {}
 .btn-warning-subtle {}
