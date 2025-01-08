@@ -387,12 +387,16 @@ https://codepen.io/jasongardner/pen/gxprVQ
 /*----------------------------------+
 |  UTILITY SHORTCUT : BORDER WIDTH  |
 +----------------------------------*/
-/* additive (common) */
+/* reset */
 .b-5, .bb-5, .bl-5, .br-5, .bt-5, .bx-5, .by-5,
 .b-4, .bb-4, .bl-4, .br-4, .bt-4, .bx-4, .by-4,
 .b-3, .bb-3, .bl-3, .br-3, .bt-3, .bx-3, .by-3,
 .b-2, .bb-2, .bl-2, .br-2, .bt-2, .bx-2, .by-2,
-.b-1, .bb-1, .bl-1, .br-1, .bt-1, .bx-1, .by-1 { border-color: var(--bs-border-color); border-style: var(--bs-border-style); }
+.b-1, .bb-1, .bl-1, .br-1, .bt-1, .bx-1, .by-1 {
+	border-color: var(--bs-border-color);
+	border-style: var(--bs-border-style);
+	border-width: 0;
+}
 /* additive (5) */
 .b-5  { border-width: 5px !important; }
 .bb-5 { border-bottom-width: 5px !important; }
