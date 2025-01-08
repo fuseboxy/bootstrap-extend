@@ -98,7 +98,7 @@ The CSS variables are updated by Javascript in realtime
 
 
 /*-------------------+
-|  BUTTON NEW SIZES  |    ====>   WORK-IN-PROGRESS
+|  BUTTON SIZE (XS)  |
 +--------------------+
 
 [Example]
@@ -111,52 +111,45 @@ The CSS variables are updated by Javascript in realtime
     <button type="button" class="btn btn-primary">Right</button>
 </div>
 */
-
 .btn-xs,
-.btn-group-xs > .btn { border-radius: 0.2rem; }
-.btn-xs,
-.btn-group-xs > .btn,
-.input-group-xs .input-group-append > .btn,
-.input-group-xs .input-group-prepend > .btn {
-	padding: 0 0.25rem;
-	font-size: 0.875rem;
+.btn-group-xs > .btn {
+	--bs-btn-padding-y: 0;
+	--bs-btn-padding-x: .25rem;
+	--bs-btn-font-size: .875rem;
+	--bs-btn-border-radius: var(--bs-border-radius-sm);
 }
 .btn-xs + .dropdown-toggle-split,
-.btn-group-xs > .btn + .dropdown-toggle-split {
-	padding-right: 0.125rem;
-	padding-left: 0.125rem;
-}
+.btn-group-xs > .btn + .dropdown-toggle-split { padding-left: .375rem; padding-right: .375rem; }
 
 
 
 
-/*---------------------------------------+
-|  FORM CONTROL & INPUT GROUP NEW SIZES  |    ====>   WORK-IN-PROGRESS
-+----------------------------------------+
+/*-------------------+
+|  INPUT GROUP (XS)  |
++--------------------+
 
 [Example]
 <!-- form control -->
 <input type="text" class="form-control form-control-xs" value="small" />
 <!-- input-group -->
 <div class="input-group input-group-xs">
-	<div class="input-group-prepend">
-		<span class="input-group-text">Label</span>
-	</div>
+	<span class="input-group-text">Label</span>
 	<input type="text" class="form-control" value="Extra small field" />
 </div>
 */
-
-.form-control-xs,
-.input-group-xs .form-control,
-.input-group-xs .custom-select {
-	font-size: .875rem;
+.input-group-xs > .form-control,
+.input-group-xs > .form-select,
+.input-group-xs > .input-group-text,
+.input-group-xs > .btn {
+	border-radius: var(--bs-border-radius-sm);
 	height: 1.6rem;
-	padding: 0 4px;
+	padding: 0 .4rem;
 }
-.input-group-xs .input-group-text {
-	font-size: .75rem;
-	padding: 0 4px;
-}
+.input-group-xs > .btn,
+.input-group-xs > .form-select,
+.input-group-xs > .form-control { font-size: .875rem; }
+.input-group-xs > .input-group-text { font-size: .785rem; }
+.input-group-xs > .form-select { padding-right: 3rem; }
 
 
 
