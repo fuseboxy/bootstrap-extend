@@ -169,6 +169,19 @@ The CSS variables are updated by Javascript in realtime
 
 
 
+/*-----------------------+
+|  (MORE) TABLE DENSITY  |
++-----------------------*/
+.table-lg  > :not(caption) > * > * { padding:  .75rem .5rem; }
+.table-xl  > :not(caption) > * > * { padding:    1rem .5rem; }
+.table-xxl > :not(caption) > * > * { padding: 1.25rem .5rem; }
+
+
+
+/*======================================================================================================================================================*/
+
+
+
 /*----------------------+
 |  MULTILEVEL DROPDOWN  |    ====>   WORK-IN-PROGRESS
 +-----------------------+
