@@ -10,14 +10,14 @@ $(function(){
 	Allow using CSS calc() to make content stretches from header to bottom
 	*/
 
-	$(window).on('resize', function(){
+	/*$(window).on('resize', function(){
 		$(':root').css({
 			'--bsx-banner-height' : ( $('#banner').outerHeight() || 0 )+'px',
 			'--bsx-header-height' : ( $('#header').outerHeight() || 0 )+'px',
 			'--bsx-subnav-height' : ( $('#subnav').outerHeight() || 0 )+'px',
 			'--bsx-footer-height' : ( $('#footer').outerHeight() || 0 )+'px',
 		});
-	}).resize();
+	}).resize();*/
 
 
 

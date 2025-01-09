@@ -31,14 +31,14 @@ The CSS variables are updated by Javascript in realtime
 	height: calc(100vh - var(--bsx-banner-height) - var(--bsx-footer-height));
 }
 */
-
+/*
 :root {
 	--bsx-banner-height: 0px;
 	--bsx-header-height: 0px;
 	--bsx-subnav-height: 0px;
 	--bsx-footer-height: 0px;
 }
-
+*/
 
 
 /*======================================================================================================================================================*/
