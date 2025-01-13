@@ -18,33 +18,6 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 
-/*-----------------------+
-|  CORE ELEMENTS HEIGHT  |    ====>   WORK-IN-PROGRESS
-+------------------------+
-
-[Usage]
-Allow using CSS variables to make content stretches from header to bottom
-The CSS variables are updated by Javascript in realtime
-
-[Example]
-#content {
-	height: calc(100vh - var(--bsx-banner-height) - var(--bsx-footer-height));
-}
-*/
-/*
-:root {
-	--bsx-banner-height: 0px;
-	--bsx-header-height: 0px;
-	--bsx-subnav-height: 0px;
-	--bsx-footer-height: 0px;
-}
-*/
-
-
-/*======================================================================================================================================================*/
-
-
-
 /*--------------------+
 |  (MORE) MODAL SIZE  | 
 +---------------------+
