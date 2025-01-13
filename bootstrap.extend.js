@@ -14,7 +14,6 @@ $(function(){
 	[Example]
 	<body data-bsx-ajax-error="{modal|alert|console}"> ... </body>
 	*/
-
 	var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
 		var $body = $('body');
 		// options
@@ -94,7 +93,6 @@ $(function(){
 	[Reference]
 	https://stackoverflow.com/questions/19305821/multiple-modals-overlay
 	*/
-
 	$(document).on('show.bs.modal', '.modal', function (event) {
 		var zIndex = 1040 + (10 * $('.modal:visible').length);
 		$(this).css('z-index', zIndex);
@@ -135,7 +133,6 @@ $(function(){
 	...
 	<button type="button" data-bsx-toggle="auto-submit" data-bsx-target=".btn-submit" data-bsx-progress="html>title>head">...</button>
 	*/
-
 	$(document).on('click', '[data-bsx-toggle=auto-submit]', function(evt){
 		evt.preventDefault();
 		// core element which triggered the auto process
@@ -263,7 +260,6 @@ $(function(){
 	<a href="foo.html" data-bsx-toggle="ajax-modal" data-bsx-target="#my-modal">...</div>
 	<button data-bsx-href="bar.html" data-bsx-toggle="ajax-modal" data-bsx-target="#my-modal">...</button>
 	*/
-
 	// load content to modal
 	$(document).on('click', ':not(form)[data-bsx-toggle=ajax-modal]', function(evt){
 		evt.preventDefault();
@@ -378,7 +374,6 @@ $(function(){
 		<div class="dropdown-menu"></div>
 	</div>
 	*/
-
 	$(document).on('click', '[href][data-bsx-toggle=ajax-dropdown],[data-bsx-href][data-bsx-toggle=ajax-dropdown]', function(evt){
 		evt.preventDefault();
 		var $btn = $(this);
@@ -450,7 +445,6 @@ $(function(){
 	<!-- ajax submit -->
 	<form method="post" action="/url/to/go" data-bsx-toggle="ajax-submit" data-bsx-target="#element"> ... </form>
 	*/
-
 	// remote load
 	$(document).on('click', '[data-bsx-toggle=ajax-load]', function(evt){
 		evt.preventDefault();
@@ -684,7 +678,7 @@ Overlay UI element by a layer to and prevent user click the UI element multiple 
 Used by {ajax-load} and {ajax-submit} and such
 */
 
-function bootstrapExtend__blockUI(){
+function bsxBlockUI(action, element){
 
 }
 
