@@ -283,7 +283,7 @@ https://bootstrapious.com/p/bootstrap-multilevel-dropdown
 	background-color: var(--bs-nav-tabs-link-active-bg);
 }
 .nav-tabs-left .nav-item,
-.nav-tabs-right .nav-item { margin-bottom: .25rem; }
+.nav-tabs-right .nav-item { margin-bottom: var(--bsx-margin-sm); }
 
 
 
