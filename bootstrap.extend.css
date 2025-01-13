@@ -225,70 +225,65 @@ https://bootstrapious.com/p/bootstrap-multilevel-dropdown
 
 
 
-/*------------------------+
-|  TAB VERTICAL & BOTTOM  |    ====>   WORK-IN-PROGRESS
-+-------------------------+
-
-[Reference]
-https://codepen.io/jasongardner/pen/gxprVQ
+/*---------------+
+|  VERTICAL TAB  |
++----------------+
 
 [Example]
-<!-- left / right -->
-<ul class="nav nav-tabs nav-tabs--{left|right} flex-column">
-	<li class="nav-item"><a class="nav-link" href="...">...</a></li>
-	<li class="nav-item"><a class="nav-link" href="...">...</a></li>
-</ul>
-<!-- bottom -->
-<ul class="nav nav-tabs nav-tabs--bottom">
+<ul class="nav nav-tabs-{left|right}">
 	<li class="nav-item"><a class="nav-link" href="...">...</a></li>
 	<li class="nav-item"><a class="nav-link" href="...">...</a></li>
 </ul>
 */
-
-.nav-tabs--left,
-.nav-tabs--right,
-.nav-tabs--bottom { border-bottom: none; }
-.nav-tabs--left { border-right: 1px solid #dee2e6; }
-.nav-tabs--right { border-left: 1px solid #dee2e6; }
-.nav-tabs--bottom { border-top: 1px solid #dee2e6; }
-.nav-tabs--left .nav-link { margin-right: -1px; }
-.nav-tabs--right .nav-link { margin-left: -1px; }
-.nav-tabs--bottom .nav-link { margin-top: -1px; }
-.nav-tabs--left .nav-link:focus,
-.nav-tabs--left .nav-link:hover,
-.nav-tabs--left .nav-link.active {
-	border-bottom-color: #e9ecef;
-	border-right-color: #dee2e6;
-	border-bottom-left-radius: 0.25rem;
-	border-top-right-radius: 0;
-	border-right-color: transparent;
+.nav-tabs-left,
+.nav-tabs-right {
+	--bs-nav-tabs-border-width: var(--bs-border-width);
+	--bs-nav-tabs-border-color: var(--bs-border-color);
+	--bs-nav-tabs-border-radius: var(--bs-border-radius);
+	--bs-nav-tabs-link-hover-border-color: var(--bs-secondary-bg) var(--bs-secondary-bg) var(--bs-border-color);
+	--bs-nav-tabs-link-active-color: var(--bs-emphasis-color);
+	--bs-nav-tabs-link-active-bg: var(--bs-body-bg);
+	position: relative;
 }
-.nav-tabs--right .nav-link:focus,
-.nav-tabs--right .nav-link:hover,
-.nav-tabs--right .nav-link.active {
-	border-bottom-color: #e9ecef;
-	border-left-color: #dee2e6;
-	border-bottom-right-radius: 0.25rem;
-	border-top-left-radius: 0;
-	border-left-color: transparent;
+.nav-tabs-left {
+	--bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-body-bg) var(--bs-border-color) var(--bs-border-color);
+	border-right: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
+	right: calc(-1 * var(--bs-nav-tabs-border-width));
 }
-.nav-tabs--bottom .nav-link:focus,
-.nav-tabs--bottom .nav-link:hover,
-.nav-tabs--bottom .nav-link.active {
-	border-bottom-color: #e9ecef;
-	border-top-color: #dee2e6;
-	border-bottom-left-radius: 0.25rem;
-	border-bottom-right-radius: 0.25rem;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	border-top-color: transparent;
+.nav-tabs-right {
+	--bs-nav-tabs-link-active-border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-border-color) var(--bs-body-bg);
+	border-left: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
+	left: calc(-1 * var(--bs-nav-tabs-border-width));
 }
-.nav-tabs--left .nav-link.active,
-.nav-tabs--right .nav-link.active, 
-.nav-tabs--bottom .nav-link.active { border-color: #dee2e6; }
-.nav-tabs--left .nav-link.active { border-right-color: #fff; }
-.nav-tabs--right .nav-link.active { border-left-color: #fff; }
-.nav-tabs--bottom .nav-link.active { border-top-color: #fff; }
+.nav-tabs-left .nav-link {
+	margin-right: calc(-1 * var(--bs-nav-tabs-border-width));
+	border: var(--bs-nav-tabs-border-width) solid transparent;
+	border-top-left-radius: var(--bs-nav-tabs-border-radius);
+	border-bottom-left-radius: var(--bs-nav-tabs-border-radius);
+}
+.nav-tabs-right .nav-link {
+	margin-left: calc(-1 * var(--bs-nav-tabs-border-width));
+	border: var(--bs-nav-tabs-border-width) solid transparent;
+	border-top-right-radius: var(--bs-nav-tabs-border-radius);
+	border-bottom-right-radius: var(--bs-nav-tabs-border-radius);
+}
+.nav-tabs-left .nav-link:hover,
+.nav-tabs-left .nav-link:focus,
+.nav-tabs-right .nav-link:hover,
+.nav-tabs-right .nav-link:focus {
+	isolation: isolate;
+	border-color: var(--bs-nav-tabs-link-hover-border-color);
+}
+.nav-tabs-left .nav-link.active,
+.nav-tabs-left .nav-item.show .nav-link,
+.nav-tabs-right .nav-link.active,
+.nav-tabs-right .nav-item.show .nav-link {
+	color: var(--bs-nav-tabs-link-active-color);
+	border-color: var(--bs-nav-tabs-link-active-border-color);
+	background-color: var(--bs-nav-tabs-link-active-bg);
+}
+.nav-tabs-left .nav-item,
+.nav-tabs-right .nav-item { margin-bottom: .25rem; }
 
 
 
