@@ -902,6 +902,30 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 
+/*----------+
+|  BRACKET  |
++----------*/
+.bracket:before,
+.bracket:after { display: inline-block; }
+/* parentheses */
+.bracket-round:before  { content: '('; }
+.bracket-round:after   { content: ')'; }
+/* square brackets */
+.bracket-square:before { content: '['; }
+.bracket-square:after  { content: ']'; }
+/* braces */
+.bracket-curly:before  { content: '{'; }
+.bracket-curly:after   { content: '}'; }
+/* angle brackets */
+.bracket-angle:before  { content: '<'; }
+.bracket-angle:after   { content: '>'; }
+
+
+
+/*======================================================================================================================================================*/
+
+
+
 /*------------------------------+
 |  UTILITY CLASSES FOR STYLING  |    ====>   WORK-IN-PROGRESS
 +------------------------------*/
