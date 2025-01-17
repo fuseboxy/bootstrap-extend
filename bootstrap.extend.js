@@ -377,15 +377,19 @@ $(function(){
 	$(document).on('click', '[href][data-bsx-toggle=ajax-dropdown],[data-bsx-href][data-bsx-toggle=ajax-dropdown]', function(evt){
 		evt.preventDefault();
 		var $btn = $(this);
-		var $parent = $btn.closest('.dropdown,.dropup,.dropleft,.dropright');
-		var $target = $parent.find('.dropdown-menu').length ? $parent.find('.dropdown-menu:first') : $('<div class="dropdown-menu"></div>').insertAfter($btn);
+		var $parent = $btn.closest('.dropdown,.dropup,.dropstart,.dropend,.dropleft,.dropright');
+		var $dropdown = $parent.find('.dropdown-menu').length ? $parent.find('.dropdown-menu:first') : $('<div class="dropdown-menu"></div>').insertAfter($btn);
 		// options
 		var toggleAlign = $btn.attr('data-bsx-align') || 'left';
 		var toggleSelector = $btn.attr('data-bsx-selector') || '';
 		// apply alignment
-		if ( toggleAlign == 'right' ) $target.addClass('dropdown-menu-right');
+		if ( toggleAlign == 'right' ) $dropdown.addClass('dropdown-menu-end');
 		// show loading message
-		$target.html('<div class="dropdown-item text-muted"><i class="fa fa-spinner fa-pulse"></i><em class="ml-2">Loading</em></div>');
+		$dropdown.html('<div class="dropdown-item text-center disabled"><i class="spinner-grow" style="height: 1rem; width: 1rem;" role="status"></i> Loading...</div>');
+		// transform to standard bootstrap-dropdown & show
+		$btn.attr('data-bs-toggle', 'dropdown');
+		$btn.removeAttr('data-bsx-toggle data-bsx-align');
+		$dropdown.dropdown('show');
 		// load content remotely
 		var url = $btn.attr('href') || $btn.attr('data-bsx-href');
 		$.ajax({
@@ -394,7 +398,7 @@ $(function(){
 			'method' : 'get',
 			'error' : function(jqXHR, textStatus, errorThrown) {
 				window.setTimeout(function(){
-					ajaxErrorHandler(null, jqXHR, { url : url }, errorThrown);
+					ajaxErrorHandler(null, jqXHR, { 'url' : url }, errorThrown);
 				}, 1000);
 			},
 			'success' : function(data, textStatus, jqXHR){
@@ -404,15 +408,11 @@ $(function(){
 				// ===> avoid selector find against base element
 				if ( $(data).length != 1 || toggleSelector ) data = '<div>'+data+'</div>';
 				// show full response or specific element only
-				$target.html( toggleSelector ? $(data).find(toggleSelector) : data );
-				// refresh
-				$btn.dropdown('update');
+				$dropdown.html( toggleSelector ? $(data).find(toggleSelector) : data );
+				// refresh dropdown
+				$dropdown.dropdown('update');
 			},
 		});
-		// transform to standard bootstrap-dropdown
-		$btn.attr('data-bsx-toggle', 'dropdown');
-		// show dropdown (after dropdown constructed)
-		window.setTimeout(function(){ $btn.click(); }, 0);
 	});
 
 
