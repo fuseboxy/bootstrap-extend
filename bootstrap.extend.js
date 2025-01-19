@@ -387,9 +387,7 @@ $(function(){
 		// show loading message
 		$dropdown.html('<div class="dropdown-item text-center disabled"><i class="spinner-grow" style="height: 1rem; width: 1rem;" role="status"></i> Loading...</div>');
 		// transform to standard bootstrap-dropdown & show
-		$btn.attr('data-bs-toggle', 'dropdown');
-		$btn.removeAttr('data-bsx-toggle data-bsx-align');
-		$dropdown.dropdown('show');
+		$btn.attr('data-bs-toggle', 'dropdown').dropdown('show');
 		// load content remotely
 		var url = $btn.attr('href') || $btn.attr('data-bsx-href');
 		$.ajax({
@@ -407,8 +405,10 @@ $(function(){
 				// ===> avoid response is plain text
 				// ===> avoid selector find against base element
 				if ( $(data).length != 1 || toggleSelector ) data = '<div>'+data+'</div>';
-				// show full response or specific element only
+				// put response to dropdown
 				$dropdown.html( toggleSelector ? $(data).find(toggleSelector) : data );
+				// clear trigger
+				$btn.removeAttr('data-bsx-toggle data-bsx-align');
 				// refresh dropdown
 				$dropdown.dropdown('update');
 			},
