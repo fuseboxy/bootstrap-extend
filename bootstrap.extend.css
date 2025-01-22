@@ -145,9 +145,10 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*-----------------------+
 |  (MORE) TABLE DENSITY  |
 +-----------------------*/
-.table-lg  > :not(caption) > * > * { padding:  .75rem .5rem; }
-.table-xl  > :not(caption) > * > * { padding:    1rem .5rem; }
-.table-xxl > :not(caption) > * > * { padding: 1.25rem .5rem; }
+.table-xs  > :not(caption) > * > * { padding:   .1rem .25rem; }
+.table-lg  > :not(caption) > * > * { padding:  .75rem  .5rem; }
+.table-xl  > :not(caption) > * > * { padding:    1rem  .5rem; }
+.table-xxl > :not(caption) > * > * { padding: 1.25rem  .5rem; }
 
 
 
