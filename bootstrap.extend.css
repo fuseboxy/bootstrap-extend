@@ -10,6 +10,22 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 	--bsx-margin-lg: 1rem;
 	--bsx-margin-xl: 1.5rem;
 	--bsx-margin-xxl: 3rem;
+
+	--bsx-shadow-blur-xs: .25rem;
+	--bsx-shadow-blur-sm:  .5rem;
+	--bsx-shadow-blur-md: .75rem;
+	--bsx-shadow-blur-lg:   1rem;
+	--bsx-shadow-blur-xl:   3rem;
+	--bsx-shadow-spread-xs: .125rem;
+	--bsx-shadow-spread-sm:  .25rem;
+	--bsx-shadow-spread-md: .375rem;
+	--bsx-shadow-spread-lg:   .5rem;
+	--bsx-shadow-spread-xl:    1rem;
+	--bsx-shadow-color-xs: rgba(0, 0, 0, .075);
+	--bsx-shadow-color-sm: rgba(0, 0, 0,   .1);
+	--bsx-shadow-color-md: rgba(0, 0, 0, .125);
+	--bsx-shadow-color-lg: rgba(0, 0, 0,  .15);
+	--bsx-shadow-color-xl: rgba(0, 0, 0, .175);
 }
 
 
@@ -945,11 +961,11 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 /* shadow */
 .shadow-xs { box-shadow: 0 .125rem .25rem 0 rgba(0, 0, 0, .075) !important; }
-.shadow-sm { box-shadow: 0 .25rem  .5rem  0 rgba(0, 0, 0, .1) !important; }
+.shadow-sm { box-shadow: 0 .25rem .5rem 0 rgba(0, 0, 0, .1) !important; }
 .shadow,
 .shadow-md { box-shadow: 0 .375rem .75rem 0 rgba(0, 0, 0, .125) !important; }
-.shadow-lg { box-shadow: 0 .5rem    1rem  0 rgba(0, 0, 0, .15) !important; }
-.shadow-xl { box-shadow: 0  1rem    3rem  0 rgba(0, 0, 0, .175) !important; }
+.shadow-lg { box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, .15) !important; }
+.shadow-xl { box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, .175) !important; }
 
 
 /* height */
@@ -974,13 +990,13 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .st-0,
 .sx-0,
 .sy-0,
-.s-inset-0,
-.sb-inset-0,
-.sl-inset-0,
-.sr-inset-0,
-.st-inset-0,
-.sx-inset-0,
-.sy-inset-0 {}
+.s-0-inset,
+.sb-0-inset,
+.sl-0-inset,
+.sr-0-inset,
+.st-0-inset,
+.sx-0-inset,
+.sy-0-inset {}
 
 .s-1,
 .sb-1,
@@ -988,14 +1004,15 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-1,
 .st-1,
 .sx-1,
-.sy-1,
-.s-inset-1,
-.sb-inset-1,
-.sl-inset-1,
-.sr-inset-1,
-.st-inset-1,
-.sx-inset-1,
-.sy-inset-1 {}
+.sy-1 { box-shadow: 0 0 .25rem 0 rgba(0, 0, 0, .075) !important; }
+
+.s1-inset,
+.sb1-inset,
+.sl1-inset,
+.sr1-inset,
+.st1-inset,
+.sx1-inset,
+.sy1-inset {}
 
 .s-2,
 .sb-2,
@@ -1003,14 +1020,14 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-2,
 .st-2,
 .sx-2,
-.sy-2,
-.s-inset-2,
-.sb-inset-2,
-.sl-inset-2,
-.sr-inset-2,
-.st-inset-2,
-.sx-inset-2,
-.sy-inset-2 {}
+.sy-2 { box-shadow: 0 0 .5rem 0 rgba(0, 0, 0, .1) !important; }
+.s-2-inset,
+.sb-2-inset,
+.sl-2-inset,
+.sr-2-inset,
+.st-2-inset,
+.sx-2-inset,
+.sy-2-inset {}
 
 .s-3,
 .sb-3,
@@ -1018,14 +1035,14 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-3,
 .st-3,
 .sx-3,
-.sy-3,
-.s-inset-3,
-.sb-inset-3,
-.sl-inset-3,
-.sr-inset-3,
-.st-inset-3,
-.sx-inset-3,
-.sy-inset-3 {}
+.sy-3 { box-shadow: 0 0 .75rem 0 rgba(0, 0, 0, .125) !important; }
+.s-3-inset,
+.sb-3-inset,
+.sl-3-inset,
+.sr-3-inset,
+.st-3-inset,
+.sx-3-inset,
+.sy-3-inset {}
 
 .s-4,
 .sb-4,
@@ -1033,14 +1050,14 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-4,
 .st-4,
 .sx-4,
-.sy-4,
-.s-inset-4,
-.sb-inset-4,
-.sl-inset-4,
-.sr-inset-4,
-.st-inset-4,
-.sx-inset-4,
-.sy-inset-4 {}
+.sy-4 { box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .15) !important; }
+.s-4-inset,
+.sb-4-inset,
+.sl-4-inset,
+.sr-4-inset,
+.st-4-inset,
+.sx-4-inset,
+.sy-4-inset {}
 
 .s-5,
 .sb-5,
@@ -1048,16 +1065,20 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-5,
 .st-5,
 .sx-5,
-.sy-5,
-.s-inset-5,
-.sb-inset-5,
-.sl-inset-5,
-.sr-inset-5,
-.st-inset-5,
-.sx-inset-5,
-.sy-inset-5 {}
+.sy-5 {
+	box-shadow: 0 0 3rem 0 rgba(0, 0, 0, .175) !important;
+clip-path: inset(0 -3rem 0 0);
 
+}
+.s-5-inset,
+.sb-5-inset,
+.sl-5-inset,
+.sr-5-inset,
+.st-5-inset,
+.sx-5-inset,
+.sy-5-inset {}
 
+/*
 .s-1,
 .sx-1,
 .sy-1,
@@ -1072,25 +1093,25 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-inset-1,
 .sb-inset-1,
 .sl-inset-1 {
-	/* top */
+	===top===
 	--bsx-st-hOffset: 0;
 	--bsx-st-vOffset: -.125rem;
 	--bsx-st-blur: .25rem;
 	--bsx-st-spread: 0;
 	--bsx-st-color: rgba(0, 0, 0, .15);
-	/* left */
+	===left===
 	--bsx-sl-hOffset: -.125rem;
 	--bsx-sl-vOffset: 0;
 	--bsx-sl-blur: .25rem;
 	--bsx-sl-spread: 0;
 	--bsx-sl-color: rgba(0, 0, 0, .15);
-	/* right */
+	===right===
 	--bsx-sr-hOffset: .125rem;
 	--bsx-sr-vOffset: 0;
 	--bsx-sr-blur: .25rem;
 	--bsx-sr-spread: 0;
 	--bsx-sr-color: rgba(0, 0, 0, .15);
-	/* bottom */
+	===bottom===
 	--bsx-sb-hOffset: 0;
 	--bsx-sb-vOffset: .125rem;
 	--bsx-sb-blur: .25rem;
@@ -1111,25 +1132,25 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-inset-2,
 .sb-inset-2,
 .sl-inset-2 {
-	/* top */
+	===top===
 	--bsx-st-hOffset: 0;
 	--bsx-st-vOffset: -.25rem;
 	--bsx-st-blur: .5rem;
 	--bsx-st-spread: 0;
 	--bsx-st-color: rgba(0, 0, 0, .15);
-	/* left */
+	===left===
 	--bsx-sl-hOffset: -.25rem;
 	--bsx-sl-vOffset: 0;
 	--bsx-sl-blur: .5rem;
 	--bsx-sl-spread: 0;
 	--bsx-sl-color: rgba(0, 0, 0, .15);
-	/* right */
+	===right===
 	--bsx-sr-hOffset: .25rem;
 	--bsx-sr-vOffset: 0;
 	--bsx-sr-blur: .5rem;
 	--bsx-sr-spread: 0;
 	--bsx-sr-color: rgba(0, 0, 0, .15);
-	/* bottom */
+	===bottom===
 	--bsx-sb-hOffset: 0;
 	--bsx-sb-vOffset: .25rem;
 	--bsx-sb-blur: .5rem;
@@ -1150,25 +1171,25 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-inset-3,
 .sb-inset-3,
 .sl-inset-3 {
-	/* top */
+	===top===
 	--bsx-st-hOffset: 0;
 	--bsx-st-vOffset: -.375rem;
 	--bsx-st-blur: .75rem;
 	--bsx-st-spread: 0;
 	--bsx-st-color: rgba(0, 0, 0, .15);
-	/* left */
+	===left===
 	--bsx-sl-hOffset: -.375rem;
 	--bsx-sl-vOffset: 0;
 	--bsx-sl-blur: .75rem;
 	--bsx-sl-spread: 0;
 	--bsx-sl-color: rgba(0, 0, 0, .15);
-	/* right */
+	===right===
 	--bsx-sr-hOffset: .375rem;
 	--bsx-sr-vOffset: 0;
 	--bsx-sr-blur: .75rem;
 	--bsx-sr-spread: 0;
 	--bsx-sr-color: rgba(0, 0, 0, .15);
-	/* bottom */
+	===bottom===
 	--bsx-sb-hOffset: 0;
 	--bsx-sb-vOffset: .375rem;
 	--bsx-sb-blur: .75rem;
@@ -1189,25 +1210,25 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-inset-4,
 .sb-inset-4,
 .sl-inset-4 {
-	/* top */
+	===top===
 	--bsx-st-hOffset: 0;
 	--bsx-st-vOffset: -.5rem;
 	--bsx-st-blur: 1rem;
 	--bsx-st-spread: 0;
 	--bsx-st-color: rgba(0, 0, 0, .15);
-	/* left */
+	===left===
 	--bsx-sl-hOffset: -.5rem;
 	--bsx-sl-vOffset: 0;
 	--bsx-sl-blur: 1rem;
 	--bsx-sl-spread: 0;
 	--bsx-sl-color: rgba(0, 0, 0, .15);
-	/* right */
+	===right===
 	--bsx-sr-hOffset: .5rem;
 	--bsx-sr-vOffset: 0;
 	--bsx-sr-blur: 1rem;
 	--bsx-sr-spread: 0;
 	--bsx-sr-color: rgba(0, 0, 0, .15);
-	/* bottom */
+	===bottom===
 	--bsx-sb-hOffset: 0;
 	--bsx-sb-vOffset: .5rem;
 	--bsx-sb-blur: 1rem;
@@ -1228,25 +1249,25 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sr-inset-5,
 .sb-inset-5,
 .sl-inset-5 {
-	/* top */
+	===top===
 	--bsx-st-hOffset: 0;
 	--bsx-st-vOffset: -1rem;
 	--bsx-st-blur: 3rem;
 	--bsx-st-spread: 0;
 	--bsx-st-color: rgba(0, 0, 0, .15);
-	/* left */
+	===left===
 	--bsx-sl-hOffset: -1rem;
 	--bsx-sl-vOffset: 0;
 	--bsx-sl-blur: 3rem;
 	--bsx-sl-spread: 0;
 	--bsx-sl-color: rgba(0, 0, 0, .15);
-	/* right */
+	===right===
 	--bsx-sr-hOffset: 1rem;
 	--bsx-sr-vOffset: 0;
 	--bsx-sr-blur: 3rem;
 	--bsx-sr-spread: 0;
 	--bsx-sr-color: rgba(0, 0, 0, .15);
-	/* bottom */
+	===bottom===
 	--bsx-sb-hOffset: 0;
 	--bsx-sb-vOffset: 1rem;
 	--bsx-sb-blur: 3rem;
@@ -1259,10 +1280,10 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .s-4,
 .s-5 {
 	box-shadow:
-	/* top    */ var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	/* left   */ var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	/* right  */ var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent),
-	/* bottom */ var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
+	===top=== var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
+	===left=== var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
+	===right=== var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent),
+	===bottom=== var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
 }
 .sx-1,
 .sx-2,
@@ -1270,8 +1291,8 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sx-4,
 .sx-5 {
 	box-shadow:
-	/* left   */ var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	/* right  */ var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent);
+	===left=== var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
+	===right=== var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent);
 }
 .sy-1,
 .sy-2,
@@ -1279,8 +1300,8 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sy-4,
 .sy-5 {
 	box-shadow:
-	/* top    */ var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	/* bottom */ var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
+	===top=== var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
+	===bottom=== var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
 }
 .st-1,
 .st-2,
@@ -1308,10 +1329,10 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .s-inset-4,
 .s-inset-5 {
 	box-shadow:
-	/* top    */ inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	/* left   */ inset var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	/* right  */ inset var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent),
-	/* bottom */ inset var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
+	===top=== inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
+	===left=== inset var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
+	===right=== inset var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent),
+	===bottom=== inset var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
 }
 .sx-inset-1,
 .sx-inset-2,
@@ -1319,8 +1340,8 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sx-inset-4,
 .sx-inset-5 {
 	box-shadow:
-	/* left   */ inset var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	/* right  */ inset var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent);
+	===left=== inset var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
+	===right=== inset var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent);
 }
 .sy-inset-1,
 .sy-inset-2,
@@ -1328,8 +1349,8 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sy-inset-4,
 .sy-inset-5 {
 	box-shadow:
-	/* top    */ inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	/* bottom */ inset var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
+	===top=== inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
+	===bottom=== inset var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
 }
 .st-inset-1,
 .st-inset-2,
@@ -1351,7 +1372,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .sl-inset-3,
 .sl-inset-4,
 .sl-inset-5 { box-shadow: inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent) }
-
+*/
 
 
 /*======================================================================================================================================================*/
