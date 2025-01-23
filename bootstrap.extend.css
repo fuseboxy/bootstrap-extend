@@ -5,27 +5,28 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 :root {
+	/* margin variables */
 	--bsx-margin-xs: .25rem;
 	--bsx-margin-sm:  .5rem;
 	--bsx-margin-md:   1rem;
 	--bsx-margin-lg: 1.5rem;
 	--bsx-margin-xl:   3rem;
-
-	--bsx-shadow-blur-xs: .25rem;
-	--bsx-shadow-blur-sm:  .5rem;
-	--bsx-shadow-blur-md: .75rem;
-	--bsx-shadow-blur-lg:   1rem;
-	--bsx-shadow-blur-xl:   3rem;
-	--bsx-shadow-spread-xs: .125rem;
-	--bsx-shadow-spread-sm:  .25rem;
-	--bsx-shadow-spread-md: .375rem;
-	--bsx-shadow-spread-lg:   .5rem;
-	--bsx-shadow-spread-xl:    1rem;
-	--bsx-shadow-color-xs: rgba(0, 0, 0, .075);
-	--bsx-shadow-color-sm: rgba(0, 0, 0,   .1);
-	--bsx-shadow-color-md: rgba(0, 0, 0, .125);
-	--bsx-shadow-color-lg: rgba(0, 0, 0,  .15);
-	--bsx-shadow-color-xl: rgba(0, 0, 0, .175);
+	/* shadow variables */
+	--bsx-shadow-xs-blur: .25rem;
+	--bsx-shadow-sm-blur:  .5rem;
+	--bsx-shadow-md-blur: .75rem;
+	--bsx-shadow-lg-blur:   1rem;
+	--bsx-shadow-xl-blur:   3rem;
+	--bsx-shadow-xs-spread: .125rem;
+	--bsx-shadow-sm-spread:  .25rem;
+	--bsx-shadow-md-spread: .375rem;
+	--bsx-shadow-lg-spread:   .5rem;
+	--bsx-shadow-xl-spread:    1rem;
+	--bsx-shadow-xs-color: rgba(0, 0, 0, .075);
+	--bsx-shadow-sm-color: rgba(0, 0, 0,   .1);
+	--bsx-shadow-md-color: rgba(0, 0, 0, .125);
+	--bsx-shadow-lg-color: rgba(0, 0, 0,  .15);
+	--bsx-shadow-xl-color: rgba(0, 0, 0, .175);
 }
 
 
@@ -960,12 +961,12 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .smallest { font-size: .675rem; }
 
 /* shadow */
-.shadow-xs { box-shadow: 0 .125rem .25rem 0 rgba(0, 0, 0, .075) !important; }
-.shadow-sm { box-shadow: 0 .25rem .5rem 0 rgba(0, 0, 0, .1) !important; }
+.shadow-xs { box-shadow: 0 var(--bsx-shadow-xs-spread) var(--bsx-shadow-xs-blur) 0 var(--bsx-shadow-xs-color) !important; }
+.shadow-sm { box-shadow: 0 var(--bsx-shadow-sm-spread) var(--bsx-shadow-sm-blur) 0 var(--bsx-shadow-sm-color) !important; }
 .shadow,
-.shadow-md { box-shadow: 0 .375rem .75rem 0 rgba(0, 0, 0, .125) !important; }
-.shadow-lg { box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, .15) !important; }
-.shadow-xl { box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, .175) !important; }
+.shadow-md { box-shadow: 0 var(--bsx-shadow-md-spread) var(--bsx-shadow-md-blur) 0 var(--bsx-shadow-md-color) !important; }
+.shadow-lg { box-shadow: 0 var(--bsx-shadow-lg-spread) var(--bsx-shadow-lg-blur) 0 var(--bsx-shadow-lg-color) !important; }
+.shadow-xl { box-shadow: 0 var(--bsx-shadow-xl-spread) var(--bsx-shadow-xl-blur) 0 var(--bsx-shadow-xl-color) !important; }
 
 
 /* height */
@@ -982,396 +983,182 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*------------------+
 |  ADVANCED SHADOW  |    ====>   WORK-IN-PROGRESS
 +------------------*/
-
-.s-0,
-.sb-0,
-.sl-0,
-.sr-0,
-.st-0,
-.sx-0,
-.sy-0,
-.s-0-inset,
-.sb-0-inset,
-.sl-0-inset,
-.sr-0-inset,
-.st-0-inset,
-.sx-0-inset,
-.sy-0-inset {}
-
-.s-1,
-.sb-1,
-.sl-1,
-.sr-1,
-.st-1,
-.sx-1,
-.sy-1 { box-shadow: 0 0 .25rem 0 rgba(0, 0, 0, .075) !important; }
-
-.s1-inset,
-.sb1-inset,
-.sl1-inset,
-.sr1-inset,
-.st1-inset,
-.sx1-inset,
-.sy1-inset {}
-
-.s-2,
-.sb-2,
-.sl-2,
-.sr-2,
-.st-2,
-.sx-2,
-.sy-2 { box-shadow: 0 0 .5rem 0 rgba(0, 0, 0, .1) !important; }
-.s-2-inset,
-.sb-2-inset,
-.sl-2-inset,
-.sr-2-inset,
-.st-2-inset,
-.sx-2-inset,
-.sy-2-inset {}
-
-.s-3,
-.sb-3,
-.sl-3,
-.sr-3,
-.st-3,
-.sx-3,
-.sy-3 { box-shadow: 0 0 .75rem 0 rgba(0, 0, 0, .125) !important; }
-.s-3-inset,
-.sb-3-inset,
-.sl-3-inset,
-.sr-3-inset,
-.st-3-inset,
-.sx-3-inset,
-.sy-3-inset {}
-
-.s-4,
-.sb-4,
-.sl-4,
-.sr-4,
-.st-4,
-.sx-4,
-.sy-4 { box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .15) !important; }
-.s-4-inset,
-.sb-4-inset,
-.sl-4-inset,
-.sr-4-inset,
-.st-4-inset,
-.sx-4-inset,
-.sy-4-inset {}
-
+/* xl */
 .s-5,
 .sb-5,
 .sl-5,
 .sr-5,
 .st-5,
 .sx-5,
-.sy-5 {
-	box-shadow: 0 0 3rem 0 rgba(0, 0, 0, .175) !important;
-clip-path: inset(0 -3rem 0 0);
+.sy-5 { box-shadow: 0 0 var(--bsx-shadow-xl-blur) var(--bsx-shadow-xl-spread) var(--bsx-shadow-xl-color) !important; }
+.sb-5 { clip-path: inset(0 0 calc(-1 * calc(var(--bsx-shadow-xl-blur) + var(--bsx-shadow-xl-spread))) 0); }
+.sl-5 { clip-path: inset(0 0 0 calc(-1 * calc(var(--bsx-shadow-xl-blur) + var(--bsx-shadow-xl-spread)))); }
+.sr-5 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-xl-blur) + var(--bsx-shadow-xl-spread))) 0 0); }
+.st-5 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-xl-blur) + var(--bsx-shadow-xl-spread))) 0 0 0); }
+.sx-5 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-xl-blur) + var(--bsx-shadow-xl-spread)))); }
+.sy-5 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-xl-blur) + var(--bsx-shadow-xl-spread))) 0); }
+/* lg */
+.s-4,
+.sb-4,
+.sl-4,
+.sr-4,
+.st-4,
+.sx-4,
+.sy-4 { box-shadow: 0 0 var(--bsx-shadow-lg-blur) var(--bsx-shadow-lg-spread) var(--bsx-shadow-lg-color) !important; }
+.sb-4 { clip-path: inset(0 0 calc(-1 * calc(var(--bsx-shadow-lg-blur) + var(--bsx-shadow-lg-spread))) 0); }
+.sl-4 { clip-path: inset(0 0 0 calc(-1 * calc(var(--bsx-shadow-lg-blur) + var(--bsx-shadow-lg-spread)))); }
+.sr-4 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-lg-blur) + var(--bsx-shadow-lg-spread))) 0 0); }
+.st-4 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-lg-blur) + var(--bsx-shadow-lg-spread))) 0 0 0); }
+.sx-4 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-lg-blur) + var(--bsx-shadow-lg-spread)))); }
+.sy-4 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-lg-blur) + var(--bsx-shadow-lg-spread))) 0); }
+/* md */
+.s-3,
+.sb-3,
+.sl-3,
+.sr-3,
+.st-3,
+.sx-3,
+.sy-3 { box-shadow: 0 0 var(--bsx-shadow-md-blur) var(--bsx-shadow-md-spread) var(--bsx-shadow-md-color) !important; }
+.sb-3 { clip-path: inset(0 0 calc(-1 * calc(var(--bsx-shadow-md-blur) + var(--bsx-shadow-md-spread))) 0); }
+.sl-3 { clip-path: inset(0 0 0 calc(-1 * calc(var(--bsx-shadow-md-blur) + var(--bsx-shadow-md-spread)))); }
+.sr-3 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-md-blur) + var(--bsx-shadow-md-spread))) 0 0); }
+.st-3 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-md-blur) + var(--bsx-shadow-md-spread))) 0 0 0); }
+.sx-3 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-md-blur) + var(--bsx-shadow-md-spread)))); }
+.sy-3 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-md-blur) + var(--bsx-shadow-md-spread))) 0); }
+/* sm */
+.s-2,
+.sb-2,
+.sl-2,
+.sr-2,
+.st-2,
+.sx-2,
+.sy-2 { box-shadow: 0 0 var(--bsx-shadow-sm-blur) var(--bsx-shadow-sm-spread) var(--bsx-shadow-sm-color) !important; }
+.sb-2 { clip-path: inset(0 0 calc(-1 * calc(var(--bsx-shadow-sm-blur) + var(--bsx-shadow-sm-spread))) 0); }
+.sl-2 { clip-path: inset(0 0 0 calc(-1 * calc(var(--bsx-shadow-sm-blur) + var(--bsx-shadow-sm-spread)))); }
+.sr-2 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-sm-blur) + var(--bsx-shadow-sm-spread))) 0 0); }
+.st-2 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-sm-blur) + var(--bsx-shadow-sm-spread))) 0 0 0); }
+.sx-2 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-sm-blur) + var(--bsx-shadow-sm-spread)))); }
+.sy-2 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-sm-blur) + var(--bsx-shadow-sm-spread))) 0); }
+/* xs */
+.s-1,
+.sb-1,
+.sl-1,
+.sr-1,
+.st-1,
+.sx-1,
+.sy-1 { box-shadow: 0 0 var(--bsx-shadow-xs-blur) var(--bsx-shadow-xs-spread) var(--bsx-shadow-xs-color) !important; }
+.sb-1 { clip-path: inset(0 0 calc(-1 * calc(var(--bsx-shadow-xs-blur) + var(--bsx-shadow-xs-spread))) 0); }
+.sl-1 { clip-path: inset(0 0 0 calc(-1 * calc(var(--bsx-shadow-xs-blur) + var(--bsx-shadow-xs-spread)))); }
+.sr-1 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-xs-blur) + var(--bsx-shadow-xs-spread))) 0 0); }
+.st-1 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-xs-blur) + var(--bsx-shadow-xs-spread))) 0 0 0); }
+.sx-1 { clip-path: inset(0 calc(-1 * calc(var(--bsx-shadow-xs-blur) + var(--bsx-shadow-xs-spread)))); }
+.sy-1 { clip-path: inset(calc(-1 * calc(var(--bsx-shadow-xs-blur) + var(--bsx-shadow-xs-spread))) 0); }
+/* none */
+.s-0 { box-shadow: none !important; }
+.sb-0 {}
+.sl-0 {}
+.sr-0 {}
+.st-0 {}
+.sx-0 {}
+.sy-0 {}
 
-}
-.s-5-inset,
-.sb-5-inset,
-.sl-5-inset,
-.sr-5-inset,
-.st-5-inset,
-.sx-5-inset,
-.sy-5-inset {}
 
 /*
-.s-1,
-.sx-1,
-.sy-1,
-.st-1,
-.sr-1,
-.sb-1,
-.sl-1,
-.s-inset-1,
-.sx-inset-1,
-.sy-inset-1,
-.st-inset-1,
-.sr-inset-1,
-.sb-inset-1,
-.sl-inset-1 {
-	===top===
-	--bsx-st-hOffset: 0;
-	--bsx-st-vOffset: -.125rem;
-	--bsx-st-blur: .25rem;
-	--bsx-st-spread: 0;
-	--bsx-st-color: rgba(0, 0, 0, .15);
-	===left===
-	--bsx-sl-hOffset: -.125rem;
-	--bsx-sl-vOffset: 0;
-	--bsx-sl-blur: .25rem;
-	--bsx-sl-spread: 0;
-	--bsx-sl-color: rgba(0, 0, 0, .15);
-	===right===
-	--bsx-sr-hOffset: .125rem;
-	--bsx-sr-vOffset: 0;
-	--bsx-sr-blur: .25rem;
-	--bsx-sr-spread: 0;
-	--bsx-sr-color: rgba(0, 0, 0, .15);
-	===bottom===
-	--bsx-sb-hOffset: 0;
-	--bsx-sb-vOffset: .125rem;
-	--bsx-sb-blur: .25rem;
-	--bsx-sb-spread: 0;
-	--bsx-sb-color: rgba(0, 0, 0, .15);
-}
-.s-2,
-.sx-2,
-.sy-2,
-.st-2,
-.sr-2,
-.sb-2,
-.sl-2,
-.s-inset-2,
-.sx-inset-2,
-.sy-inset-2,
-.st-inset-2,
-.sr-inset-2,
-.sb-inset-2,
-.sl-inset-2 {
-	===top===
-	--bsx-st-hOffset: 0;
-	--bsx-st-vOffset: -.25rem;
-	--bsx-st-blur: .5rem;
-	--bsx-st-spread: 0;
-	--bsx-st-color: rgba(0, 0, 0, .15);
-	===left===
-	--bsx-sl-hOffset: -.25rem;
-	--bsx-sl-vOffset: 0;
-	--bsx-sl-blur: .5rem;
-	--bsx-sl-spread: 0;
-	--bsx-sl-color: rgba(0, 0, 0, .15);
-	===right===
-	--bsx-sr-hOffset: .25rem;
-	--bsx-sr-vOffset: 0;
-	--bsx-sr-blur: .5rem;
-	--bsx-sr-spread: 0;
-	--bsx-sr-color: rgba(0, 0, 0, .15);
-	===bottom===
-	--bsx-sb-hOffset: 0;
-	--bsx-sb-vOffset: .25rem;
-	--bsx-sb-blur: .5rem;
-	--bsx-sb-spread: 0;
-	--bsx-sb-color: rgba(0, 0, 0, .15);
-}
-.s-3,
-.sx-3,
-.sy-3,
-.st-3,
-.sr-3,
-.sb-3,
-.sl-3,
-.s-inset-3,
-.sx-inset-3,
-.sy-inset-3,
-.st-inset-3,
-.sr-inset-3,
-.sb-inset-3,
-.sl-inset-3 {
-	===top===
-	--bsx-st-hOffset: 0;
-	--bsx-st-vOffset: -.375rem;
-	--bsx-st-blur: .75rem;
-	--bsx-st-spread: 0;
-	--bsx-st-color: rgba(0, 0, 0, .15);
-	===left===
-	--bsx-sl-hOffset: -.375rem;
-	--bsx-sl-vOffset: 0;
-	--bsx-sl-blur: .75rem;
-	--bsx-sl-spread: 0;
-	--bsx-sl-color: rgba(0, 0, 0, .15);
-	===right===
-	--bsx-sr-hOffset: .375rem;
-	--bsx-sr-vOffset: 0;
-	--bsx-sr-blur: .75rem;
-	--bsx-sr-spread: 0;
-	--bsx-sr-color: rgba(0, 0, 0, .15);
-	===bottom===
-	--bsx-sb-hOffset: 0;
-	--bsx-sb-vOffset: .375rem;
-	--bsx-sb-blur: .75rem;
-	--bsx-sb-spread: 0;
-	--bsx-sb-color: rgba(0, 0, 0, .15);
-}
-.s-4,
-.sx-4,
-.sy-4,
-.st-4,
-.sr-4,
-.sb-4,
-.sl-4,
-.s-inset-4,
-.sx-inset-4,
-.sy-inset-4,
-.st-inset-4,
-.sr-inset-4,
-.sb-inset-4,
-.sl-inset-4 {
-	===top===
-	--bsx-st-hOffset: 0;
-	--bsx-st-vOffset: -.5rem;
-	--bsx-st-blur: 1rem;
-	--bsx-st-spread: 0;
-	--bsx-st-color: rgba(0, 0, 0, .15);
-	===left===
-	--bsx-sl-hOffset: -.5rem;
-	--bsx-sl-vOffset: 0;
-	--bsx-sl-blur: 1rem;
-	--bsx-sl-spread: 0;
-	--bsx-sl-color: rgba(0, 0, 0, .15);
-	===right===
-	--bsx-sr-hOffset: .5rem;
-	--bsx-sr-vOffset: 0;
-	--bsx-sr-blur: 1rem;
-	--bsx-sr-spread: 0;
-	--bsx-sr-color: rgba(0, 0, 0, .15);
-	===bottom===
-	--bsx-sb-hOffset: 0;
-	--bsx-sb-vOffset: .5rem;
-	--bsx-sb-blur: 1rem;
-	--bsx-sb-spread: 0;
-	--bsx-sb-color: rgba(0, 0, 0, .15);
-}
-.s-5,
-.sx-5,
-.sy-5,
-.st-5,
-.sr-5,
-.sb-5,
-.sl-5,
-.s-inset-5,
-.sx-inset-5,
-.sy-inset-5,
-.st-inset-5,
-.sr-inset-5,
-.sb-inset-5,
-.sl-inset-5 {
-	===top===
-	--bsx-st-hOffset: 0;
-	--bsx-st-vOffset: -1rem;
-	--bsx-st-blur: 3rem;
-	--bsx-st-spread: 0;
-	--bsx-st-color: rgba(0, 0, 0, .15);
-	===left===
-	--bsx-sl-hOffset: -1rem;
-	--bsx-sl-vOffset: 0;
-	--bsx-sl-blur: 3rem;
-	--bsx-sl-spread: 0;
-	--bsx-sl-color: rgba(0, 0, 0, .15);
-	===right===
-	--bsx-sr-hOffset: 1rem;
-	--bsx-sr-vOffset: 0;
-	--bsx-sr-blur: 3rem;
-	--bsx-sr-spread: 0;
-	--bsx-sr-color: rgba(0, 0, 0, .15);
-	===bottom===
-	--bsx-sb-hOffset: 0;
-	--bsx-sb-vOffset: 1rem;
-	--bsx-sb-blur: 3rem;
-	--bsx-sb-spread: 0;
-	--bsx-sb-color: rgba(0, 0, 0, .15);
-}
-.s-1,
-.s-2,
-.s-3,
-.s-4,
-.s-5 {
-	box-shadow:
-	===top=== var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	===left=== var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	===right=== var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent),
-	===bottom=== var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
-}
-.sx-1,
-.sx-2,
-.sx-3,
-.sx-4,
-.sx-5 {
-	box-shadow:
-	===left=== var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	===right=== var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent);
-}
-.sy-1,
-.sy-2,
-.sy-3,
-.sy-4,
-.sy-5 {
-	box-shadow:
-	===top=== var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	===bottom=== var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
-}
-.st-1,
-.st-2,
-.st-3,
-.st-4,
-.st-5 { box-shadow: var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent); }
-.sr-1,
-.sr-2,
-.sr-3,
-.sr-4,
-.sr-5 { box-shadow: var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent); }
-.sb-1,
-.sb-2,
-.sb-3,
-.sb-4,
-.sb-5 { box-shadow: var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent); }
-.sl-1,
-.sl-2,
-.sl-3,
-.sl-4,
-.sl-5 { box-shadow: var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent) }
-.s-inset-1,
-.s-inset-2,
-.s-inset-3,
-.s-inset-4,
-.s-inset-5 {
-	box-shadow:
-	===top=== inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	===left=== inset var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	===right=== inset var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent),
-	===bottom=== inset var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
-}
-.sx-inset-1,
-.sx-inset-2,
-.sx-inset-3,
-.sx-inset-4,
-.sx-inset-5 {
-	box-shadow:
-	===left=== inset var(--bsx-sl-hOffset, 0) var(--bsx-sl-vOffset, 0) var(--bsx-sl-blur, 0) var(--bsx-sl-spread, 0) var(--bsx-sl-color, transparent),
-	===right=== inset var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent);
-}
-.sy-inset-1,
-.sy-inset-2,
-.sy-inset-3,
-.sy-inset-4,
-.sy-inset-5 {
-	box-shadow:
-	===top=== inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent),
-	===bottom=== inset var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent);
-}
-.st-inset-1,
-.st-inset-2,
-.st-inset-3,
-.st-inset-4,
-.st-inset-5 { box-shadow: inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent); }
-.sr-inset-1,
-.sr-inset-2,
-.sr-inset-3,
-.sr-inset-4,
-.sr-inset-5 { box-shadow: inset var(--bsx-sr-hOffset, 0) var(--bsx-sr-vOffset, 0) var(--bsx-sr-blur, 0) var(--bsx-sr-spread, 0) var(--bsx-sr-color, transparent); }
-.sb-inset-1,
-.sb-inset-2,
-.sb-inset-3,
-.sb-inset-4,
-.sb-inset-5 { box-shadow: inset var(--bsx-sb-hOffset, 0) var(--bsx-sb-vOffset, 0) var(--bsx-sb-blur, 0) var(--bsx-sb-spread, 0) var(--bsx-sb-color, transparent); }
-.sl-inset-1,
-.sl-inset-2,
-.sl-inset-3,
-.sl-inset-4,
-.sl-inset-5 { box-shadow: inset var(--bsx-st-hOffset, 0) var(--bsx-st-vOffset, 0) var(--bsx-st-blur, 0) var(--bsx-st-spread, 0) var(--bsx-st-color, transparent) }
+
+<div class="shadow-xs b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="shadow-sm b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="shadow-md b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="shadow-lg b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="shadow-xl b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+
+
+<div class="s-1 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="s-2 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="s-3 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="s-4 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="s-5 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+
+
+<div class="st-1 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="st-2 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="st-3 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="st-4 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="st-5 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+
+
+<div class="sb-1 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sb-2 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sb-3 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sb-4 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sb-5 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+
+
+<div class="sl-1 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sl-2 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sl-3 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sl-4 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sl-5 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+
+
+<div class="sr-1 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sr-2 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sr-3 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sr-4 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sr-5 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+
+
+<div class="sx-1 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sx-2 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sx-3 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sx-4 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sx-5 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+
+
+<div class="sy-1 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sy-2 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sy-3 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sy-4 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="sy-5 b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
+<div class="b-1 d-inline-block m-3" style="height: 75px; width: 75px;"></div>
 */
 
 
