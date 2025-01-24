@@ -884,52 +884,65 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*----------+
-|  BRACKET  |
-+----------*/
-.bracket:before,
-.bracket:after { display: inline-block; }
+/*-------------------------+
+|  PARENTHESES & BRACKETS  |
++-------------------------*/
+.parentheses:after,
+.parentheses:before,
+.round-bracket:after,
+.round-bracket:before,
+.round-brackets:after,
+.round-brackets:before,
+.braces:after,
+.braces:before,
+.curly-bracket:after,
+.curly-bracket:before,
+.curly-brackets:after,
+.curly-brackets:before,
+.brackets:after,
+.brackets:before,
+.sq-bracket:after,
+.sq-bracket:before,
+.sq-brackets:after
+.sq-brackets:before,
+.square-bracket:after,
+.square-bracket:before,
+.square-brackets:after,
+.square-brackets:before,
+.angle-bracket:after,
+.angle-bracket:before,
+.angle-brackets:after,
+.angle-brackets:before { display: inline-block; }
 /* parentheses */
-.bracket-round:before  { content: '('; }
-.bracket-round:after   { content: ')'; }
-/* square brackets */
-.bracket-square:before { content: '['; }
-.bracket-square:after  { content: ']'; }
+.parentheses:before,
+.round-bracket:before,
+.round-brackets:before { content: '('; }
+.parentheses:after,
+.round-bracket:after,
+.round-brackets:after { content: ')'; }
+/* brackets */
+.brackets:before,
+.sq-bracket:before,
+.sq-brackets:before,
+.square-bracket:before,
+.square-brackets:before { content: '['; }
+.brackets:after,
+.sq-bracket:after,
+.sq-brackets:after,
+.square-bracket:after,
+.square-brackets:after { content: ']'; }
 /* braces */
-.bracket-curly:before  { content: '{'; }
-.bracket-curly:after   { content: '}'; }
+.braces:before,
+.curly-bracket:before,
+.curly-brackets:before { content: '{'; }
+.braces:after,
+.curly-bracket:after,
+.curly-brackets:after { content: '}'; }
 /* angle brackets */
-.bracket-angle:before  { content: '<'; }
-.bracket-angle:after   { content: '>'; }
-
-
-/*======================================================================================================================================================*/
-
-
-/*------------------------------+
-|  UTILITY CLASSES FOR STYLING  |    ====>   WORK-IN-PROGRESS
-+------------------------------*/
-
-/* styling */
-.em { font-style: italic; }
-.del { text-decoration: line-through; }
-.strong { font-weight: bolder; }
-.sub,
-.sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-.sub { bottom: -.25em; }
-.sup { top: -.5em; }
-/* font size */
-.smaller { font-size: .75rem; }
-.smallest { font-size: .675rem; }
-
-/* shadow */
-
-
-
-/* height */
-.h-0  { height: 0 !important; }
-/* others */
-.transition-none { transition: none !important; }
+.angle-bracket:before,
+.angle-brackets:before { content: '<'; }
+.angle-bracket:after,
+.angle-brackets:after { content: '>'; }
 
 
 /*======================================================================================================================================================*/
@@ -1064,6 +1077,35 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 .s-0, .sl-0, .sx-0 { --bsx-advShadow-clipPathLeft: 0 !important; }
 .s-0, .sr-0, .sx-0 { --bsx-advShadow-clipPathRight: 0 !important; }
 .s-0, .sb-0, .sy-0 { --bsx-advShadow-clipPathBottom: 0 !important; }
+
+
+/*======================================================================================================================================================*/
+
+
+/*------------------------------+
+|  UTILITY CLASSES FOR STYLING  |    ====>   WORK-IN-PROGRESS
++------------------------------*/
+
+/* styling */
+.em { font-style: italic; }
+.del { text-decoration: line-through; }
+.strong { font-weight: bolder; }
+.sub,
+.sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+.sub { bottom: -.25em; }
+.sup { top: -.5em; }
+/* font size */
+.smaller { font-size: .75rem; }
+.smallest { font-size: .675rem; }
+
+/* shadow */
+
+
+
+/* height */
+.h-0  { height: 0 !important; }
+/* others */
+.transition-none { transition: none !important; }
 
 
 /*======================================================================================================================================================*/
