@@ -844,8 +844,8 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*-----------------+
 |  (MORE) Z-INDEX  | 
 +-----------------*/
-.z-top { z-index: 999 !important; }
-.z-bottom { z-index: -999 !important; }
+.z-top { z-index: 9999 !important; }
+.z-bottom { z-index: -9999 !important; }
 
 
 /*======================================================================================================================================================*/
