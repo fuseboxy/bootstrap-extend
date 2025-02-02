@@ -1087,15 +1087,16 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 /* font size */
 .smaller { font-size: .75rem; }
 .smallest { font-size: .675rem; }
-
-/* shadow */
-
-
-
 /* height */
 .h-0  { height: 0 !important; }
 /* others */
 .transition-none { transition: none !important; }
+[readonly],
+[readonly]:focus {
+	background-color: var(--bs-light);
+	color: var(--bs-secondary);
+	pointer-events: none;
+}
 
 
 /*======================================================================================================================================================*/
