@@ -163,9 +163,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*----------------------+
-|  MULTI-LEVEL DROPDOWN |
-+----------------------*/
+/*-----------------------+
+|  MULTI-LEVEL DROPDOWN  |
++-----------------------*/
 /* align arrow to right */
 .dropdown .dropleft  :before,
 .dropdown .dropright :after,
@@ -260,9 +260,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*-------------------------------------+
-|  UTILITY SHORTCUT : NEGATIVE MARGIN  |
-+-------------------------------------*/
+/*------------------+
+|  NEGATIVE MARGIN  |
++------------------*/
 /* margin */
 .m-n1 { margin: calc( -1 * var(--bsx-margin-xs) ) !important; }
 .m-n2 { margin: calc( -1 * var(--bsx-margin-sm) ) !important; }
@@ -310,9 +310,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*----------------------------------+
-|  UTILITY SHORTCUT : BORDER WIDTH  |
-+----------------------------------*/
+/*---------------------------+
+|  SHORTHAND : BORDER WIDTH  |
++---------------------------*/
 /* reset */
 .b-5, .bb-5, .bl-5, .br-5, .bt-5, .bx-5, .by-5,
 .b-4, .bb-4, .bl-4, .br-4, .bt-4, .bx-4, .by-4,
@@ -377,7 +377,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 /*----------------------------------+
-|  UTILITY SHORTCUT : BORDER COLOR  |
+|  SHORTHAND : (MORE) BORDER COLOR  |
 +----------------------------------*/
 /* primary */
 .b-primary { --bs-border-opacity: 1; border-color: rgba(var(--bs-primary-rgb), var(--bs-border-opacity)) !important; }
@@ -537,7 +537,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 /*------------------------------------+
-|  UTILITY SHORTCUT : BORDER OPACITY  |
+|  SHORTHAND : (MORE) BORDER OPACITY  |
 +------------------------------------*/
 .b-op-0   { --bs-border-opacity:   0; }
 .b-op-5   { --bs-border-opacity: .05; }
@@ -565,9 +565,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*-----------------------------------+
-|  UTILITY SHORTCUT : BORDER RADIUS  |
-+-----------------------------------*/
+/*----------------------------+
+|  SHORTHAND : BORDER RADIUS  |
++----------------------------*/
 /* rounded */
 .r-0 { border-radius: 0 !important; }
 .r-1 { border-radius: var(--bs-border-radius-sm) !important; }
@@ -618,9 +618,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*----------------------------------+
-|  UTILITY : (SUBTLE) BUTTON COLOR  |
-+----------------------------------*/
+/*------------------------+
+|  (SUBTLE) BUTTON COLOR  |
++------------------------*/
 .btn-primary-subtle {
 	--bs-btn-color: rgb(var(--bs-primary-rgb));
 	--bs-btn-bg: var(--bs-primary-bg-subtle);
@@ -754,9 +754,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*-------------------------------------+
-|  UTILITY : (HOVER) BACKGROUND COLOR  |
-+-------------------------------------*/
+/*---------------------------+
+|  (HOVER) BACKGROUND COLOR  |
++---------------------------*/
 /* standard */
 .bg-hover-primary:hover { background-color: rgb(var(--bs-primary-rgb)) !important; }
 .bg-hover-secondary:hover { background-color: rgb(var(--bs-secondary-rgb)) !important; }
@@ -783,9 +783,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*------------------------------------+
-|  UTILITY SHORTCUT : (MORE) OPACITY  |
-+------------------------------------*/
+/*-----------------------------+
+|  SHORTHAND : (MORE) OPACITY  |
++-----------------------------*/
 .op-0   { opacity:   0 !important; }
 .op-5   { opacity: .05 !important; }
 .op-10  { opacity: .10 !important; }
@@ -812,9 +812,9 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*----------------------------------+
-|  UTILITY SHORTCUT : (MORE) WIDTH  |
-+----------------------------------*/
+/*---------------------------+
+|  SHORTHAND : (MORE) WIDTH  |
++---------------------------*/
 .w-0   { width:   0 !important; }
 .w-5   { width:  5% !important; }
 .w-10  { width: 10% !important; }
@@ -851,9 +851,19 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*----------------------------------+
-|  UTILITY SHORTCUT : MOUSE CURSOR  |
-+----------------------------------*/
+/*-------------------+
+|  (MORE) FONT SIZE  | 
++-------------------*/
+.smaller { font-size: .75rem; }
+.smallest { font-size: .675rem; }
+
+
+/*======================================================================================================================================================*/
+
+
+/*---------------+
+|  MOUSE CURSOR  |
++---------------*/
 .cursor-alias { cursor: alias !important; }
 .cursor-all-scroll { cursor: all-scroll !important; }
 .cursor-auto { cursor: auto !important; }
@@ -897,62 +907,36 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*-------------------------+
 |  PARENTHESES & BRACKETS  |
 +-------------------------*/
-.parentheses:after,
-.parentheses:before,
-.round-bracket:after,
-.round-bracket:before,
-.round-brackets:after,
-.round-brackets:before,
-.braces:after,
-.braces:before,
-.curly-bracket:after,
-.curly-bracket:before,
-.curly-brackets:after,
-.curly-brackets:before,
-.brackets:after,
-.brackets:before,
-.sq-bracket:after,
-.sq-bracket:before,
-.sq-brackets:after
-.sq-brackets:before,
-.square-bracket:after,
-.square-bracket:before,
-.square-brackets:after,
-.square-brackets:before,
-.angle-bracket:after,
-.angle-bracket:before,
-.angle-brackets:after,
-.angle-brackets:before { display: inline-block; }
 /* parentheses */
 .parentheses:before,
 .round-bracket:before,
-.round-brackets:before { content: '('; }
+.round-brackets:before { content: '('; display: inline-block; }
 .parentheses:after,
 .round-bracket:after,
-.round-brackets:after { content: ')'; }
+.round-brackets:after { content: ')'; display: inline-block; }
 /* brackets */
 .brackets:before,
 .sq-bracket:before,
 .sq-brackets:before,
 .square-bracket:before,
-.square-brackets:before { content: '['; }
+.square-brackets:before { content: '['; display: inline-block; }
 .brackets:after,
 .sq-bracket:after,
 .sq-brackets:after,
 .square-bracket:after,
-.square-brackets:after { content: ']'; }
+.square-brackets:after { content: ']'; display: inline-block; }
 /* braces */
 .braces:before,
 .curly-bracket:before,
-.curly-brackets:before { content: '{'; }
+.curly-brackets:before { content: '{'; display: inline-block; }
 .braces:after,
 .curly-bracket:after,
-.curly-brackets:after { content: '}'; }
+.curly-brackets:after { content: '}'; display: inline-block; }
 /* angle brackets */
 .angle-bracket:before,
-.angle-brackets:before { content: '<'; }
+.angle-brackets:before { content: '<'; display: inline-block; }
 .angle-bracket:after,
-.angle-brackets:after { content: '>'; }
+.angle-brackets:after { content: '>'; display: inline-block; }
 
 
 /*======================================================================================================================================================*/
@@ -1072,11 +1056,10 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 /*======================================================================================================================================================*/
 
 
-/*------------------------------+
-|  UTILITY CLASSES FOR STYLING  |    ====>   WORK-IN-PROGRESS
-+------------------------------*/
-
-/* styling */
+/*----------------+
+|  MISCELLANEOUS  |
++----------------*/
+/* more styling */
 .em { font-style: italic; }
 .del { text-decoration: line-through; }
 .strong { font-weight: bolder; }
@@ -1084,13 +1067,11 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 .sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
 .sub { bottom: -.25em; }
 .sup { top: -.5em; }
-/* font size */
-.smaller { font-size: .75rem; }
-.smallest { font-size: .675rem; }
 /* height */
 .h-0  { height: 0 !important; }
-/* others */
+/* transition */
 .transition-none { transition: none !important; }
+/* readonly field */
 [readonly],
 [readonly]:focus {
 	background-color: var(--bs-light);
@@ -1100,9 +1081,6 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 
 
 /*======================================================================================================================================================*/
-
-
-
 
 
 /*--------------------------+
