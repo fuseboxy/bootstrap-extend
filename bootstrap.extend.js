@@ -385,7 +385,7 @@ $(function(){
 		// apply alignment
 		if ( toggleAlign == 'right' ) $dropdown.addClass('dropdown-menu-end');
 		// show loading message
-		$dropdown.html('<div class="dropdown-item text-center disabled"><i class="spinner-grow" style="height: 1rem; width: 1rem;" role="status"></i> Loading...</div>');
+		$dropdown.html('<div class="dropdown-item text-center disabled"><i class="spinner-grow" style="height: .9rem; width: .9rem;" role="status"></i> <small>Loading...</small></div>');
 		// transform to standard bootstrap-dropdown & show
 		$btn.attr('data-bs-toggle', 'dropdown').dropdown('show');
 		// load content remotely
