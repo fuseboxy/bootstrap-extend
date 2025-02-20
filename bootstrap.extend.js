@@ -363,8 +363,8 @@ $(function(){
 
 	[Usage]
 	Auto-load remote content into dropdown (load-once-and-keep)
+	===> data-bsx-href     = ~alternativeForElementWithoutHrefAttribute~
 	===> data-bsx-toggle   = {ajax-dropdown}
-	===> data-bsx-target   = ~targetDropdown~
 	===> data-bsx-align    = {left*|right}
 	===> data-bsx-selector = ~partialResponseToShow~
 
