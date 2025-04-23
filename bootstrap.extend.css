@@ -22,11 +22,11 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 	--bsx-shadow-md-vOffset: .375rem;
 	--bsx-shadow-lg-vOffset:   .5rem;
 	--bsx-shadow-xl-vOffset:    1rem;
-	--bsx-shadow-xs-color: rgba(0, 0, 0, .075);
-	--bsx-shadow-sm-color: rgba(0, 0, 0,   .1);
-	--bsx-shadow-md-color: rgba(0, 0, 0, .125);
-	--bsx-shadow-lg-color: rgba(0, 0, 0,  .15);
-	--bsx-shadow-xl-color: rgba(0, 0, 0, .175);
+	--bsx-shadow-xs-color: rgba(0, 250, 0, .1);
+	--bsx-shadow-sm-color: rgba(0, 250, 0, .1);
+	--bsx-shadow-md-color: rgba(0, 250, 0, .125);
+	--bsx-shadow-lg-color: rgba(0, 250, 0, .15);
+	--bsx-shadow-xl-color: rgba(0, 250, 0, .175);
 }
 
 
@@ -1015,136 +1015,6 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*------------------+
-|  ADVANCED SHADOW  |
-+-------------------+
-
-[Important]
-Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/..)
-
-[Example]
-<div class="s-3 sb-0 sl-0">(Valid)</div>
-<div class="st-2 sr-2">(Valid)</div>
-<div class="st-3 sl-5">(Invalid)</div>
-*/
-
-body { border: solid 1px red; }
-
-.s-5, .sb-5, .sl-5, .sr-5, .st-5, .sx-5, .sy-5,
-.s-4, .sb-4, .sl-4, .sr-4, .st-4, .sx-4, .sy-4,
-.s-3, .sb-3, .sl-3, .sr-3, .st-3, .sx-3, .sy-3,
-.s-2, .sb-2, .sl-2, .sr-2, .st-2, .sx-2, .sy-2,
-.s-1, .sb-1, .sl-1, .sr-1, .st-1, .sx-1, .sy-1,
-.s-0, .sb-0, .sl-0, .sr-0, .st-0, .sx-0, .sy-0 {
-	/* inset : variables */
-	--bsx-advShadow-inset-blur: 0;
-	--bsx-advShadow-inset-spread: 0;
-	--bsx-advShadow-inset-hOffset: 0;
-	--bsx-advShadow-inset-vOffset: 0;
-	--bsx-advShadow-inset-color: cyan;
-	/* outset : variables */
-	--bsx-advShadow-outset-blur: 0;
-	--bsx-advShadow-outset-spread: 0;
-	--bsx-advShadow-outset-hOffset: 0;
-	--bsx-advShadow-outset-vOffset: 0;
-	--bsx-advShadow-outset-color: none;
-	--bsx-advShadow-outset-clipPathTop: 0;
-	--bsx-advShadow-outset-clipPathLeft: 0;
-	--bsx-advShadow-outset-clipPathRight: 0;
-	--bsx-advShadow-outset-clipPathBottom: 0;
-	/* shadow settings */
-	box-shadow:
-		/* inset : settings */
-		inset
-		var(--bsx-advShadow-inset-hOffset)
-		var(--bsx-advShadow-inset-vOffset)
-		var(--bsx-advShadow-inset-blur)
-		var(--bsx-advShadow-inset-spread)
-		var(--bsx-advShadow-inset-color),
-		/* outset : settings */
-		var(--bsx-advShadow-outset-hOffset)
-		var(--bsx-advShadow-outset-vOffset)
-		var(--bsx-advShadow-outset-blur)
-		var(--bsx-advShadow-outset-spread)
-		var(--bsx-advShadow-outset-color);
-	/* outset : cropping */
-	clip-path: inset(
-		var(--bsx-advShadow-outset-clipPathTop)
-		var(--bsx-advShadow-outset-clipPathRight)
-		var(--bsx-advShadow-outset-clipPathBottom)
-		var(--bsx-advShadow-outset-clipPathLeft)
-	);
-}
-/* xl */
-.s-5,
-.sb-5,
-.sl-5,
-.sr-5,
-.st-5,
-.sx-5,
-.sy-5 { --bsx-advShadow-outset-blur: var(--bsx-shadow-xl-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-xl-color) !important; }
-.s-5, .st-5, .sy-5 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
-.s-5, .sl-5, .sx-5 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
-.s-5, .sr-5, .sx-5 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
-.s-5, .sb-5, .sy-5 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
-/* lg */
-.s-4,
-.sb-4,
-.sl-4,
-.sr-4,
-.st-4,
-.sx-4,
-.sy-4 { --bsx-advShadow-outset-blur: var(--bsx-shadow-lg-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-lg-color) !important; }
-.s-4, .st-4, .sy-4 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
-.s-4, .sl-4, .sx-4 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
-.s-4, .sr-4, .sx-4 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
-.s-4, .sb-4, .sy-4 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
-/* md */
-.s-3,
-.sb-3,
-.sl-3,
-.sr-3,
-.st-3,
-.sx-3,
-.sy-3 { --bsx-advShadow-outset-blur: var(--bsx-shadow-md-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-md-color) !important; }
-.s-3, .st-3, .sy-3 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
-.s-3, .sl-3, .sx-3 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
-.s-3, .sr-3, .sx-3 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
-.s-3, .sb-3, .sy-3 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
-/* sm */
-.s-2,
-.sb-2,
-.sl-2,
-.sr-2,
-.st-2,
-.sx-2,
-.sy-2 { --bsx-advShadow-outset-blur: var(--bsx-shadow-sm-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-sm-color) !important; }
-.s-2, .st-2, .sy-2 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
-.s-2, .sl-2, .sx-2 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
-.s-2, .sr-2, .sx-2 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
-.s-2, .sb-2, .sy-2 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
-/* xs */
-.s-1,
-.sb-1,
-.sl-1,
-.sr-1,
-.st-1,
-.sx-1,
-.sy-1 { --bsx-advShadow-outset-blur: var(--bsx-shadow-xs-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-xs-color) !important; }
-.s-1, .st-1, .sy-1 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-xs-blur) ) !important; }
-.s-1, .sl-1, .sx-1 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
-.s-1, .sr-1, .sx-1 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
-.s-1, .sb-1, .sy-1 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
-/* none */
-.s-0, .st-0, .sy-0 { --bsx-advShadow-outset-clipPathTop: 0 !important; }
-.s-0, .sl-0, .sx-0 { --bsx-advShadow-outset-clipPathLeft: 0 !important; }
-.s-0, .sr-0, .sx-0 { --bsx-advShadow-outset-clipPathRight: 0 !important; }
-.s-0, .sb-0, .sy-0 { --bsx-advShadow-outset-clipPathBottom: 0 !important; }
-
-
-/*======================================================================================================================================================*/
-
-
 /*----------------+
 |  MISCELLANEOUS  |
 +----------------*/
@@ -1167,3 +1037,207 @@ body { border: solid 1px red; }
 	color: var(--bs-secondary);
 	pointer-events: none;
 }
+
+
+/*======================================================================================================================================================*/
+
+
+/*------------------+
+|  ADVANCED SHADOW  |
++-------------------+
+
+[Important]
+Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/..)
+Inset & outset shadows can exist together
+
+[Example]
+<div class="s-3 sb-0 sl-0">(Valid)</div>
+<div class="st-2 sr-2">(Valid)</div>
+<div class="st-3 sl-5">(Invalid)</div>
+*/
+.s-5, .sb-5, .sl-5, .sr-5, .st-5, .sx-5, .sy-5,
+.s-4, .sb-4, .sl-4, .sr-4, .st-4, .sx-4, .sy-4,
+.s-3, .sb-3, .sl-3, .sr-3, .st-3, .sx-3, .sy-3,
+.s-2, .sb-2, .sl-2, .sr-2, .st-2, .sx-2, .sy-2,
+.s-1, .sb-1, .sl-1, .sr-1, .st-1, .sx-1, .sy-1,
+.s-0, .sb-0, .sl-0, .sr-0, .st-0, .sx-0, .sy-0,
+.s-5-inset, .sb-5-inset, .sl-5-inset, .sr-5-inset, .st-5-inset, .sx-5-inset, .sy-5-inset,
+.s-4-inset, .sb-4-inset, .sl-4-inset, .sr-4-inset, .st-4-inset, .sx-4-inset, .sy-4-inset,
+.s-3-inset, .sb-3-inset, .sl-3-inset, .sr-3-inset, .st-3-inset, .sx-3-inset, .sy-3-inset,
+.s-2-inset, .sb-2-inset, .sl-2-inset, .sr-2-inset, .st-2-inset, .sx-2-inset, .sy-2-inset,
+.s-1-inset, .sb-1-inset, .sl-1-inset, .sr-1-inset, .st-1-inset, .sx-1-inset, .sy-1-inset,
+.s-0-inset, .sb-0-inset, .sl-0-inset, .sr-0-inset, .st-0-inset, .sx-0-inset, .sy-0-inset {
+	/* outset : variables */
+	--bsx-advShadow: 0 0 0 0 none;
+	--bsx-advShadow-clipPathTop: 0;
+	--bsx-advShadow-clipPathLeft: 0;
+	--bsx-advShadow-clipPathRight: 0;
+	--bsx-advShadow-clipPathBottom: 0;
+	/* inset : variables */
+--bsx-advShadow-inset: 0 0 0 0 cyan;
+	--bsx-advShadow-inset-blur: 0;
+	--bsx-advShadow-inset-spread: 0;
+	--bsx-advShadow-inset-hOffset: 0;
+	--bsx-advShadow-inset-vOffset: 0;
+	--bsx-advShadow-inset-color: cyan;
+	/* shadow settings */
+	box-shadow: var(--bsx-advShadow),
+		/* inset : settings */
+		inset
+		var(--bsx-advShadow-inset-hOffset)
+		var(--bsx-advShadow-inset-vOffset)
+		var(--bsx-advShadow-inset-blur)
+		var(--bsx-advShadow-inset-spread)
+		var(--bsx-advShadow-inset-color);
+	/* outset : cropping */
+	clip-path: inset( var(--bsx-advShadow-clipPathTop) var(--bsx-advShadow-clipPathRight) var(--bsx-advShadow-clipPathBottom) var(--bsx-advShadow-clipPathLeft) );
+}
+
+
+/*---------------------------+
+|  ADVANCED SHADOW : OUTSET  |
++----------------------------+
+/* xl */
+.s-5,
+.sb-5,
+.sl-5,
+.sr-5,
+.st-5,
+.sx-5,
+.sy-5 { --bsx-advShadow: 0 0 var(--bsx-shadow-xl-blur) 0 var(--bsx-shadow-xl-color) !important; }
+.s-5, .st-5, .sy-5 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+.s-5, .sl-5, .sx-5 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+.s-5, .sr-5, .sx-5 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+.s-5, .sb-5, .sy-5 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+/* lg */
+.s-4,
+.sb-4,
+.sl-4,
+.sr-4,
+.st-4,
+.sx-4,
+.sy-4 { --bsx-advShadow: 0 0 var(--bsx-shadow-lg-blur) 0 var(--bsx-shadow-lg-color) !important; }
+.s-4, .st-4, .sy-4 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+.s-4, .sl-4, .sx-4 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+.s-4, .sr-4, .sx-4 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+.s-4, .sb-4, .sy-4 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+/* md */
+.s-3,
+.sb-3,
+.sl-3,
+.sr-3,
+.st-3,
+.sx-3,
+.sy-3 { --bsx-advShadow: 0 0 var(--bsx-shadow-md-blur) 0 var(--bsx-shadow-md-color) !important; }
+.s-3, .st-3, .sy-3 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+.s-3, .sl-3, .sx-3 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+.s-3, .sr-3, .sx-3 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+.s-3, .sb-3, .sy-3 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+/* sm */
+.s-2,
+.sb-2,
+.sl-2,
+.sr-2,
+.st-2,
+.sx-2,
+.sy-2 { --bsx-advShadow: 0 0 var(--bsx-shadow-sm-blur) 0 var(--bsx-shadow-sm-color) !important; }
+.s-2, .st-2, .sy-2 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+.s-2, .sl-2, .sx-2 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+.s-2, .sr-2, .sx-2 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+.s-2, .sb-2, .sy-2 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+/* xs */
+.s-1,
+.sb-1,
+.sl-1,
+.sr-1,
+.st-1,
+.sx-1,
+.sy-1 { --bsx-advShadow: 0 0 var(--bsx-shadow-xs-blur) 0 var(--bsx-shadow-xs-color) !important; }
+.s-1, .st-1, .sy-1 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-xs-blur) ) !important; }
+.s-1, .sl-1, .sx-1 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
+.s-1, .sr-1, .sx-1 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
+.s-1, .sb-1, .sy-1 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
+/* none */
+.s-0, .st-0, .sy-0 { --bsx-advShadow-clipPathTop: 0 !important; }
+.s-0, .sl-0, .sx-0 { --bsx-advShadow-clipPathLeft: 0 !important; }
+.s-0, .sr-0, .sx-0 { --bsx-advShadow-clipPathRight: 0 !important; }
+.s-0, .sb-0, .sy-0 { --bsx-advShadow-clipPathBottom: 0 !important; }
+
+
+/*--------------------------+
+|  ADVANCED SHADOW : INSET  |
++---------------------------+
+/* xl */
+.s-5-inset,
+.sb-5-inset,
+.sl-5-inset,
+.sr-5-inset,
+.st-5-inset,
+.sx-5-inset,
+.sy-5-inset {
+border: solid 1px pink !important;
+	--bsx-advShadow-inset-blur: var(--bsx-shadow-xl-blur) !important;
+	--bsx-advShadow-inset-color: var(--bsx-shadow-xl-color) !important;
+}
+/* lg */
+.s-4-inset,
+.sb-4-inset,
+.sl-4-inset,
+.sr-4-inset,
+.st-4-inset,
+.sx-4-inset,
+.sy-4-inset {
+border: solid 1px pink !important;
+	--bsx-advShadow-inset-blur: var(--bsx-shadow-lg-blur) !important;
+	--bsx-advShadow-inset-color: var(--bsx-shadow-lg-color) !important;
+}
+/* md */
+.s-3-inset,
+.sb-3-inset,
+.sl-3-inset,
+.sr-3-inset,
+.st-3-inset,
+.sx-3-inset,
+.sy-3-inset {
+border: solid 1px pink !important;
+	--bsx-advShadow-inset-blur: var(--bsx-shadow-md-blur) !important;
+	--bsx-advShadow-inset-color: var(--bsx-shadow-md-color) !important;
+}
+/* sm */
+.s-2-inset,
+.sb-2-inset,
+.sl-2-inset,
+.sr-2-inset,
+.st-2-inset,
+.sx-2-inset,
+.sy-2-inset {
+border: solid 1px pink !important;
+	--bsx-advShadow-inset-blur: var(--bsx-shadow-sm-blur) !important;
+	--bsx-advShadow-inset-color: var(--bsx-shadow-sm-color) !important;
+}
+/* xs */
+.s-1-inset,
+.sb-1-inset,
+.sl-1-inset,
+.sr-1-inset,
+.st-1-inset,
+.sx-1-inset,
+.sy-1-inset {
+border: solid 1px pink !important;
+	box-shadow:
+		/* inset : settings */
+		inset
+		0
+		0
+		5px
+		2px
+		black;
+
+	--bsx-advShadow-inset-blur: var(--bsx-shadow-xs-blur) !important;
+	--bsx-advShadow-inset-color: var(--bsx-shadow-xs-color) !important;
+}
+/* none */
+.s-0-inset, .st-0-inset, .sy-0-inset { }
+.s-0-inset, .sl-0-inset, .sx-0-inset { }
+.s-0-inset, .sr-0-inset, .sx-0-inset { }
+.s-0-inset, .sb-0-inset, .sy-0-inset { }
