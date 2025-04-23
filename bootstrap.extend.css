@@ -1019,7 +1019,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 |  ADVANCED SHADOW  |
 +-------------------+
 
-[Remarks]
+[Important]
 Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/..)
 
 [Example]
@@ -1027,23 +1027,53 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 <div class="st-2 sr-2">(Valid)</div>
 <div class="st-3 sl-5">(Invalid)</div>
 */
+
+body { border: solid 1px red; }
+
 .s-5, .sb-5, .sl-5, .sr-5, .st-5, .sx-5, .sy-5,
 .s-4, .sb-4, .sl-4, .sr-4, .st-4, .sx-4, .sy-4,
 .s-3, .sb-3, .sl-3, .sr-3, .st-3, .sx-3, .sy-3,
 .s-2, .sb-2, .sl-2, .sr-2, .st-2, .sx-2, .sy-2,
 .s-1, .sb-1, .sl-1, .sr-1, .st-1, .sx-1, .sy-1,
 .s-0, .sb-0, .sl-0, .sr-0, .st-0, .sx-0, .sy-0 {
-	--bsx-advShadow-blur: 0;
-	--bsx-advShadow-spread: 0;
-	--bsx-advShadow-hOffset: 0;
-	--bsx-advShadow-vOffset: 0;
-	--bsx-advShadow-color: none;
-	--bsx-advShadow-clipPathTop: 0;
-	--bsx-advShadow-clipPathLeft: 0;
-	--bsx-advShadow-clipPathRight: 0;
-	--bsx-advShadow-clipPathBottom: 0;
-	box-shadow: var(--bsx-advShadow-hOffset) var(--bsx-advShadow-vOffset) var(--bsx-advShadow-blur) var(--bsx-advShadow-spread) var(--bsx-advShadow-color);
-	clip-path: inset(var(--bsx-advShadow-clipPathTop) var(--bsx-advShadow-clipPathRight) var(--bsx-advShadow-clipPathBottom) var(--bsx-advShadow-clipPathLeft));
+	/* inset : variables */
+	--bsx-advShadow-inset-blur: 0;
+	--bsx-advShadow-inset-spread: 0;
+	--bsx-advShadow-inset-hOffset: 0;
+	--bsx-advShadow-inset-vOffset: 0;
+	--bsx-advShadow-inset-color: cyan;
+	/* outset : variables */
+	--bsx-advShadow-outset-blur: 0;
+	--bsx-advShadow-outset-spread: 0;
+	--bsx-advShadow-outset-hOffset: 0;
+	--bsx-advShadow-outset-vOffset: 0;
+	--bsx-advShadow-outset-color: none;
+	--bsx-advShadow-outset-clipPathTop: 0;
+	--bsx-advShadow-outset-clipPathLeft: 0;
+	--bsx-advShadow-outset-clipPathRight: 0;
+	--bsx-advShadow-outset-clipPathBottom: 0;
+	/* shadow settings */
+	box-shadow:
+		/* inset : settings */
+		inset
+		var(--bsx-advShadow-inset-hOffset)
+		var(--bsx-advShadow-inset-vOffset)
+		var(--bsx-advShadow-inset-blur)
+		var(--bsx-advShadow-inset-spread)
+		var(--bsx-advShadow-inset-color),
+		/* outset : settings */
+		var(--bsx-advShadow-outset-hOffset)
+		var(--bsx-advShadow-outset-vOffset)
+		var(--bsx-advShadow-outset-blur)
+		var(--bsx-advShadow-outset-spread)
+		var(--bsx-advShadow-outset-color);
+	/* outset : cropping */
+	clip-path: inset(
+		var(--bsx-advShadow-outset-clipPathTop)
+		var(--bsx-advShadow-outset-clipPathRight)
+		var(--bsx-advShadow-outset-clipPathBottom)
+		var(--bsx-advShadow-outset-clipPathLeft)
+	);
 }
 /* xl */
 .s-5,
@@ -1052,11 +1082,11 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 .sr-5,
 .st-5,
 .sx-5,
-.sy-5 { --bsx-advShadow-blur: var(--bsx-shadow-xl-blur) !important; --bsx-advShadow-color: var(--bsx-shadow-xl-color) !important; }
-.s-5, .st-5, .sy-5 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
-.s-5, .sl-5, .sx-5 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
-.s-5, .sr-5, .sx-5 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
-.s-5, .sb-5, .sy-5 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+.sy-5 { --bsx-advShadow-outset-blur: var(--bsx-shadow-xl-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-xl-color) !important; }
+.s-5, .st-5, .sy-5 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+.s-5, .sl-5, .sx-5 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+.s-5, .sr-5, .sx-5 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
+.s-5, .sb-5, .sy-5 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-xl-blur)) !important; }
 /* lg */
 .s-4,
 .sb-4,
@@ -1064,11 +1094,11 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 .sr-4,
 .st-4,
 .sx-4,
-.sy-4 { --bsx-advShadow-blur: var(--bsx-shadow-lg-blur) !important; --bsx-advShadow-color: var(--bsx-shadow-lg-color) !important; }
-.s-4, .st-4, .sy-4 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
-.s-4, .sl-4, .sx-4 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
-.s-4, .sr-4, .sx-4 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
-.s-4, .sb-4, .sy-4 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+.sy-4 { --bsx-advShadow-outset-blur: var(--bsx-shadow-lg-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-lg-color) !important; }
+.s-4, .st-4, .sy-4 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+.s-4, .sl-4, .sx-4 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+.s-4, .sr-4, .sx-4 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
+.s-4, .sb-4, .sy-4 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-lg-blur)) !important; }
 /* md */
 .s-3,
 .sb-3,
@@ -1076,11 +1106,11 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 .sr-3,
 .st-3,
 .sx-3,
-.sy-3 { --bsx-advShadow-blur: var(--bsx-shadow-md-blur) !important; --bsx-advShadow-color: var(--bsx-shadow-md-color) !important; }
-.s-3, .st-3, .sy-3 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
-.s-3, .sl-3, .sx-3 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
-.s-3, .sr-3, .sx-3 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
-.s-3, .sb-3, .sy-3 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+.sy-3 { --bsx-advShadow-outset-blur: var(--bsx-shadow-md-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-md-color) !important; }
+.s-3, .st-3, .sy-3 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+.s-3, .sl-3, .sx-3 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+.s-3, .sr-3, .sx-3 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
+.s-3, .sb-3, .sy-3 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-md-blur)) !important; }
 /* sm */
 .s-2,
 .sb-2,
@@ -1088,11 +1118,11 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 .sr-2,
 .st-2,
 .sx-2,
-.sy-2 { --bsx-advShadow-blur: var(--bsx-shadow-sm-blur) !important; --bsx-advShadow-color: var(--bsx-shadow-sm-color) !important; }
-.s-2, .st-2, .sy-2 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
-.s-2, .sl-2, .sx-2 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
-.s-2, .sr-2, .sx-2 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
-.s-2, .sb-2, .sy-2 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+.sy-2 { --bsx-advShadow-outset-blur: var(--bsx-shadow-sm-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-sm-color) !important; }
+.s-2, .st-2, .sy-2 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+.s-2, .sl-2, .sx-2 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+.s-2, .sr-2, .sx-2 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
+.s-2, .sb-2, .sy-2 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-sm-blur)) !important; }
 /* xs */
 .s-1,
 .sb-1,
@@ -1100,16 +1130,16 @@ Different sizes of shadow cannot be used in same element (except st-0/sl-0/sr-0/
 .sr-1,
 .st-1,
 .sx-1,
-.sy-1 { --bsx-advShadow-blur: var(--bsx-shadow-xs-blur) !important; --bsx-advShadow-color: var(--bsx-shadow-xs-color) !important; }
-.s-1, .st-1, .sy-1 { --bsx-advShadow-clipPathTop: calc(0rem - var(--bsx-shadow-xs-blur) ) !important; }
-.s-1, .sl-1, .sx-1 { --bsx-advShadow-clipPathLeft: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
-.s-1, .sr-1, .sx-1 { --bsx-advShadow-clipPathRight: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
-.s-1, .sb-1, .sy-1 { --bsx-advShadow-clipPathBottom: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
+.sy-1 { --bsx-advShadow-outset-blur: var(--bsx-shadow-xs-blur) !important; --bsx-advShadow-outset-color: var(--bsx-shadow-xs-color) !important; }
+.s-1, .st-1, .sy-1 { --bsx-advShadow-outset-clipPathTop: calc(0rem - var(--bsx-shadow-xs-blur) ) !important; }
+.s-1, .sl-1, .sx-1 { --bsx-advShadow-outset-clipPathLeft: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
+.s-1, .sr-1, .sx-1 { --bsx-advShadow-outset-clipPathRight: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
+.s-1, .sb-1, .sy-1 { --bsx-advShadow-outset-clipPathBottom: calc(0rem - var(--bsx-shadow-xs-blur)) !important; }
 /* none */
-.s-0, .st-0, .sy-0 { --bsx-advShadow-clipPathTop: 0 !important; }
-.s-0, .sl-0, .sx-0 { --bsx-advShadow-clipPathLeft: 0 !important; }
-.s-0, .sr-0, .sx-0 { --bsx-advShadow-clipPathRight: 0 !important; }
-.s-0, .sb-0, .sy-0 { --bsx-advShadow-clipPathBottom: 0 !important; }
+.s-0, .st-0, .sy-0 { --bsx-advShadow-outset-clipPathTop: 0 !important; }
+.s-0, .sl-0, .sx-0 { --bsx-advShadow-outset-clipPathLeft: 0 !important; }
+.s-0, .sr-0, .sx-0 { --bsx-advShadow-outset-clipPathRight: 0 !important; }
+.s-0, .sb-0, .sy-0 { --bsx-advShadow-outset-clipPathBottom: 0 !important; }
 
 
 /*======================================================================================================================================================*/
