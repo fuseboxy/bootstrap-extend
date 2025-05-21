@@ -133,6 +133,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 	<input type="text" class="form-control" value="Extra small field" />
 </div>
 */
+.form-control-xs,
 .input-group-xs > .form-control,
 .input-group-xs > .form-select,
 .input-group-xs > .input-group-text,
@@ -141,6 +142,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 	height: 1.6rem;
 	padding: 0 .4rem;
 }
+.form-control-xs,
 .input-group-xs > .btn,
 .input-group-xs > .form-select,
 .input-group-xs > .form-control { font-size: .875rem; }
