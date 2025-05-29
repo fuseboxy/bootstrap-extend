@@ -843,6 +843,58 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
+/*------------------+
+|  (HOVER) OPACITY  |
++------------------*/
+/* hover element itself */
+.hover-op-0:hover   { opacity:   0 !important; }
+.hover-op-5:hover   { opacity: .05 !important; }
+.hover-op-10:hover  { opacity: .10 !important; }
+.hover-op-15:hover  { opacity: .15 !important; }
+.hover-op-20:hover  { opacity: .20 !important; }
+.hover-op-25:hover  { opacity: .25 !important; }
+.hover-op-30:hover  { opacity: .30 !important; }
+.hover-op-35:hover  { opacity: .35 !important; }
+.hover-op-40:hover  { opacity: .40 !important; }
+.hover-op-45:hover  { opacity: .45 !important; }
+.hover-op-50:hover  { opacity: .50 !important; }
+.hover-op-55:hover  { opacity: .55 !important; }
+.hover-op-60:hover  { opacity: .60 !important; }
+.hover-op-65:hover  { opacity: .65 !important; }
+.hover-op-70:hover  { opacity: .70 !important; }
+.hover-op-75:hover  { opacity: .75 !important; }
+.hover-op-80:hover  { opacity: .80 !important; }
+.hover-op-85:hover  { opacity: .85 !important; }
+.hover-op-90:hover  { opacity: .90 !important; }
+.hover-op-95:hover  { opacity: .95 !important; }
+.hover-op-100:hover { opacity:   1 !important; }
+/* hover parent element */
+tr:hover .tr-hover-op-0   { opacity:   0 !important; }
+tr:hover .tr-hover-op-5   { opacity: .05 !important; }
+tr:hover .tr-hover-op-10  { opacity: .10 !important; }
+tr:hover .tr-hover-op-15  { opacity: .15 !important; }
+tr:hover .tr-hover-op-20  { opacity: .20 !important; }
+tr:hover .tr-hover-op-25  { opacity: .25 !important; }
+tr:hover .tr-hover-op-30  { opacity: .30 !important; }
+tr:hover .tr-hover-op-35  { opacity: .35 !important; }
+tr:hover .tr-hover-op-40  { opacity: .40 !important; }
+tr:hover .tr-hover-op-45  { opacity: .45 !important; }
+tr:hover .tr-hover-op-50  { opacity: .50 !important; }
+tr:hover .tr-hover-op-55  { opacity: .55 !important; }
+tr:hover .tr-hover-op-60  { opacity: .60 !important; }
+tr:hover .tr-hover-op-65  { opacity: .65 !important; }
+tr:hover .tr-hover-op-70  { opacity: .70 !important; }
+tr:hover .tr-hover-op-75  { opacity: .75 !important; }
+tr:hover .tr-hover-op-80  { opacity: .80 !important; }
+tr:hover .tr-hover-op-85  { opacity: .85 !important; }
+tr:hover .tr-hover-op-90  { opacity: .90 !important; }
+tr:hover .tr-hover-op-95  { opacity: .95 !important; }
+tr:hover .tr-hover-op-100 { opacity:   1 !important; }
+
+
+/*======================================================================================================================================================*/
+
+
 /*---------------------------+
 |  SHORTHAND : (MORE) WIDTH  |
 +---------------------------*/
