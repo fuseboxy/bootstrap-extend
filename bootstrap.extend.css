@@ -788,27 +788,27 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*----------------------------+
 |  (MORE) BACKGROUND OPACITY  |
 +----------------------------*/
-.bg-opacity-0   { --bs-bg-opacity:   0; }
-.bg-opacity-5   { --bs-bg-opacity: .05; }
-.bg-opacity-10  { /* already exists */  }
-.bg-opacity-15  { --bs-bg-opacity: .15; }
-.bg-opacity-20  { --bs-bg-opacity: .20; }
-.bg-opacity-25  { /* already exists */  }
-.bg-opacity-30  { --bs-bg-opacity: .30; }
-.bg-opacity-35  { --bs-bg-opacity: .35; }
-.bg-opacity-40  { --bs-bg-opacity: .40; }
-.bg-opacity-45  { --bs-bg-opacity: .45; }
-.bg-opacity-50  { /* already exists */  }
-.bg-opacity-55  { --bs-bg-opacity: .55; }
-.bg-opacity-60  { --bs-bg-opacity: .60; }
-.bg-opacity-65  { --bs-bg-opacity: .65; }
-.bg-opacity-70  { --bs-bg-opacity: .70; }
-.bg-opacity-75  { /* already exists */  }
-.bg-opacity-80  { --bs-bg-opacity: .80; }
-.bg-opacity-85  { --bs-bg-opacity: .85; }
-.bg-opacity-90  { --bs-bg-opacity: .90; }
-.bg-opacity-95  { --bs-bg-opacity: .95; }
-.bg-opacity-100 { /* already exists */  }
+.bg-op-0,  .bg-opacity-0   { --bs-bg-opacity:   0; }
+.bg-op-5,  .bg-opacity-5   { --bs-bg-opacity: .05; }
+.bg-op-10  .bg-opacity-10  { --bs-bg-opacity: .10; }
+.bg-op-15  .bg-opacity-15  { --bs-bg-opacity: .15; }
+.bg-op-20  .bg-opacity-20  { --bs-bg-opacity: .20; }
+.bg-op-25  .bg-opacity-25  { --bs-bg-opacity: .25; }
+.bg-op-30  .bg-opacity-30  { --bs-bg-opacity: .30; }
+.bg-op-35  .bg-opacity-35  { --bs-bg-opacity: .35; }
+.bg-op-40  .bg-opacity-40  { --bs-bg-opacity: .40; }
+.bg-op-45  .bg-opacity-45  { --bs-bg-opacity: .45; }
+.bg-op-50  .bg-opacity-50  { --bs-bg-opacity: .50; }
+.bg-op-55  .bg-opacity-55  { --bs-bg-opacity: .55; }
+.bg-op-60  .bg-opacity-60  { --bs-bg-opacity: .60; }
+.bg-op-65  .bg-opacity-65  { --bs-bg-opacity: .65; }
+.bg-op-70  .bg-opacity-70  { --bs-bg-opacity: .70; }
+.bg-op-75  .bg-opacity-75  { --bs-bg-opacity: .75; }
+.bg-op-80  .bg-opacity-80  { --bs-bg-opacity: .80; }
+.bg-op-85  .bg-opacity-85  { --bs-bg-opacity: .85; }
+.bg-op-90  .bg-opacity-90  { --bs-bg-opacity: .90; }
+.bg-op-95  .bg-opacity-95  { --bs-bg-opacity: .95; }
+.bg-op-100 .bg-opacity-100 { --bs-bg-opacity:   1; }
 
 
 /*======================================================================================================================================================*/
