@@ -17,9 +17,9 @@ $(function(){
 	var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
 		var $body = $('body');
 		// options
-		var ajaxErrorMode  = $body.attr('data-bsx-ajax-error')       || 'modal';
-		var ajaxErrorTitle = $body.attr('data-bsx-ajax-error-title') || 'Error';
-		var ajaxErrorUrl   = $body.attr('data-bsx-ajax-error-url')   || true;
+		var ajaxErrorMode    = $body.attr('data-bsx-ajax-error')          || 'modal';
+		var ajaxErrorTitle   = $body.attr('data-bsx-ajax-error-title')    || 'Error';
+		var ajaxErrorShowURL = $body.attr('data-bsx-ajax-error-show-url') || true;
 		// display error as flash in an opened modal
 		if ( ajaxErrorMode == 'modal' && $('body.modal-open').length ) {
 			var $modalVisible = $('.modal.show');
@@ -35,7 +35,7 @@ $(function(){
 			$errAlert.html('');
 			if ( ajaxErrorTitle != 'none' ) $errAlert.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
 			$errAlert.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
-			if ( ajaxErrorUrl != 'none' ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
+			if ( ajaxErrorShowURL != 'none' ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
 			$errAlert.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
 			// scroll to message
 			$modalVisible.animate({ scrollTop : 0 });
@@ -60,20 +60,20 @@ $(function(){
 			$errModalBody.html('');
 			if ( ajaxErrorTitle != 'none' ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
 			$errModalBody.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>')
-			if ( ajaxErrorUrl != 'none' ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
+			if ( ajaxErrorShowURL != 'none' ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
 		// display error as javascript console log
 		} else if ( ajaxErrorMode == 'console' ) {
 			var errMsg = '';
 			if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+'] ';
 			errMsg += jqXHR.responseText;
-			if ( ajaxErrorUrl != 'none' ) errMsg += ' ('+ajaxSettings.url+')';
+			if ( ajaxErrorShowURL != 'none' ) errMsg += ' ('+ajaxSettings.url+')';
 			console.log(errMsg);
 		// display error as javascript alert
 		} else {
 			var errMsg = '';
 			if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+']\n';
 			errMsg += jqXHR.responseText;
-			if ( ajaxErrorUrl != 'none' ) errMsg += '\n\n'+ajaxSettings.url;
+			if ( ajaxErrorShowURL != 'none' ) errMsg += '\n\n'+ajaxSettings.url;
 			alert(errMsg);
 		}
 	};
