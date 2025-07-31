@@ -134,6 +134,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 </div>
 */
 .form-control-xs,
+.form-select-xs,
 .input-group-xs > .form-control,
 .input-group-xs > .form-select,
 .input-group-xs > .input-group-text,
@@ -143,6 +144,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 	padding: 0 .4rem;
 }
 .form-control-xs,
+.form-select-xs,
 .input-group-xs > .btn,
 .input-group-xs > .form-select,
 .input-group-xs > .form-control { font-size: .875rem; }
