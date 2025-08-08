@@ -319,7 +319,7 @@ $(function(){
 		// clear modal content first (when necessary)
 		$modal.find('.modal-content').html(`
 			<div class="modal-header">
-				<div class="modal-title text-muted"><i class="fa fa-spinner fa-pulse"></i><span class="ml-2">Loading...</span></div>
+				<div class="modal-title text-muted"><i class="spinner-grow" style="height: .9rem; width: .9rem;" role="status"></i> <span class="ml-2">Loading...</span></div>
 			</div>
 			<div class="modal-body">
 			</div>
@@ -343,6 +343,8 @@ $(function(){
 				}, 1000);
 			},
 			'success' : function(data, textStatus, jqXHR){
+				// avoid response is full html document
+				data = $(new DOMParser().parseFromString(data, 'text/html')).find('body').html();
 				// wrap by dummy element (when necessary)
 				// ===> avoid multiple elements
 				// ===> avoid response is plain text
@@ -400,6 +402,8 @@ $(function(){
 				}, 1000);
 			},
 			'success' : function(data, textStatus, jqXHR){
+				// avoid response is full html document
+				data = $(new DOMParser().parseFromString(data, 'text/html')).find('body').html();
 				// wrap by dummy element (when necessary)
 				// ===> avoid multiple elements
 				// ===> avoid response is plain text
@@ -585,6 +589,8 @@ $(function(){
 				'contentType' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ) ? 'application/x-www-form-urlencoded; charset=UTF-8' : false,
 				'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
 				'success' : function(data, textStatus, jqXHR){
+					// avoid response is full html document
+					data = $(new DOMParser().parseFromString(data, 'text/html')).find('body').html();
 					// wrap by dummy element (when necessary)
 					// ===> avoid multiple elements
 					// ===> avoid response is plain text
