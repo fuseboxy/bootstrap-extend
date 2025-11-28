@@ -38,7 +38,7 @@ $(function(){
 			if ( ajaxErrorShowURL != 'none' ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
 			$errAlert.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
 			// scroll to message
-			$modalVisible.animate({ scrollTop : 0 });
+			$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
 		// display error in modal
 		} else if ( ajaxErrorMode == 'modal' ) {
 			// create modal (when necessary)
