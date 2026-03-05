@@ -845,7 +845,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 /*------------------+
-|  (HOVER) OPACITY  |
+|  HOVER : OPACITY  |
 +------------------*/
 /* hover element itself */
 .hover-op-0:hover   { opacity:   0 !important; }
@@ -869,7 +869,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 .hover-op-90:hover  { opacity: .90 !important; }
 .hover-op-95:hover  { opacity: .95 !important; }
 .hover-op-100:hover { opacity:   1 !important; }
-/* hover parent element */
+/* hover parent <tr> element */
 tr:hover .tr-hover-op-0   { opacity:   0 !important; }
 tr:hover .tr-hover-op-5   { opacity: .05 !important; }
 tr:hover .tr-hover-op-10  { opacity: .10 !important; }
@@ -891,6 +891,70 @@ tr:hover .tr-hover-op-85  { opacity: .85 !important; }
 tr:hover .tr-hover-op-90  { opacity: .90 !important; }
 tr:hover .tr-hover-op-95  { opacity: .95 !important; }
 tr:hover .tr-hover-op-100 { opacity:   1 !important; }
+/* hover parent <li> element */
+li:hover .li-hover-op-0   { opacity:   0 !important; }
+li:hover .li-hover-op-5   { opacity: .05 !important; }
+li:hover .li-hover-op-10  { opacity: .10 !important; }
+li:hover .li-hover-op-15  { opacity: .15 !important; }
+li:hover .li-hover-op-20  { opacity: .20 !important; }
+li:hover .li-hover-op-25  { opacity: .25 !important; }
+li:hover .li-hover-op-30  { opacity: .30 !important; }
+li:hover .li-hover-op-35  { opacity: .35 !important; }
+li:hover .li-hover-op-40  { opacity: .40 !important; }
+li:hover .li-hover-op-45  { opacity: .45 !important; }
+li:hover .li-hover-op-50  { opacity: .50 !important; }
+li:hover .li-hover-op-55  { opacity: .55 !important; }
+li:hover .li-hover-op-60  { opacity: .60 !important; }
+li:hover .li-hover-op-65  { opacity: .65 !important; }
+li:hover .li-hover-op-70  { opacity: .70 !important; }
+li:hover .li-hover-op-75  { opacity: .75 !important; }
+li:hover .li-hover-op-80  { opacity: .80 !important; }
+li:hover .li-hover-op-85  { opacity: .85 !important; }
+li:hover .li-hover-op-90  { opacity: .90 !important; }
+li:hover .li-hover-op-95  { opacity: .95 !important; }
+li:hover .li-hover-op-100 { opacity:   1 !important; }
+/* hover parent <a> element */
+a:hover .a-hover-op-0   { opacity:   0 !important; }
+a:hover .a-hover-op-5   { opacity: .05 !important; }
+a:hover .a-hover-op-10  { opacity: .10 !important; }
+a:hover .a-hover-op-15  { opacity: .15 !important; }
+a:hover .a-hover-op-20  { opacity: .20 !important; }
+a:hover .a-hover-op-25  { opacity: .25 !important; }
+a:hover .a-hover-op-30  { opacity: .30 !important; }
+a:hover .a-hover-op-35  { opacity: .35 !important; }
+a:hover .a-hover-op-40  { opacity: .40 !important; }
+a:hover .a-hover-op-45  { opacity: .45 !important; }
+a:hover .a-hover-op-50  { opacity: .50 !important; }
+a:hover .a-hover-op-55  { opacity: .55 !important; }
+a:hover .a-hover-op-60  { opacity: .60 !important; }
+a:hover .a-hover-op-65  { opacity: .65 !important; }
+a:hover .a-hover-op-70  { opacity: .70 !important; }
+a:hover .a-hover-op-75  { opacity: .75 !important; }
+a:hover .a-hover-op-80  { opacity: .80 !important; }
+a:hover .a-hover-op-85  { opacity: .85 !important; }
+a:hover .a-hover-op-90  { opacity: .90 !important; }
+a:hover .a-hover-op-95  { opacity: .95 !important; }
+a:hover .a-hover-op-100 { opacity:   1 !important; }
+
+
+/*======================================================================================================================================================*/
+
+
+/*------------------+
+|  HOVER : DISPLAY  |
++------------------*/
+/* hover parent <tr> element */
+tr:hover .tr-hover-d-none         { display: none !important; }
+tr:hover .tr-hover-d-block        { display: block !important; }
+tr:hover .tr-hover-d-inline-block { display: inline-block !important; }
+/* hover parent <li> element */
+li:hover .li-hover-d-none         { display: none !important; }
+li:hover .li-hover-d-block        { display: block !important; }
+li:hover .li-hover-d-inline-block { display: inline-block !important; }
+/* hover parent <a> element */
+a:hover .a-hover-d-none         { display: none !important; }
+a:hover .a-hover-d-block        { display: block !important; }
+a:hover .a-hover-d-inline-block { display: inline-block !important; }
 
 
 /*======================================================================================================================================================*/
