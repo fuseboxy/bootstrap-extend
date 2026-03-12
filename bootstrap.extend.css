@@ -761,26 +761,26 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 |  (HOVER) BACKGROUND COLOR  |
 +---------------------------*/
 /* standard */
-.bg-primary-hover:hover { background-color: rgb(var(--bs-primary-rgb)) !important; }
-.bg-secondary-hover:hover { background-color: rgb(var(--bs-secondary-rgb)) !important; }
-.bg-success-hover:hover { background-color: rgb(var(--bs-success-rgb)) !important; }
-.bg-info-hover:hover { background-color: rgb(var(--bs-info-rgb)) !important; }
-.bg-warning-hover:hover { background-color: rgb(var(--bs-warning-rgb)) !important; }
-.bg-danger-hover:hover { background-color: rgb(var(--bs-danger-rgb)) !important; }
-.bg-light-hover:hover { background-color: rgb(var(--bs-light-rgb)) !important; }
-.bg-dark-hover:hover { background-color: rgb(var(--bs-dark-rgb)) !important; }
-.bg-black-hover:hover { background-color: rgb(var(--bs-black-rgb)) !important; }
-.bg-white-hover:hover { background-color: rgb(var(--bs-white-rgb)) !important; }
-.bg-transparent-hover:hover { background-color: transparent !important; }
+.hover-bg-primary:hover { background-color: rgb(var(--bs-primary-rgb)) !important; }
+.hover-bg-secondary:hover { background-color: rgb(var(--bs-secondary-rgb)) !important; }
+.hover-bg-success:hover { background-color: rgb(var(--bs-success-rgb)) !important; }
+.hover-bg-info:hover { background-color: rgb(var(--bs-info-rgb)) !important; }
+.hover-bg-warning:hover { background-color: rgb(var(--bs-warning-rgb)) !important; }
+.hover-bg-danger:hover { background-color: rgb(var(--bs-danger-rgb)) !important; }
+.hover-bg-light:hover { background-color: rgb(var(--bs-light-rgb)) !important; }
+.hover-bg-dark:hover { background-color: rgb(var(--bs-dark-rgb)) !important; }
+.hover-bg-black:hover { background-color: rgb(var(--bs-black-rgb)) !important; }
+.hover-bg-white:hover { background-color: rgb(var(--bs-white-rgb)) !important; }
+.hover-bg-transparent:hover { background-color: transparent !important; }
 /* subtle */
-.bg-primary-subtle-hover:hover { background-color: var(--bs-primary-bg-subtle) !important; }
-.bg-secondary-subtle-hover:hover { background-color: var(--bs-secondary-bg-subtle) !important; }
-.bg-success-subtle-hover:hover { background-color: var(--bs-success-bg-subtle) !important; }
-.bg-info-subtle-hover:hover { background-color: var(--bs-info-bg-subtle) !important; }
-.bg-warning-subtle-hover:hover { background-color: var(--bs-warning-bg-subtle) !important; }
-.bg-danger-subtle-hover:hover { background-color: var(--bs-danger-bg-subtle) !important; }
-.bg-light-subtle-hover:hover { background-color: var(--bs-light-bg-subtle) !important; }
-.bg-dark-subtle-hover:hover { background-color: var(--bs-dark-bg-subtle) !important; }
+.hover-bg-primary-subtle:hover { background-color: var(--bs-primary-bg-subtle) !important; }
+.hover-bg-secondary-subtle:hover { background-color: var(--bs-secondary-bg-subtle) !important; }
+.hover-bg-success-subtle:hover { background-color: var(--bs-success-bg-subtle) !important; }
+.hover-bg-info-subtle:hover { background-color: var(--bs-info-bg-subtle) !important; }
+.hover-bg-warning-subtle:hover { background-color: var(--bs-warning-bg-subtle) !important; }
+.hover-bg-danger-subtle:hover { background-color: var(--bs-danger-bg-subtle) !important; }
+.hover-bg-light-subtle:hover { background-color: var(--bs-light-bg-subtle) !important; }
+.hover-bg-dark-subtle:hover { background-color: var(--bs-dark-bg-subtle) !important; }
 
 
 /*======================================================================================================================================================*/
@@ -1152,12 +1152,23 @@ a:hover .a-hover-d-inline-block { display: inline-block !important; }
 /*---------------------+
 |  (MORE) SHADOW SIZE  | 
 +---------------------*/
-.shadow-xs { box-shadow: 0 var(--bsx-shadow-xs-vOffset) var(--bsx-shadow-xs-blur) 0 var(--bsx-shadow-xs-color) !important; }
-.shadow-sm { box-shadow: 0 var(--bsx-shadow-sm-vOffset) var(--bsx-shadow-sm-blur) 0 var(--bsx-shadow-sm-color) !important; }
+/* xs */
+.shadow-xs,
+.hover-shadow-xs:hover { box-shadow: 0 var(--bsx-shadow-xs-vOffset) var(--bsx-shadow-xs-blur) 0 var(--bsx-shadow-xs-color) !important; }
+/* sm */
+.shadow-sm,
+.hover-shadow-sm:hover { box-shadow: 0 var(--bsx-shadow-sm-vOffset) var(--bsx-shadow-sm-blur) 0 var(--bsx-shadow-sm-color) !important; }
+/* md */
 .shadow,
-.shadow-md { box-shadow: 0 var(--bsx-shadow-md-vOffset) var(--bsx-shadow-md-blur) 0 var(--bsx-shadow-md-color) !important; }
-.shadow-lg { box-shadow: 0 var(--bsx-shadow-lg-vOffset) var(--bsx-shadow-lg-blur) 0 var(--bsx-shadow-lg-color) !important; }
-.shadow-xl { box-shadow: 0 var(--bsx-shadow-xl-vOffset) var(--bsx-shadow-xl-blur) 0 var(--bsx-shadow-xl-color) !important; }
+.shadow-md,
+.hover-shadow:hover,
+.hover-shadow-md:hover { box-shadow: 0 var(--bsx-shadow-md-vOffset) var(--bsx-shadow-md-blur) 0 var(--bsx-shadow-md-color) !important; }
+/* lg */
+.shadow-lg,
+.hover-shadow-lg:hover { box-shadow: 0 var(--bsx-shadow-lg-vOffset) var(--bsx-shadow-lg-blur) 0 var(--bsx-shadow-lg-color) !important; }
+/* xl */
+.shadow-xl,
+.hover-shadow-xl:hover { box-shadow: 0 var(--bsx-shadow-xl-vOffset) var(--bsx-shadow-xl-blur) 0 var(--bsx-shadow-xl-color) !important; }
 
 
 /*======================================================================================================================================================*/
