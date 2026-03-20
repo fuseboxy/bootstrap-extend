@@ -1206,7 +1206,6 @@ a:hover .a-hover-d-inline-block { display: inline-block !important; }
 /*---------------------+
 |  (MORE) POSITIONING  | 
 +---------------------*/
-
 /* positive */
 .top-1 { top: .25rem !important; }
 .top-2 { top: .5rem !important; }
@@ -1265,7 +1264,7 @@ a:hover .a-hover-d-inline-block { display: inline-block !important; }
 /*----------------+
 |  MISCELLANEOUS  |
 +----------------*/
-/* more styling */
+/* styling */
 .em { font-style: italic; }
 .del { text-decoration: line-through; }
 .strong { font-weight: bolder; }
@@ -1275,6 +1274,8 @@ a:hover .a-hover-d-inline-block { display: inline-block !important; }
 .sup { top: -.5em; }
 /* height */
 .h-0  { height: 0 !important; }
+/* line-height */
+.lh-0 { line-height: 0 !important; }
 /* transition */
 .transition-none { transition: none !important; }
 /* readonly field */
