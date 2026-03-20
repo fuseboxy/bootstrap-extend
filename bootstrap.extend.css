@@ -1268,10 +1268,9 @@ a:hover .a-hover-d-inline-block { display: inline-block !important; }
 .em { font-style: italic; }
 .del { text-decoration: line-through; }
 .strong { font-weight: bolder; }
-.sub,
-.sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-.sub { bottom: -.25em; }
-.sup { top: -.5em; }
+.sub { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; bottom: -.25em; }
+.sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; top: -.5em; }
+.code { color: var(--bs-pink); font-family: var(--bs-font-monospace); }
 /* height */
 .h-0  { height: 0 !important; }
 /* line-height */
