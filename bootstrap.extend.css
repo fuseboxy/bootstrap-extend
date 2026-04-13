@@ -1114,10 +1114,28 @@ article:hover .article-hover-d-inline-block { display: inline-block !important; 
 
 
 /*-------------------+
-|  (MORE) FONT SIZE  | 
+|  (MORE) FONT SIZE  |
 +-------------------*/
 .smaller { font-size: .75rem; }
 .smallest { font-size: .675rem; }
+
+
+/*======================================================================================================================================================*/
+
+
+/*--------------------+
+|  (MORE) TEXT COLOR  |
++--------------------*/
+.text-blue   { color: var(--bs-blue)   !important; }
+.text-cyan   { color: var(--bs-cyan)   !important; }
+.text-green  { color: var(--bs-green)  !important; }
+.text-indigo { color: var(--bs-indigo) !important; }
+.text-orange { color: var(--bs-orange) !important; }
+.text-pink   { color: var(--bs-pink)   !important; }
+.text-purple { color: var(--bs-purple) !important; }
+.text-red    { color: var(--bs-red)    !important; }
+.text-teal   { color: var(--bs-teal)   !important; }
+.text-yellow { color: var(--bs-yellow) !important; }
 
 
 /*======================================================================================================================================================*/
