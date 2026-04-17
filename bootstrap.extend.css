@@ -1332,7 +1332,8 @@ article:hover .article-hover-d-inline-block { display: inline-block !important; 
 .strong { font-weight: bolder; }
 .sub { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; bottom: -.25em; }
 .sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; top: -.5em; }
-.code { color: var(--bs-pink); font-family: var(--bs-font-monospace); }
+/* alignment */
+.text-justify { text-align: justify; }
 /* height */
 .h-0  { height: 0 !important; }
 /* line-height */
