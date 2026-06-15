@@ -247,8 +247,8 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 |  ICON ANIMATION : HOURGLASS  |
 +-----------------------------*/
 @keyframes hourglassAnimationContainer {
-	87.5% { transform: rotate(0deg); }
-	100%  { transform: rotate(180deg); }
+	87.5% { transform: rotateX(0deg); }
+	100%  { transform: rotateX(180deg); }
 }
 @keyframes hourglassAnimation {
 	10%  { content:"\F420"; }
@@ -256,8 +256,15 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 	75%  { content:"\F41E"; }
 	100% { content:"\F41E"; }
 }
-.bi-hourglass-animated { animation: hourglassAnimationContainer 4s infinite linear; display: inline-block; }
-.bi-hourglass-animated::before { animation: hourglassAnimation 4s infinite linear; content: "\F420"; display: inline-block; }
+.bi-hourglass-animated {
+	animation: hourglassAnimationContainer 4s infinite linear;
+	display: inline-block;
+}
+.bi-hourglass-animated::before {
+	animation: hourglassAnimation 4s infinite linear;
+	content: "\F420";
+	display: inline-block;
+}
 
 
 /*======================================================================================================================================================*/
