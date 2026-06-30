@@ -793,6 +793,35 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
+/*-----------------------+
+|  HOVER : BORDER COLOR  |
++-----------------------*/
+/* standard */
+:hover.hover-b-primary     { border-color: rgb(var(--bs-primary-rgb))   !important; }
+:hover.hover-b-secondary   { border-color: rgb(var(--bs-secondary-rgb)) !important; }
+:hover.hover-b-success     { border-color: rgb(var(--bs-success-rgb))   !important; }
+:hover.hover-b-info        { border-color: rgb(var(--bs-info-rgb))      !important; }
+:hover.hover-b-warning     { border-color: rgb(var(--bs-warning-rgb))   !important; }
+:hover.hover-b-danger      { border-color: rgb(var(--bs-danger-rgb))    !important; }
+:hover.hover-b-light       { border-color: rgb(var(--bs-light-rgb))     !important; }
+:hover.hover-b-dark        { border-color: rgb(var(--bs-dark-rgb))      !important; }
+:hover.hover-b-black       { border-color: rgb(var(--bs-black-rgb))     !important; }
+:hover.hover-b-white       { border-color: rgb(var(--bs-white-rgb))     !important; }
+:hover.hover-b-transparent { border-color: transparent                  !important; }
+/* subtle */
+:hover.hover-b-primary-subtle   { border-color: var(--bs-primary-border-subtle)   !important; }
+:hover.hover-b-secondary-subtle { border-color: var(--bs-secondary-border-subtle) !important; }
+:hover.hover-b-success-subtle   { border-color: var(--bs-success-border-subtle)   !important; }
+:hover.hover-b-info-subtle      { border-color: var(--bs-info-border-subtle)      !important; }
+:hover.hover-b-warning-subtle   { border-color: var(--bs-warning-border-subtle)   !important; }
+:hover.hover-b-danger-subtle    { border-color: var(--bs-danger-border-subtle)    !important; }
+:hover.hover-b-light-subtle     { border-color: var(--bs-light-border-subtle)     !important; }
+:hover.hover-b-dark-subtle      { border-color: var(--bs-dark-border-subtle)      !important; }
+
+
+/*======================================================================================================================================================*/
+
+
 /*----------------------------------------------+
 |  CHECKBOX/RADIO CONTAINER : BACKGROUND COLOR  |
 +----------------------------------------------*/
