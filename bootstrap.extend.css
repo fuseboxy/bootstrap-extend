@@ -34,7 +34,7 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 
 
 /*--------------------+
-|  (MORE) MODAL SIZE  | 
+|  (MORE) MODAL SIZE  |
 +---------------------+
 
 [Details]
@@ -912,72 +912,28 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*------------------+
 |  HOVER : OPACITY  |
 +------------------*/
-/* hover element itself */
-:hover.hover-op-0   { opacity:   0 !important; }
-:hover.hover-op-5   { opacity: .05 !important; }
-:hover.hover-op-10  { opacity: .10 !important; }
-:hover.hover-op-15  { opacity: .15 !important; }
-:hover.hover-op-20  { opacity: .20 !important; }
-:hover.hover-op-25  { opacity: .25 !important; }
-:hover.hover-op-30  { opacity: .30 !important; }
-:hover.hover-op-35  { opacity: .35 !important; }
-:hover.hover-op-40  { opacity: .40 !important; }
-:hover.hover-op-45  { opacity: .45 !important; }
-:hover.hover-op-50  { opacity: .50 !important; }
-:hover.hover-op-55  { opacity: .55 !important; }
-:hover.hover-op-60  { opacity: .60 !important; }
-:hover.hover-op-65  { opacity: .65 !important; }
-:hover.hover-op-70  { opacity: .70 !important; }
-:hover.hover-op-75  { opacity: .75 !important; }
-:hover.hover-op-80  { opacity: .80 !important; }
-:hover.hover-op-85  { opacity: .85 !important; }
-:hover.hover-op-90  { opacity: .90 !important; }
-:hover.hover-op-95  { opacity: .95 !important; }
-:hover.hover-op-100 { opacity:   1 !important; }
-/* hover parent <a> element */
-a:hover .a-hover-op-0   { opacity:   0 !important; }
-a:hover .a-hover-op-5   { opacity: .05 !important; }
-a:hover .a-hover-op-10  { opacity: .10 !important; }
-a:hover .a-hover-op-15  { opacity: .15 !important; }
-a:hover .a-hover-op-20  { opacity: .20 !important; }
-a:hover .a-hover-op-25  { opacity: .25 !important; }
-a:hover .a-hover-op-30  { opacity: .30 !important; }
-a:hover .a-hover-op-35  { opacity: .35 !important; }
-a:hover .a-hover-op-40  { opacity: .40 !important; }
-a:hover .a-hover-op-45  { opacity: .45 !important; }
-a:hover .a-hover-op-50  { opacity: .50 !important; }
-a:hover .a-hover-op-55  { opacity: .55 !important; }
-a:hover .a-hover-op-60  { opacity: .60 !important; }
-a:hover .a-hover-op-65  { opacity: .65 !important; }
-a:hover .a-hover-op-70  { opacity: .70 !important; }
-a:hover .a-hover-op-75  { opacity: .75 !important; }
-a:hover .a-hover-op-80  { opacity: .80 !important; }
-a:hover .a-hover-op-85  { opacity: .85 !important; }
-a:hover .a-hover-op-90  { opacity: .90 !important; }
-a:hover .a-hover-op-95  { opacity: .95 !important; }
-a:hover .a-hover-op-100 { opacity:   1 !important; }
-/* hover parent <li> element */
-li:hover .li-hover-op-0   { opacity:   0 !important; }
-li:hover .li-hover-op-5   { opacity: .05 !important; }
-li:hover .li-hover-op-10  { opacity: .10 !important; }
-li:hover .li-hover-op-15  { opacity: .15 !important; }
-li:hover .li-hover-op-20  { opacity: .20 !important; }
-li:hover .li-hover-op-25  { opacity: .25 !important; }
-li:hover .li-hover-op-30  { opacity: .30 !important; }
-li:hover .li-hover-op-35  { opacity: .35 !important; }
-li:hover .li-hover-op-40  { opacity: .40 !important; }
-li:hover .li-hover-op-45  { opacity: .45 !important; }
-li:hover .li-hover-op-50  { opacity: .50 !important; }
-li:hover .li-hover-op-55  { opacity: .55 !important; }
-li:hover .li-hover-op-60  { opacity: .60 !important; }
-li:hover .li-hover-op-65  { opacity: .65 !important; }
-li:hover .li-hover-op-70  { opacity: .70 !important; }
-li:hover .li-hover-op-75  { opacity: .75 !important; }
-li:hover .li-hover-op-80  { opacity: .80 !important; }
-li:hover .li-hover-op-85  { opacity: .85 !important; }
-li:hover .li-hover-op-90  { opacity: .90 !important; }
-li:hover .li-hover-op-95  { opacity: .95 !important; }
-li:hover .li-hover-op-100 { opacity:   1 !important; }
+/* hover parent <article> element */
+article:hover .article-hover-op-0   { opacity:   0 !important; }
+article:hover .article-hover-op-5   { opacity: .05 !important; }
+article:hover .article-hover-op-10  { opacity: .10 !important; }
+article:hover .article-hover-op-15  { opacity: .15 !important; }
+article:hover .article-hover-op-20  { opacity: .20 !important; }
+article:hover .article-hover-op-25  { opacity: .25 !important; }
+article:hover .article-hover-op-30  { opacity: .30 !important; }
+article:hover .article-hover-op-35  { opacity: .35 !important; }
+article:hover .article-hover-op-40  { opacity: .40 !important; }
+article:hover .article-hover-op-45  { opacity: .45 !important; }
+article:hover .article-hover-op-50  { opacity: .50 !important; }
+article:hover .article-hover-op-55  { opacity: .55 !important; }
+article:hover .article-hover-op-60  { opacity: .60 !important; }
+article:hover .article-hover-op-65  { opacity: .65 !important; }
+article:hover .article-hover-op-70  { opacity: .70 !important; }
+article:hover .article-hover-op-75  { opacity: .75 !important; }
+article:hover .article-hover-op-80  { opacity: .80 !important; }
+article:hover .article-hover-op-85  { opacity: .85 !important; }
+article:hover .article-hover-op-90  { opacity: .90 !important; }
+article:hover .article-hover-op-95  { opacity: .95 !important; }
+article:hover .article-hover-op-100 { opacity:   1 !important; }
 /* hover parent <tr> element */
 tr:hover .tr-hover-op-0   { opacity:   0 !important; }
 tr:hover .tr-hover-op-5   { opacity: .05 !important; }
@@ -1022,28 +978,72 @@ td:hover .td-hover-op-85  { opacity: .85 !important; }
 td:hover .td-hover-op-90  { opacity: .90 !important; }
 td:hover .td-hover-op-95  { opacity: .95 !important; }
 td:hover .td-hover-op-100 { opacity:   1 !important; }
-/* hover parent <article> element */
-article:hover .article-hover-op-0   { opacity:   0 !important; }
-article:hover .article-hover-op-5   { opacity: .05 !important; }
-article:hover .article-hover-op-10  { opacity: .10 !important; }
-article:hover .article-hover-op-15  { opacity: .15 !important; }
-article:hover .article-hover-op-20  { opacity: .20 !important; }
-article:hover .article-hover-op-25  { opacity: .25 !important; }
-article:hover .article-hover-op-30  { opacity: .30 !important; }
-article:hover .article-hover-op-35  { opacity: .35 !important; }
-article:hover .article-hover-op-40  { opacity: .40 !important; }
-article:hover .article-hover-op-45  { opacity: .45 !important; }
-article:hover .article-hover-op-50  { opacity: .50 !important; }
-article:hover .article-hover-op-55  { opacity: .55 !important; }
-article:hover .article-hover-op-60  { opacity: .60 !important; }
-article:hover .article-hover-op-65  { opacity: .65 !important; }
-article:hover .article-hover-op-70  { opacity: .70 !important; }
-article:hover .article-hover-op-75  { opacity: .75 !important; }
-article:hover .article-hover-op-80  { opacity: .80 !important; }
-article:hover .article-hover-op-85  { opacity: .85 !important; }
-article:hover .article-hover-op-90  { opacity: .90 !important; }
-article:hover .article-hover-op-95  { opacity: .95 !important; }
-article:hover .article-hover-op-100 { opacity:   1 !important; }
+/* hover parent <li> element */
+li:hover .li-hover-op-0   { opacity:   0 !important; }
+li:hover .li-hover-op-5   { opacity: .05 !important; }
+li:hover .li-hover-op-10  { opacity: .10 !important; }
+li:hover .li-hover-op-15  { opacity: .15 !important; }
+li:hover .li-hover-op-20  { opacity: .20 !important; }
+li:hover .li-hover-op-25  { opacity: .25 !important; }
+li:hover .li-hover-op-30  { opacity: .30 !important; }
+li:hover .li-hover-op-35  { opacity: .35 !important; }
+li:hover .li-hover-op-40  { opacity: .40 !important; }
+li:hover .li-hover-op-45  { opacity: .45 !important; }
+li:hover .li-hover-op-50  { opacity: .50 !important; }
+li:hover .li-hover-op-55  { opacity: .55 !important; }
+li:hover .li-hover-op-60  { opacity: .60 !important; }
+li:hover .li-hover-op-65  { opacity: .65 !important; }
+li:hover .li-hover-op-70  { opacity: .70 !important; }
+li:hover .li-hover-op-75  { opacity: .75 !important; }
+li:hover .li-hover-op-80  { opacity: .80 !important; }
+li:hover .li-hover-op-85  { opacity: .85 !important; }
+li:hover .li-hover-op-90  { opacity: .90 !important; }
+li:hover .li-hover-op-95  { opacity: .95 !important; }
+li:hover .li-hover-op-100 { opacity:   1 !important; }
+/* hover parent <a> element */
+a:hover .a-hover-op-0   { opacity:   0 !important; }
+a:hover .a-hover-op-5   { opacity: .05 !important; }
+a:hover .a-hover-op-10  { opacity: .10 !important; }
+a:hover .a-hover-op-15  { opacity: .15 !important; }
+a:hover .a-hover-op-20  { opacity: .20 !important; }
+a:hover .a-hover-op-25  { opacity: .25 !important; }
+a:hover .a-hover-op-30  { opacity: .30 !important; }
+a:hover .a-hover-op-35  { opacity: .35 !important; }
+a:hover .a-hover-op-40  { opacity: .40 !important; }
+a:hover .a-hover-op-45  { opacity: .45 !important; }
+a:hover .a-hover-op-50  { opacity: .50 !important; }
+a:hover .a-hover-op-55  { opacity: .55 !important; }
+a:hover .a-hover-op-60  { opacity: .60 !important; }
+a:hover .a-hover-op-65  { opacity: .65 !important; }
+a:hover .a-hover-op-70  { opacity: .70 !important; }
+a:hover .a-hover-op-75  { opacity: .75 !important; }
+a:hover .a-hover-op-80  { opacity: .80 !important; }
+a:hover .a-hover-op-85  { opacity: .85 !important; }
+a:hover .a-hover-op-90  { opacity: .90 !important; }
+a:hover .a-hover-op-95  { opacity: .95 !important; }
+a:hover .a-hover-op-100 { opacity:   1 !important; }
+/* hover element itself (prepend with [*:hover] to make this nest-able with [tr-hover-op-*] and such) */
+*:hover :hover.hover-op-0   { opacity:   0 !important; }
+*:hover :hover.hover-op-5   { opacity: .05 !important; }
+*:hover :hover.hover-op-10  { opacity: .10 !important; }
+*:hover :hover.hover-op-15  { opacity: .15 !important; }
+*:hover :hover.hover-op-20  { opacity: .20 !important; }
+*:hover :hover.hover-op-25  { opacity: .25 !important; }
+*:hover :hover.hover-op-30  { opacity: .30 !important; }
+*:hover :hover.hover-op-35  { opacity: .35 !important; }
+*:hover :hover.hover-op-40  { opacity: .40 !important; }
+*:hover :hover.hover-op-45  { opacity: .45 !important; }
+*:hover :hover.hover-op-50  { opacity: .50 !important; }
+*:hover :hover.hover-op-55  { opacity: .55 !important; }
+*:hover :hover.hover-op-60  { opacity: .60 !important; }
+*:hover :hover.hover-op-65  { opacity: .65 !important; }
+*:hover :hover.hover-op-70  { opacity: .70 !important; }
+*:hover :hover.hover-op-75  { opacity: .75 !important; }
+*:hover :hover.hover-op-80  { opacity: .80 !important; }
+*:hover :hover.hover-op-85  { opacity: .85 !important; }
+*:hover :hover.hover-op-90  { opacity: .90 !important; }
+*:hover :hover.hover-op-95  { opacity: .95 !important; }
+*:hover :hover.hover-op-100 { opacity:   1 !important; }
 
 
 /*======================================================================================================================================================*/
@@ -1136,7 +1136,7 @@ article:hover .article-hover-d-inline-block { display: inline-block !important; 
 
 
 /*-----------------+
-|  (MORE) Z-INDEX  | 
+|  (MORE) Z-INDEX  |
 +-----------------*/
 .z-n1  { /*  already exists   */ }
 .z-0   { /*  already exists   */ }
@@ -1303,7 +1303,7 @@ article:hover .article-hover-d-inline-block { display: inline-block !important; 
 
 
 /*---------------------+
-|  (MORE) SHADOW SIZE  | 
+|  (MORE) SHADOW SIZE  |
 +---------------------*/
 /* xs */
 .shadow-xs,
@@ -1328,7 +1328,7 @@ article:hover .article-hover-d-inline-block { display: inline-block !important; 
 
 
 /*---------------------+
-|  (MORE) POSITIONING  | 
+|  (MORE) POSITIONING  |
 +---------------------*/
 /* positive */
 .top-1 { top: .25rem !important; }
