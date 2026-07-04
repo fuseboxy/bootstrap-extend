@@ -7,14 +7,20 @@ $(function(){
 
 	[Usage]
 	I show error dialog whenever there is an ajax error
-	===> default showing as modal
 	===> simply die() in server-script and error message will auto-show in modal
-	===> applicable to whole site
+	===> define [data-bsx-ajax-error] at <body> to apply to whole site
+	===> define at element to show differently at specific element
+	===> default showing ajax-error at {modal} when undefined
 
 	[Example]
-	<body data-bsx-ajax-error="{modal|alert}"> ... </body>
+	<body data-bsx-ajax-error="{modal|alert}">
+		...
+		<a href="..." data-bsx-toggle="ajax-load">...</a>
+		<a href="..." data-bsx-toggle="ajax-load" data-bsx-ajax-error="alert">...</a>
+		...
+	</body>
 	*/
-	var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
+	var ajaxErrorHandler = function($triggerElement, jqXHR, ajaxSettings, errorThrown){
 		var $body = $('body');
 		// default options
 		var ajaxErrorMode = $body.attr('data-bsx-ajax-error') || 'modal';
@@ -70,8 +76,6 @@ $(function(){
 			$errModalFooter.html(ajaxSettings.url).toggle(Boolean(ajaxSettings.url));
 		}
 	};
-	// apply to document
-	$(document).ajaxError(ajaxErrorHandler);
 
 
 
@@ -332,7 +336,7 @@ $(function(){
 			'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
 			'error' : function(jqXHR, textStatus, errorThrown) {
 				window.setTimeout(function(){
-					ajaxErrorHandler(null, jqXHR, { url : url }, errorThrown);
+					ajaxErrorHandler($triggerElement, jqXHR, { 'url' : url }, errorThrown);
 				}, 1000);
 			},
 			'success' : function(data, textStatus, jqXHR){
@@ -390,9 +394,7 @@ $(function(){
 			'cache' : false,
 			'method' : 'get',
 			'error' : function(jqXHR, textStatus, errorThrown) {
-				window.setTimeout(function(){
-					ajaxErrorHandler(null, jqXHR, { 'url' : url }, errorThrown);
-				}, 1000);
+				ajaxErrorHandler($dropdown, jqXHR, { 'url' : url }, errorThrown);
 			},
 			'success' : function(data, textStatus, jqXHR){
 				// avoid response is full html document
@@ -581,6 +583,9 @@ $(function(){
 				'processData' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ),
 				'contentType' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ) ? 'application/x-www-form-urlencoded; charset=UTF-8' : false,
 				'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
+				'error' : function(jqXHR, textStatus, errorThrown) {
+					ajaxErrorHandler($triggerElement, jqXHR, { 'url' : url }, errorThrown);
+				},
 				'success' : function(data, textStatus, jqXHR){
 					// avoid response is full html document
 					data = $(new DOMParser().parseFromString(data, 'text/html')).find('body').html();
