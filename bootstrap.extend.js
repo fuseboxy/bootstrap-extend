@@ -23,8 +23,11 @@ $(function(){
 		// fix false-equivalent
 		ajaxErrorTitle = ['','none','false'].includes(ajaxErrorTitle) ? ajaxErrorTitle : false;
 		ajaxErrorShowURL = ['no','none','false'].includes(ajaxErrorShowURL) ? ajaxErrorShowURL : false;
-		// display error as flash in an opened modal
-		if ( ajaxErrorMode == 'modal' && $('body.modal-open').length ) {
+		// error @ alert
+		if ( ajaxErrorMode == 'alert' ) {
+			alert(jqXHR.responseText);
+		// error @ modal-flash
+		} else if ( $('body.modal-open').length ) {
 			var $modalVisible = $('.modal.show');
 			// create alert box (when necessary)
 			if ( !$('#bsx-error-alert').length ) {
@@ -42,8 +45,8 @@ $(function(){
 			$errAlert.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
 			// scroll to message
 			$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
-		// display error in modal
-		} else if ( ajaxErrorMode == 'modal' ) {
+		// error @ modal
+		} else {
 			// create modal (when necessary)
 			if ( !$('#bsx-error-modal').length ) {
 				$('body').append(`
@@ -64,9 +67,6 @@ $(function(){
 			if ( ajaxErrorTitle ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
 			$errModalBody.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>')
 			if ( ajaxErrorShowURL ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
-		// display error as javascript alert
-		} else {
-			alert(jqXHR.responseText);
 		}
 	};
 	// apply to document
