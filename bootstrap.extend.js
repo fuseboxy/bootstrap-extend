@@ -17,17 +17,17 @@ $(function(){
 	var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
 		var $body = $('body');
 		// default options
-		var ajaxErrorMode    = $body.attr('data-bsx-ajax-error')          || 'modal';
-		var ajaxErrorTitle   = $body.attr('data-bsx-ajax-error-title')    || 'Error';
+		var ajaxErrorMode = $body.attr('data-bsx-ajax-error') || 'modal';
+		var ajaxErrorTitle = $body.attr('data-bsx-ajax-error-title') || 'Error';
 		var ajaxErrorShowURL = $body.attr('data-bsx-ajax-error-show-url') || true;
 		// fix false-equivalent
-		ajaxErrorTitle = ['','none','false'].includes(ajaxErrorTitle) ? false : ajaxErrorTitle;
-		ajaxErrorShowURL = ['no','none','false'].includes(ajaxErrorShowURL) ? false : ajaxErrorShowURL;
+		if ( ['false','none','no'].includes(ajaxErrorTitle) ) ajaxErrorTitle = '';
+		if ( ['false','none','no'].includes(ajaxErrorShowURL) ) ajaxErrorShowURL = '';
 		// error @ alert
 		if ( ajaxErrorMode == 'alert' ) {
 			alert(jqXHR.responseText);
-		// error @ modal-flash (if any opened modalwhen has modal already opened)
-		} else if ( $('body.modal-open .modal-body').length ) {
+		// error @ modal-flash (if any opened modal)
+		} else if ( $('.modal.show .modal-body').length ) {
 			var $modalVisible = $('.modal.show');
 			// create flash container at modal (when not available)
 			if ( !$('#bsx-error-flash').length ) {
@@ -47,29 +47,27 @@ $(function(){
 			$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
 		// error @ modal
 		} else {
+			var errModalID = 'bsx-error-modal';
 			// create modal (when necessary)
-			if ( !$('#bsx-error-modal').length ) {
-				$('body').append(`
-					<div id="bsx-error-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bsx-error-modal" aria-hidden="true">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content bg-danger">
-								<div class="modal-header text-white h2 b-0 pb-0 mb-0"></div>
-								<div class="modal-body small font-monospace"></div>
-								<div class="modal-footer justify-content-start text-warning smaller b-0"></div>
-							</div>
+			var $errModal = $('#'+errModalID).length ? $('#'+errModalID) : $(`
+				<div id="${errModalID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${errModalID}" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content bg-danger">
+							<div class="modal-header text-white h2 b-0 pb-0 mb-0"></div>
+							<div class="modal-body small font-monospace"></div>
+							<div class="modal-footer justify-content-start text-warning smaller b-0"></div>
 						</div>
 					</div>
-				`);
-			}
+				</div>
+			`).appendTo('body');
 			// show message
-			var $errModal = $('#bsx-error-modal');
 			var $errModalBody = $errModal.find('.modal-body');
 			var $errModalHeader = $errModal.find('.modal-header');
 			var $errModalFooter = $errModal.find('.modal-footer');
 			$errModal.modal('show');
 			$errModalBody.html(jqXHR.responseText);
-			if ( ajaxErrorTitle ) $errModalHeader.html(ajaxErrorTitle);
-			if ( ajaxErrorShowURL ) $errModalFooter.html(ajaxSettings.url);
+			$errModalHeader.html(ajaxErrorTitle).toggle(Boolean(ajaxErrorTitle));
+			$errModalFooter.html(ajaxSettings.url).toggle(Boolean(ajaxSettings.url));
 		}
 	};
 	// apply to document
