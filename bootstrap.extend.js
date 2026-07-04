@@ -21,28 +21,28 @@ $(function(){
 		var ajaxErrorTitle   = $body.attr('data-bsx-ajax-error-title')    || 'Error';
 		var ajaxErrorShowURL = $body.attr('data-bsx-ajax-error-show-url') || true;
 		// fix false-equivalent
-		ajaxErrorTitle = ['','none','false'].includes(ajaxErrorTitle) ? ajaxErrorTitle : false;
-		ajaxErrorShowURL = ['no','none','false'].includes(ajaxErrorShowURL) ? ajaxErrorShowURL : false;
+		ajaxErrorTitle = ['','none','false'].includes(ajaxErrorTitle) ? false : ajaxErrorTitle;
+		ajaxErrorShowURL = ['no','none','false'].includes(ajaxErrorShowURL) ? false : ajaxErrorShowURL;
 		// error @ alert
 		if ( ajaxErrorMode == 'alert' ) {
 			alert(jqXHR.responseText);
-		// error @ modal-flash
-		} else if ( $('body.modal-open').length ) {
+		// error @ modal-flash (if any opened modalwhen has modal already opened)
+		} else if ( $('body.modal-open .modal-body').length ) {
 			var $modalVisible = $('.modal.show');
-			// create alert box (when necessary)
-			if ( !$('#bsx-error-alert').length ) {
-				$('<div id="bsx-error-alert" class="alert alert-danger" role="alert"></div>')
+			// create flash container at modal (when not available)
+			if ( !$('#bsx-error-flash').length ) {
+				$('<div id="bsx-error-flash" class="alert alert-danger" role="alert"></div>')
 					.prependTo( $modalVisible.find('.modal-body') )
 					.on('click', function(){ $(this).slideUp(); })
 					.hide();
 			}
 			// show message
-			var $errAlert = $('#bsx-error-alert');
-			$errAlert.html('');
-			if ( ajaxErrorTitle ) $errAlert.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
-			$errAlert.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
-			if ( ajaxErrorShowURL ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
-			$errAlert.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
+			var $errFlash = $('#bsx-error-flash');
+			$errFlash.html('');
+			if ( ajaxErrorTitle ) $errFlash.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
+			$errFlash.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
+			if ( ajaxErrorShowURL ) $errFlash.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
+			$errFlash.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
 			// scroll to message
 			$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
 		// error @ modal
@@ -64,9 +64,9 @@ $(function(){
 			var $errModalBody = $errModal.find('.modal-body');
 			$errModal.modal('show');
 			$errModalBody.html('');
-			if ( ajaxErrorTitle ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
-			$errModalBody.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>')
-			if ( ajaxErrorShowURL ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
+			if ( ajaxErrorTitle ) $errModalBody.append('<h3 class="text-white mt-0">'+ajaxErrorTitle+'</h3>');
+			$errModalBody.append('<div class="small font-monospace">'+jqXHR.responseText+'</div>')
+			if ( ajaxErrorShowURL ) $errModalBody.append('<div class="text-warning em small mt-3">'+ajaxSettings.url+'</div>');
 		}
 	};
 	// apply to document
