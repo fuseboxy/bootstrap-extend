@@ -64,20 +64,9 @@ $(function(){
 			if ( ajaxErrorTitle ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
 			$errModalBody.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>')
 			if ( ajaxErrorShowURL ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
-		// display error as javascript console log
-		} else if ( ajaxErrorMode == 'console' ) {
-			var errMsg = '';
-			if ( ajaxErrorTitle ) errMsg += '['+ajaxErrorTitle+'] ';
-			errMsg += jqXHR.responseText;
-			if ( ajaxErrorShowURL ) errMsg += ' ('+ajaxSettings.url+')';
-			console.log(errMsg);
 		// display error as javascript alert
 		} else {
-			var errMsg = '';
-			if ( ajaxErrorTitle ) errMsg += '['+ajaxErrorTitle+']\n';
-			errMsg += jqXHR.responseText;
-			if ( ajaxErrorShowURL ) errMsg += '\n\n'+ajaxSettings.url;
-			alert(errMsg);
+			alert(jqXHR.responseText);
 		}
 	};
 	// apply to document
