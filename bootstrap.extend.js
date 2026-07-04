@@ -12,14 +12,17 @@ $(function(){
 	===> applicable to whole site
 
 	[Example]
-	<body data-bsx-ajax-error="{modal|alert|console}"> ... </body>
+	<body data-bsx-ajax-error="{modal|alert}"> ... </body>
 	*/
 	var ajaxErrorHandler = function(evt, jqXHR, ajaxSettings, errorThrown){
 		var $body = $('body');
-		// options
+		// default options
 		var ajaxErrorMode    = $body.attr('data-bsx-ajax-error')          || 'modal';
 		var ajaxErrorTitle   = $body.attr('data-bsx-ajax-error-title')    || 'Error';
 		var ajaxErrorShowURL = $body.attr('data-bsx-ajax-error-show-url') || true;
+		// fix false-equivalent
+		ajaxErrorTitle = ['','none','false'].includes(ajaxErrorTitle) ? ajaxErrorTitle : false;
+		ajaxErrorShowURL = ['no','none','false'].includes(ajaxErrorShowURL) ? ajaxErrorShowURL : false;
 		// display error as flash in an opened modal
 		if ( ajaxErrorMode == 'modal' && $('body.modal-open').length ) {
 			var $modalVisible = $('.modal.show');
@@ -33,9 +36,9 @@ $(function(){
 			// show message
 			var $errAlert = $('#bsx-error-alert');
 			$errAlert.html('');
-			if ( ajaxErrorTitle != 'none' ) $errAlert.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
+			if ( ajaxErrorTitle ) $errAlert.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
 			$errAlert.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
-			if ( ajaxErrorShowURL != 'none' ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
+			if ( ajaxErrorShowURL ) $errAlert.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
 			$errAlert.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
 			// scroll to message
 			$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
@@ -58,22 +61,22 @@ $(function(){
 			var $errModalBody = $errModal.find('.modal-body');
 			$errModal.modal('show');
 			$errModalBody.html('');
-			if ( ajaxErrorTitle != 'none' ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
+			if ( ajaxErrorTitle ) $errModalBody.append('<h3 class="mt-0 text-white">'+ajaxErrorTitle+'</h3>');
 			$errModalBody.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>')
-			if ( ajaxErrorShowURL != 'none' ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
+			if ( ajaxErrorShowURL ) $errModalBody.append('<div class="small em text-warning">'+ajaxSettings.url+'</div>');
 		// display error as javascript console log
 		} else if ( ajaxErrorMode == 'console' ) {
 			var errMsg = '';
-			if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+'] ';
+			if ( ajaxErrorTitle ) errMsg += '['+ajaxErrorTitle+'] ';
 			errMsg += jqXHR.responseText;
-			if ( ajaxErrorShowURL != 'none' ) errMsg += ' ('+ajaxSettings.url+')';
+			if ( ajaxErrorShowURL ) errMsg += ' ('+ajaxSettings.url+')';
 			console.log(errMsg);
 		// display error as javascript alert
 		} else {
 			var errMsg = '';
-			if ( ajaxErrorTitle != 'none' ) errMsg += '['+ajaxErrorTitle+']\n';
+			if ( ajaxErrorTitle ) errMsg += '['+ajaxErrorTitle+']\n';
 			errMsg += jqXHR.responseText;
-			if ( ajaxErrorShowURL != 'none' ) errMsg += '\n\n'+ajaxSettings.url;
+			if ( ajaxErrorShowURL ) errMsg += '\n\n'+ajaxSettings.url;
 			alert(errMsg);
 		}
 	};
