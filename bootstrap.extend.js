@@ -23,9 +23,9 @@ $(function(){
 	var ajaxErrorHandler = function($triggerElement, jqXHR, ajaxSettings, errorThrown){
 		var $body = $('body');
 		// default options
-		var ajaxErrorMode = $body.attr('data-bsx-ajax-error') || 'modal';
-		var ajaxErrorTitle = $body.attr('data-bsx-ajax-error-title') || 'Error';
-		var ajaxErrorShowURL = $body.attr('data-bsx-ajax-error-show-url') || true;
+		var ajaxErrorMode    = $triggerElement.attr('data-bsx-ajax-error')          || $body.attr('data-bsx-ajax-error')          || 'modal';
+		var ajaxErrorTitle   = $triggerElement.attr('data-bsx-ajax-error-title')    || $body.attr('data-bsx-ajax-error-title')    || 'Error';
+		var ajaxErrorShowURL = $triggerElement.attr('data-bsx-ajax-error-show-url') || $body.attr('data-bsx-ajax-error-show-url') || true;
 		// fix false-equivalent
 		if ( ['false','none','no'].includes(ajaxErrorTitle) ) ajaxErrorTitle = '';
 		if ( ['false','none','no'].includes(ajaxErrorShowURL) ) ajaxErrorShowURL = '';
@@ -73,7 +73,7 @@ $(function(){
 			$errModal.modal('show');
 			$errModalBody.html(jqXHR.responseText);
 			$errModalHeader.html(ajaxErrorTitle).toggle(Boolean(ajaxErrorTitle));
-			$errModalFooter.html(ajaxSettings.url).toggle(Boolean(ajaxSettings.url));
+			$errModalFooter.html(ajaxSettings.url).toggle(Boolean(ajaxErrorShowURL));
 		}
 	};
 
@@ -90,15 +90,14 @@ $(function(){
 	[Reference]
 	https://stackoverflow.com/questions/19305821/multiple-modals-overlay
 	*/
-	$(document).on('show.bs.modal', '.modal', function (event) {
-		var zIndex = 1040 + (10 * $('.modal:visible').length);
+	$(document).on('show.bs.modal', '.modal', function(){
+		const zIndex = 1040 + 10 * $('.modal:visible').length;
 		$(this).css('z-index', zIndex);
-		setTimeout(function() {
-			$('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-		}, 0);
+		setTimeout(() => $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack'));
 	});
-
-	$(document).on('hidden.bs.modal', '.modal', () => $('.modal:visible').length && $(document.body).addClass('modal-open'));
+	$(document).on('hidden.bs.modal', '.modal', function(){
+		$('.modal:visible').length && $(document.body).addClass('modal-open');
+	});
 
 
 
