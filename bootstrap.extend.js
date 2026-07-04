@@ -28,27 +28,27 @@ $(function(){
 			alert(jqXHR.responseText);
 		// error @ modal-flash (if any opened modal)
 		} else if ( $('.modal.show .modal-body').length ) {
-			var $modalVisible = $('.modal.show');
+			var $visibleModal = $('.modal.show');
+			var $visibleModalBody = $visibleModal.find('.modal-body');
 			// create flash container at modal (when not available)
-			if ( !$('#bsx-error-flash').length ) {
-				$('<div id="bsx-error-flash" class="alert alert-danger" role="alert"></div>')
-					.prependTo( $modalVisible.find('.modal-body') )
-					.on('click', function(){ $(this).slideUp(); })
-					.hide();
-			}
+			var errFlashID = 'bsx-error-flash';
+			var $errFlash = $('#'+errFlashID).length ? $('#'+errFlashID) : $(`
+				<div id="bsx-error-flash" class="alert alert-danger" style="display: none;"></div>
+			`).prependTo($visibleModalBody).on('click', function(){ $(this).slideUp(); });
 			// show message
-			var $errFlash = $('#bsx-error-flash');
 			$errFlash.html('');
 			if ( ajaxErrorTitle ) $errFlash.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
 			$errFlash.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
 			if ( ajaxErrorShowURL ) $errFlash.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
+			// slide-down (when first shown)
+			// ===> fade-in (when refresh message)
 			$errFlash.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
 			// scroll to message
 			$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
 		// error @ modal
 		} else {
+			// create modal (when not available)
 			var errModalID = 'bsx-error-modal';
-			// create modal (when necessary)
 			var $errModal = $('#'+errModalID).length ? $('#'+errModalID) : $(`
 				<div id="${errModalID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${errModalID}" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
