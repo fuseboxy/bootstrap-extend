@@ -53,7 +53,9 @@ $(function(){
 					<div id="bsx-error-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bsx-error-modal" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content bg-danger">
-								<div class="modal-body"></div>
+								<div class="modal-header text-white h2 b-0 pb-0 mb-0"></div>
+								<div class="modal-body small font-monospace"></div>
+								<div class="modal-footer justify-content-start text-warning smaller b-0"></div>
 							</div>
 						</div>
 					</div>
@@ -62,11 +64,12 @@ $(function(){
 			// show message
 			var $errModal = $('#bsx-error-modal');
 			var $errModalBody = $errModal.find('.modal-body');
+			var $errModalHeader = $errModal.find('.modal-header');
+			var $errModalFooter = $errModal.find('.modal-footer');
 			$errModal.modal('show');
-			$errModalBody.html('');
-			if ( ajaxErrorTitle ) $errModalBody.append('<h3 class="text-white mt-0">'+ajaxErrorTitle+'</h3>');
-			$errModalBody.append('<div class="small font-monospace">'+jqXHR.responseText+'</div>')
-			if ( ajaxErrorShowURL ) $errModalBody.append('<div class="text-warning em small mt-3">'+ajaxSettings.url+'</div>');
+			$errModalBody.html(jqXHR.responseText);
+			if ( ajaxErrorTitle ) $errModalHeader.html(ajaxErrorTitle);
+			if ( ajaxErrorShowURL ) $errModalFooter.html(ajaxSettings.url);
 		}
 	};
 	// apply to document
