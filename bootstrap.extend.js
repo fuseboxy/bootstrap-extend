@@ -29,19 +29,21 @@ $(function(){
 
 	[Usage]
 	Auto-click corresponding buttons one-by-one (by monitoring the AJAX call progress)
-	===> data-bsx-toggle   = {auto-submit}
-	===> data-bsx-target   = ~autoClickButtons~
-	===> data-bsx-stop     = ~stopButton~
-	===> data-bsx-confirm  = ~confirmationMessage~
-	===> data-bsx-heading  = ~progressMessagePrefix~
-	===> data-bsx-progress = ~progressElements~
-	===> data-bsx-callback = ~function|functionName~
 
-	[Event]
-	===> autoSubmit.bsx
-	===> autoSubmitUpdated.bsx
-	===> autoSubmitStopped.bsx
-	===> autoSubmitCompleted.bsx
+	[Data Attributes]
+	- data-bsx-toggle   = {auto-submit}
+	- data-bsx-target   = ~autoClickButtons~
+	- data-bsx-stop     = ~stopButton~
+	- data-bsx-confirm  = ~confirmationMessage~
+	- data-bsx-heading  = ~progressMessagePrefix~
+	- data-bsx-progress = ~progressElements~
+	- data-bsx-callback = ~function|functionName~
+
+	[Events]
+	- autoSubmit.bsx
+	- autoSubmitUpdated.bsx
+	- autoSubmitStopped.bsx
+	- autoSubmitCompleted.bsx
 
 	[Example]
 	<div id="row-1"><a href="foo.php?id=1" class="btn-submit" data-bsx-toggle="ajax-load" data-bsx-target="#row-1">...</a></div>
@@ -169,11 +171,13 @@ $(function(){
 
 	[Usage]
 	Auto-load remote content into modal
-	===> data-bsx-toggle   = {ajax-modal}
-	===> data-bsx-target   = ~targetModal~
-	===> data-bsx-selector = ~partialResponseToShow~
 
-	[Example]
+	[Data Attributes]
+	- data-bsx-toggle   = {ajax-modal}
+	- data-bsx-target   = ~targetModal~
+	- data-bsx-selector = ~partialResponseToShow~
+
+	[Examples]
 	<a href="foo.html" data-bsx-toggle="ajax-modal" data-bsx-target="#my-modal">...</div>
 	<button data-bsx-href="bar.html" data-bsx-toggle="ajax-modal" data-bsx-target="#my-modal">...</button>
 	*/
@@ -282,10 +286,12 @@ $(function(){
 
 	[Usage]
 	Auto-load remote content into dropdown (load-once-and-keep)
-	===> data-bsx-href     = ~alternativeForElementWithoutHrefAttribute~
-	===> data-bsx-toggle   = {ajax-dropdown}
-	===> data-bsx-align    = {left*|right}
-	===> data-bsx-selector = ~partialResponseToShow~
+
+	[Data Attributes]
+	- data-bsx-href     = ~alternativeForElementWithoutHrefAttribute~
+	- data-bsx-toggle   = {ajax-dropdown}
+	- data-bsx-align    = {left*|right}
+	- data-bsx-selector = ~partialResponseToShow~
 
 	[Example]
 	<div class="dropdown">
@@ -343,22 +349,24 @@ $(function(){
 
 	[Usage]
 	I allow ajax-load/ajax-submit content to specific element by defining data attributes
-	===> data-bsx-toggle     = {ajax-load|ajax-submit}
-	===> data-bsx-target     = ~targetElement|targetForm~
-	===> data-bsx-confirm    = ~confirmationMessage~
-	===> data-bsx-mode       = {replace*|prepend|append|before|after}
-	===> data-bsx-overlay    = {progress*|loading|loading-large|spinner|spinner-large|overlay|gray|grayer|dim|dimmer|white|whiter|light|lighter|none}
-	===> data-bsx-transition = {slide*|fade|none}
-	===> data-bsx-callback   = ~function|functionName~
-	===> data-bsx-selector   = ~partialResponseToShow~
 
-	[Event]
-	===> ajaxLoad.bsx
-	===> ajaxLoadCallback.bsx
-	===> ajaxSubmit.bsx
-	===> ajaxSubmitCallback.bsx
+	[Data Attributes]
+	- data-bsx-toggle     = {ajax-load|ajax-submit}
+	- data-bsx-target     = ~targetElement|targetForm~
+	- data-bsx-confirm    = ~confirmationMessage~
+	- data-bsx-mode       = {replace*|prepend|append|before|after}
+	- data-bsx-overlay    = {progress*|loading|loading-large|spinner|spinner-large|overlay|gray|grayer|dim|dimmer|white|whiter|light|lighter|none}
+	- data-bsx-transition = {slide*|fade|none}
+	- data-bsx-callback   = ~function|functionName~
+	- data-bsx-selector   = ~partialResponseToShow~
 
-	[Example]
+	[Events]
+	- ajaxLoad.bsx
+	- ajaxLoadCallback.bsx
+	- ajaxSubmit.bsx
+	- ajaxSubmitCallback.bsx
+
+	[Examples]
 	<!-- ajax load -->
 	<a href="/url/to/go" class="btn btn-default" data-bsx-toggle="ajax-load" data-bsx-target="#element"> ... </a>
 	<!-- ajax submit -->
@@ -677,8 +685,28 @@ function bsxAjaxErrorHandler($triggerElement, jqXHR, ajaxSettings, errorThrown) 
 +------------+
 
 [Usage]
-Overlay UI element by a layer to and prevent user click the UI element multiple times mistakenly
-Used by {ajax-load} and {ajax-submit} and such
+Overlay UI element by a layer to & prevent further interaction to the element
+===> (e.g.) avoid clicking submit button multiple times mistakenly
+===> used by {ajax-load} and {ajax-submit} and such
+
+[Data Attributes] (or by function options)
+- data-bsx-blockui-icon
+- data-bsx-blockui-class
+- data-bsx-blockui-style
+- data-bsx-blockui-message
+
+[Examples]
+// block element with default style
+bsxBlockUI('#foobar');
+// block element with custom style
+bsxBlockUI('#foobar', [
+	'icon' => 'bi bi-hourglass',
+	'class' => 'bg-white op-50',
+	'style' => 'border: dashed 3px silver;',
+	'message' => 'Please wait...',
+]);
+// unblock element
+bsxBlockUI('#foobar', 'hide');
 */
 function bsxBlockUI(action, element) {
 
