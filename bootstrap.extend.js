@@ -1,85 +1,6 @@
 $(function(){
 
 
-	/*------------------------+
-	|  AUTO AJAX-ERROR ALERT  |
-	+-------------------------+
-
-	[Usage]
-	I show error dialog whenever there is an ajax error
-	===> simply die() in server-script and error message will auto-show in modal
-	===> define [data-bsx-ajax-error] at <body> to apply to whole site
-	===> define at element to show differently at specific element
-	===> default showing ajax-error at {modal} when undefined
-
-	[Example]
-	<body data-bsx-ajax-error="{modal|alert}">
-		...
-		<a href="..." data-bsx-toggle="ajax-load">...</a>
-		<a href="..." data-bsx-toggle="ajax-load" data-bsx-ajax-error="alert">...</a>
-		...
-	</body>
-	*/
-	var ajaxErrorHandler = function($triggerElement, jqXHR, ajaxSettings, errorThrown){
-		var $body = $('body');
-		// default options
-		var ajaxErrorMode    = $triggerElement.attr('data-bsx-ajax-error')          || $body.attr('data-bsx-ajax-error')          || 'modal';
-		var ajaxErrorTitle   = $triggerElement.attr('data-bsx-ajax-error-title')    || $body.attr('data-bsx-ajax-error-title')    || 'Error';
-		var ajaxErrorShowURL = $triggerElement.attr('data-bsx-ajax-error-show-url') || $body.attr('data-bsx-ajax-error-show-url') || true;
-		// fix false-equivalent
-		if ( ['false','none','no'].includes(ajaxErrorTitle) ) ajaxErrorTitle = '';
-		if ( ['false','none','no'].includes(ajaxErrorShowURL) ) ajaxErrorShowURL = '';
-		// error @ alert
-		if ( ajaxErrorMode == 'alert' ) {
-			alert(jqXHR.responseText);
-		// error @ modal-flash (if any opened modal)
-		} else if ( $('.modal.show .modal-body').length ) {
-			var $visibleModal = $('.modal.show');
-			var $visibleModalBody = $visibleModal.find('.modal-body');
-			// create flash container at modal (when not available)
-			var errFlashID = 'bsx-error-flash';
-			var $errFlash = $('#'+errFlashID).length ? $('#'+errFlashID) : $(`
-				<div id="bsx-error-flash" class="alert alert-danger" style="display: none;"></div>
-			`).prependTo($visibleModalBody).on('click', function(){ $(this).slideUp(); });
-			// show message
-			$errFlash.html('');
-			if ( ajaxErrorTitle ) $errFlash.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
-			$errFlash.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
-			if ( ajaxErrorShowURL ) $errFlash.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
-			// slide-down (when first shown)
-			// ===> fade-in (when refresh message)
-			$errFlash.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
-			// scroll to message
-			$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
-		// error @ modal
-		} else {
-			// create modal (when not available)
-			var errModalID = 'bsx-error-modal';
-			var $errModal = $('#'+errModalID).length ? $('#'+errModalID) : $(`
-				<div id="${errModalID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${errModalID}" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content bg-danger">
-							<div class="modal-header text-white h2 b-0 pb-0 mb-0"></div>
-							<div class="modal-body small font-monospace"></div>
-							<div class="modal-footer justify-content-start text-warning smaller b-0"></div>
-						</div>
-					</div>
-				</div>
-			`).appendTo('body');
-			// show message
-			var $errModalBody = $errModal.find('.modal-body');
-			var $errModalHeader = $errModal.find('.modal-header');
-			var $errModalFooter = $errModal.find('.modal-footer');
-			$errModal.modal('show');
-			$errModalBody.html(jqXHR.responseText);
-			$errModalHeader.html(ajaxErrorTitle).toggle(Boolean(ajaxErrorTitle));
-			$errModalFooter.html(ajaxSettings.url).toggle(Boolean(ajaxErrorShowURL));
-		}
-	};
-
-
-
-
 	/*--------------------------+
 	|  MULTIPLE MODALS OVERLAY  |
 	+---------------------------+
@@ -335,7 +256,7 @@ $(function(){
 			'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
 			'error' : function(jqXHR, textStatus, errorThrown) {
 				window.setTimeout(function(){
-					ajaxErrorHandler($triggerElement, jqXHR, { 'url' : url }, errorThrown);
+					bsxAjaxErrorHandler($triggerElement, jqXHR, { 'url' : url }, errorThrown);
 				}, 1000);
 			},
 			'success' : function(data, textStatus, jqXHR){
@@ -393,7 +314,7 @@ $(function(){
 			'cache' : false,
 			'method' : 'get',
 			'error' : function(jqXHR, textStatus, errorThrown) {
-				ajaxErrorHandler($dropdown, jqXHR, { 'url' : url }, errorThrown);
+				bsxAjaxErrorHandler($dropdown, jqXHR, { 'url' : url }, errorThrown);
 			},
 			'success' : function(data, textStatus, jqXHR){
 				// avoid response is full html document
@@ -583,7 +504,7 @@ $(function(){
 				'contentType' : ( $triggerElement.attr('enctype') != 'multipart/form-data' ) ? 'application/x-www-form-urlencoded; charset=UTF-8' : false,
 				'method' : $triggerElement.is('form[method]') ? $triggerElement.attr('method') : 'get',
 				'error' : function(jqXHR, textStatus, errorThrown) {
-					ajaxErrorHandler($triggerElement, jqXHR, { 'url' : url }, errorThrown);
+					bsxAjaxErrorHandler($triggerElement, jqXHR, { 'url' : url }, errorThrown);
 				},
 				'success' : function(data, textStatus, jqXHR){
 					// avoid response is full html document
@@ -672,6 +593,85 @@ $(function(){
 
 
 
+/*------------------------+
+|  AUTO AJAX-ERROR ALERT  |
++-------------------------+
+
+[Usage]
+show error dialog for {ajax-load|ajax-submit|ajax-modal|ajax-dropdown}
+===> simply die() in server-script and error message will auto-show in modal
+===> define [data-bsx-ajax-error] at <body> to style of error to whole site
+===> define [data-bsx-ajax-error] at element to show error differently
+===> show ajax-error as {modal} when not specified
+
+[Example]
+<body data-bsx-ajax-error="{modal|alert}">
+	...
+	<a href="..." data-bsx-toggle="ajax-load">...</a>
+	<a href="..." data-bsx-toggle="ajax-load" data-bsx-ajax-error="{modal|alert}">...</a>
+	...
+</body>
+*/
+function bsxAjaxErrorHandler($triggerElement, jqXHR, ajaxSettings, errorThrown) {
+	var $body = $('body');
+	// default options
+	var ajaxErrorMode    = $triggerElement.attr('data-bsx-ajax-error')          || $body.attr('data-bsx-ajax-error')          || 'modal';
+	var ajaxErrorTitle   = $triggerElement.attr('data-bsx-ajax-error-title')    || $body.attr('data-bsx-ajax-error-title')    || 'Error';
+	var ajaxErrorShowURL = $triggerElement.attr('data-bsx-ajax-error-show-url') || $body.attr('data-bsx-ajax-error-show-url') || true;
+	// fix false-equivalent
+	if ( ['false','none','no'].includes(ajaxErrorTitle) ) ajaxErrorTitle = '';
+	if ( ['false','none','no'].includes(ajaxErrorShowURL) ) ajaxErrorShowURL = '';
+	// error @ alert
+	if ( ajaxErrorMode == 'alert' ) {
+		alert(jqXHR.responseText);
+	// error @ modal-flash (if any opened modal)
+	} else if ( $('.modal.show .modal-body').length ) {
+		var $visibleModal = $('.modal.show');
+		var $visibleModalBody = $visibleModal.find('.modal-body');
+		// create flash container at modal (when not available)
+		var errFlashID = 'bsx-error-flash';
+		var $errFlash = $('#'+errFlashID).length ? $('#'+errFlashID) : $(`
+			<div id="bsx-error-flash" class="alert alert-danger" style="display: none;"></div>
+		`).prependTo($visibleModalBody).on('click', function(){ $(this).slideUp(); });
+		// show message
+		$errFlash.html('');
+		if ( ajaxErrorTitle ) $errFlash.append('<h3 class="mt-0 text-danger">'+ajaxErrorTitle+'</h3>')
+		$errFlash.append('<div class="small text-monospace">'+jqXHR.responseText+'</div>');
+		if ( ajaxErrorShowURL ) $errFlash.append('<div class="small em text-danger">'+ajaxSettings.url+'</div>')
+		// slide-down (when first shown)
+		// ===> fade-in (when refresh message)
+		$errFlash.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
+		// scroll to message
+		$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
+	// error @ modal
+	} else {
+		// create modal (when not available)
+		var errModalID = 'bsx-error-modal';
+		var $errModal = $('#'+errModalID).length ? $('#'+errModalID) : $(`
+			<div id="${errModalID}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${errModalID}" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content bg-danger">
+						<div class="modal-header text-white h2 b-0 pb-0 mb-0"></div>
+						<div class="modal-body small font-monospace"></div>
+						<div class="modal-footer justify-content-start text-warning smaller b-0"></div>
+					</div>
+				</div>
+			</div>
+		`).appendTo('body');
+		// show message
+		var $errModalBody = $errModal.find('.modal-body');
+		var $errModalHeader = $errModal.find('.modal-header');
+		var $errModalFooter = $errModal.find('.modal-footer');
+		$errModal.modal('show');
+		$errModalBody.html(jqXHR.responseText);
+		$errModalHeader.html(ajaxErrorTitle).toggle(Boolean(ajaxErrorTitle));
+		$errModalFooter.html(ajaxSettings.url).toggle(Boolean(ajaxErrorShowURL));
+	}
+}
+
+
+
+
 /*-----------+
 |  BLOCK-UI  |
 +------------+
@@ -680,8 +680,7 @@ $(function(){
 Overlay UI element by a layer to and prevent user click the UI element multiple times mistakenly
 Used by {ajax-load} and {ajax-submit} and such
 */
-
-function bsxBlockUI(action, element){
+function bsxBlockUI(action, element) {
 
 }
 
