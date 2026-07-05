@@ -413,48 +413,6 @@ $(function(){
 		var toggleCallback   = $triggerElement.attr('data-bsx-callback')   || '';
 		var toggleOverlay    = $triggerElement.attr('data-bsx-loading')    || $triggerElement.attr('data-bsx-overlay') || 'progress';
 		var toggleSelector   = $triggerElement.attr('data-bsx-selector')   || '';
-		// apply block-ui when ajax load (if any)
-		var configBlockUI;
-		if ( $.fn.block ) {
-			// default loading style (progress)
-			configBlockUI = {
-				'message'     : false,
-				'css'         : { 'background-color' : 'none', 'border' : 'none' },
-				'fadeIn'      : 0,
-				'showOverlay' : true
-			};
-			// overlay style : none
-			if ( toggleOverlay == 'none' ) {
-				configBlockUI['overlayCSS'] = { 'background-color' : 'white', 'opacity' : 0 };
-			// overlay style : loading
-			} else if ( toggleOverlay == 'loading' || toggleOverlay == 'spinner' ) {
-				configBlockUI['message'] = '<i class="fa fa-spin fa-spinner text-muted"></i>';
-				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
-			} else if ( toggleOverlay == 'loading-large' || toggleOverlay == 'spinner-large' ) {
-				configBlockUI['message'] = '<i class="fa fa-spin fa-spinner fa-4x text-muted"></i>';
-				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
-			// overlay style : dim
-			} else if ( toggleOverlay == 'gray' || toggleOverlay == 'dim' || toggleOverlay == 'overlay' ) {
-				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
-			} else if ( toggleOverlay == 'grayer' || toggleOverlay == 'dimmer' ) {
-				configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .4 };
-			// overlay style : light
-			} else if ( toggleOverlay == 'white' || toggleOverlay == 'light' ) {
-				configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .3 };
-			} else if ( toggleOverlay == 'whiter' || toggleOverlay == 'lighter' ) {
-				configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .6 };
-			// overlay style : progress (default)
-			} else {
-				configBlockUI['overlayCSS'] = {
-					'-webkit-animation' : 'progress-bar-stripes 1s linear infinite',
-					'animation'         : 'progress-bar-stripes 1s linear infinite',
-					'background-color'  : '#bbb',
-					'background-image'  : '-webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
-					'background-image'  : 'linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
-					'background-size'   : '1rem 1rem',
-				};
-			}
-		}
 		// check target
 		if ( !toggleTarget ) {
 			console.log('[Error] '+eventType+'.bsx - Attribute [data-bsx-target] was not specified');
@@ -493,16 +451,12 @@ $(function(){
 			}
 			// block
 			if ( $triggerElement.is('form') ) {
-				if ( configBlockUI ) {
-					$triggerElement.block( configBlockUI );
-				}
+				bsxBlockUI(triggerElement);
 				$triggerElement.find('[type=submit]').attr('disabled', true);
 			} else {
 				$triggerElement.attr('disabled', true);
 			}
-			if ( configBlockUI ) {
-				$targetElement.block( configBlockUI );
-			}
+			bsxBlockUI($targetElement);
 			// load result remotely
 			$.ajax({
 				'url' : url,
@@ -708,10 +662,64 @@ bsxBlockUI('#foobar', [
 // unblock element
 bsxBlockUI('#foobar', 'hide');
 */
-function bsxBlockUI(elementOrSelector, actionOrOptions) {
+function bsxBlockUI($element, actionOrOptions) {
+	var action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
+	var options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
+	// fix param
+	if ( typeof $element === 'string' ) $element = $($element);
 
 
-	if ( actionOrOptions == 'hide' ) $(elementOrSelector).unblock();
+
+	var toggleOverlay = $element.attr('data-bsx-loading') || $element.attr('data-bsx-overlay') || 'progress';
+console.log($element, toggleOverlay);
+
+
+
+
+	// default loading style (progress)
+	var configBlockUI = {
+		'message'     : false,
+		'css'         : { 'background-color' : 'none', 'border' : 'none' },
+		'fadeIn'      : 0,
+		'showOverlay' : true
+	};
+	// overlay style : none
+	if ( toggleOverlay == 'none' ) {
+		configBlockUI['overlayCSS'] = { 'background-color' : 'white', 'opacity' : 0 };
+	// overlay style : loading
+	} else if ( toggleOverlay == 'loading' || toggleOverlay == 'spinner' ) {
+		configBlockUI['message'] = '<i class="fa fa-spin fa-spinner text-muted"></i>';
+		configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
+	} else if ( toggleOverlay == 'loading-large' || toggleOverlay == 'spinner-large' ) {
+		configBlockUI['message'] = '<i class="fa fa-spin fa-spinner fa-4x text-muted"></i>';
+		configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
+	// overlay style : dim
+	} else if ( toggleOverlay == 'gray' || toggleOverlay == 'dim' || toggleOverlay == 'overlay' ) {
+		configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .1 };
+	} else if ( toggleOverlay == 'grayer' || toggleOverlay == 'dimmer' ) {
+		configBlockUI['overlayCSS'] = { 'background-color'  : 'gray', 'opacity' : .4 };
+	// overlay style : light
+	} else if ( toggleOverlay == 'white' || toggleOverlay == 'light' ) {
+		configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .3 };
+	} else if ( toggleOverlay == 'whiter' || toggleOverlay == 'lighter' ) {
+		configBlockUI['overlayCSS'] = { 'background-color'  : 'white', 'opacity' : .6 };
+	// overlay style : progress (default)
+	} else {
+		configBlockUI['overlayCSS'] = {
+			'-webkit-animation' : 'progress-bar-stripes 1s linear infinite',
+			'animation'         : 'progress-bar-stripes 1s linear infinite',
+			'background-color'  : '#bbb',
+			'background-image'  : '-webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
+			'background-image'  : 'linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)',
+			'background-size'   : '1rem 1rem',
+		};
+	}
+
+
+	if ( actionOrOptions == 'hide' ) $element.unblock();
+	else $element.block( configBlockUI );
+
+
 
 } // bsxBlockUI
 
