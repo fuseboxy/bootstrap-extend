@@ -583,13 +583,13 @@ $(function(){
 				'complete' : function(){
 					// unblock trigger element
 					if ( $triggerElement.is('form') ) {
-						if ( configBlockUI ) $triggerElement.unblock();
+						bsxBlockUI($triggerElement, 'hide');
 						$triggerElement.find('[type=submit]').attr('disabled', false);
 					} else {
 						$triggerElement.attr('disabled', false);
 					}
 					// unblock old element
-					if ( configBlockUI ) $targetElement.unblock();
+					bsxBlockUI($targetElement);
 				}
 			});
 		}
@@ -675,7 +675,7 @@ function bsxAjaxErrorHandler($triggerElement, jqXHR, ajaxSettings, errorThrown) 
 		$errModalHeader.html(ajaxErrorTitle).toggle(Boolean(ajaxErrorTitle));
 		$errModalFooter.html(ajaxSettings.url).toggle(Boolean(ajaxErrorShowURL));
 	}
-}
+} // bsxAjaxErrorHandler
 
 
 
@@ -708,9 +708,12 @@ bsxBlockUI('#foobar', [
 // unblock element
 bsxBlockUI('#foobar', 'hide');
 */
-function bsxBlockUI(action, element) {
+function bsxBlockUI(elementOrSelector, actionOrOptions) {
 
-}
+
+	if ( actionOrOptions == 'hide' ) $(elementOrSelector).unblock();
+
+} // bsxBlockUI
 
 
 
