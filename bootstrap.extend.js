@@ -355,7 +355,7 @@ $(function(){
 	- data-bsx-target     = ~targetElement|targetForm~
 	- data-bsx-confirm    = ~confirmationMessage~
 	- data-bsx-mode       = {replace*|prepend|append|before|after}
-	- data-bsx-overlay    = {progress*|loading|loading-large|spinner|spinner-large|overlay|gray|grayer|dim|dimmer|white|whiter|light|lighter|none}
+	- data-bsx-overlay    = {progress*|dim|dimmer|light|lighter|none}
 	- data-bsx-transition = {slide*|fade|none}
 	- data-bsx-callback   = ~function|functionName~
 	- data-bsx-selector   = ~partialResponseToShow~
@@ -662,20 +662,20 @@ bsxBlockUI('#foobar', 'hide');
 */
 function bsxBlockUI($element, actionOrOptions) {
 	const action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
-	let options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
+	let   options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
 	// fix param
 	if ( typeof $element === 'string' ) $element = $($element);
 	// default options
 	options['icon']  ??= $element.attr('data-bsx-blockui-icon')  || '';
-	options['class'] ??= $element.attr('data-bsx-blockui-class') || 'bg-dark op-10';
-	optinos['style'] ??= $element.attr('data-bsx-blockui-style') || '';
-	// fix class
-
-
-	var toggleOverlay = $element.attr('data-bsx-loading') || $element.attr('data-bsx-overlay') || 'progress';
-console.log($element, toggleOverlay);
-
-
+	options['class'] ??= $element.attr('data-bsx-blockui-class') || 'progress-bar progress-bar-striped bg-dark-subtle';
+	options['style'] ??= $element.attr('data-bsx-blockui-style') || '';
+	// fix overlay class
+	const toggleOverlay = $element.attr('data-bsx-overlay');
+	if ( toggleOverlay == 'none'    ) options['class'] = '';
+	if ( toggleOverlay == 'dim'     ) options['class'] = 'bg-dark op-10';
+	if ( toggleOverlay == 'dimmer'  ) options['class'] = 'bg-dark op-40';
+	if ( toggleOverlay == 'light'   ) options['class'] = 'bg-white op-30';
+	if ( toggleOverlay == 'lighter' ) options['class'] = 'bg-white op-60';
 
 
 	// default loading style (progress)
