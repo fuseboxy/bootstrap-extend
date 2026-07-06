@@ -647,7 +647,6 @@ Overlay UI element by a layer to & prevent further interaction to the element
 - data-bsx-blockui-icon
 - data-bsx-blockui-class
 - data-bsx-blockui-style
-- data-bsx-blockui-message
 
 [Examples]
 // block element with default style
@@ -657,17 +656,20 @@ bsxBlockUI('#foobar', [
 	'icon' => 'bi bi-hourglass',
 	'class' => 'bg-white op-50',
 	'style' => 'border: dashed 3px silver;',
-	'message' => 'Please wait...',
 ]);
 // unblock element
 bsxBlockUI('#foobar', 'hide');
 */
 function bsxBlockUI($element, actionOrOptions) {
-	var action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
-	var options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
+	const action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
+	let options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
 	// fix param
 	if ( typeof $element === 'string' ) $element = $($element);
-
+	// default options
+	options['icon']  ??= $element.attr('data-bsx-blockui-icon')  || '';
+	options['class'] ??= $element.attr('data-bsx-blockui-class') || 'bg-dark op-10';
+	optinos['style'] ??= $element.attr('data-bsx-blockui-style') || '';
+	// fix class
 
 
 	var toggleOverlay = $element.attr('data-bsx-loading') || $element.attr('data-bsx-overlay') || 'progress';
