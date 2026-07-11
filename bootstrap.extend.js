@@ -648,7 +648,6 @@ Overlay UI element by a layer to & prevent further interaction to the element
 ===> used by {ajax-load} and {ajax-submit} and such
 
 [Data Attributes] (or by function options)
-- data-bsx-blockui-icon
 - data-bsx-blockui-class
 - data-bsx-blockui-style
 - data-bsx-blockui-overlay
@@ -697,7 +696,6 @@ $('#foobar').bsxBlockUI('hide');
 		// ===> simply quit
 		if ( $(this).is('.blocking') ) return;
 		// default value of options
-		options['icon'] ??= $(this).attr('data-bsx-blockui-icon') || '';
 		options['style'] ??= $(this).attr('data-bsx-blockui-style') || '';
 		options['overlay'] ??= $(this).attr('data-bsx-blockui-overlay') || 'progress';
 		// when custom [class] not specified
@@ -730,7 +728,6 @@ const overlayZIndex = 1;
 		// create overlay
 		let $overlay = $('<div class="bsx-blockui-overlay"></div>');
 		$overlay.addClass(options['class']).attr('style', options['style']);
-		$overlay.append(options['icon'] ? `<i class="${options['icon']}"></i>` : '');
 		// prevent all interaction (e.g. click, scroll, ...)
 		$overlay.on([
 			'click',
