@@ -648,23 +648,21 @@ Overlay UI element by a layer to & prevent further interaction to the element
 ===> used by {ajax-load} and {ajax-submit} and such
 
 [Data Attributes] (or by function options)
-- data-bsx-blockui-class
-- data-bsx-blockui-style
-- data-bsx-blockui-overlay
+- data-bsx-blockui-class   = (e.g.) "bg-primary op-50"
+- data-bsx-blockui-style   = (e.g.) "border: dashed 3px blue;"
+- data-bsx-blockui-overlay = {progress*|dim|dimmer|dimmest|light|lighter|lightest|none}
 
 [Examples]
-// block element with default style
-$('#foobar').bsxBlockUI();
+// block element
+// ===> with default style
+// ===> with pre-defined style
+// ===> with user-defined style
+$('#div1').bsxBlockUI();
+$('#div2').bsxBlockUI({ overlay : 'lighter' });
+$('#div3').bsxBlockUI({ class : 'bg-white op-50', style : 'border: dashed 3px silver;' });
 
-// block element with custom style
-$('#foobar').bsxBlockUI({
-	'icon' : 'bi bi-hourglass',
-	'class' : 'bg-white op-50',
-	'style' : 'border: dashed 3px silver;',
-});
-
-// unblock element
-$('#foobar').bsxBlockUI('hide');
+// unblock element...
+$('#div1,#div2,#div').bsxBlockUI('hide');
 */
 (function($){
 	$.fn.bsxBlockUI = function(actionOrOptions) {
