@@ -670,36 +670,39 @@ $('#foobar').bsxBlockUI('hide');
 (function($){
 	$.fn.bsxBlockUI = function(actionOrOptions) {
 		// fix param
-		const action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
-		let   options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
-		// wrap by jquery
-		$element = $(this);
+		let action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
+		let options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
 		// when no element
 		// ===> simply quit
-		if ( !$element.length ) return;
+		if ( !$(this).length ) return;
 		// when multi-elements
 		// ===> loop over & quit
-		if ( $element.length > 1 ) {
-			$element.each(function(){ $(this).bsxBlockUI(actionOrOptions); });
-			return $element.length;
+		if ( $(this).length > 1 ) {
+			$(this).each(function(){ $(this).bsxBlockUI(actionOrOptions); });
+			return $(this).length;
 		}
 		// when unblock
 		// ===> restore element style
 		// ===> remove overlay & quit
 		if ( action == 'hide' ) {
-			const originalPosition = $element.data('bsx-blockui-original-position');
-			if ( originalPosition ) $element.css('position', originalPosition);
-			$element.removeData('bsx-blockui-original-position');
-			$element.find('.bsx-blockui-overlay').remove();
+			const originalPosition = $(this).data('bsx-blockui-original-position');
+			if ( originalPosition ) $(this).css('position', originalPosition);
+			$(this).removeData('bsx-blockui-original-position');
+			$(this).find('.bsx-blockui-overlay').remove();
+			$(this).removeClass('blocking');
 			return;
 		}
+		// proceed to block element
+		// ===> when already blocking
+		// ===> simply quit
+		if ( $(this).is('.blocking') ) return;
 		// default value of options
-		options['icon'] ??= $element.attr('data-bsx-blockui-icon') || '';
-		options['style'] ??= $element.attr('data-bsx-blockui-style') || '';
-		options['overlay'] ??= $element.attr('data-bsx-blockui-overlay') || 'progress';
+		options['icon'] ??= $(this).attr('data-bsx-blockui-icon') || '';
+		options['style'] ??= $(this).attr('data-bsx-blockui-style') || '';
+		options['overlay'] ??= $(this).attr('data-bsx-blockui-overlay') || 'progress';
 		// when custom [class] not specified
 		// ===> use pre-defined class derived from [overlay]
-		options['class'] ??= $element.attr('data-bsx-blockui-class') || {
+		options['class'] ??= $(this).attr('data-bsx-blockui-class') || {
 			'progress' : 'progress h-auto r-0 progress-bar progress-bar-striped progress-bar-animated bg-dark op-15',
 			'none'     : 'op-0',
 			'dim'      : 'bg-dark op-20',
@@ -711,13 +714,13 @@ $('#foobar').bsxBlockUI('hide');
 		}[ options['overlay'] ] || '';
 		// calculate position & z-index for overlay
 const overlayZIndex = 1;
-//var $parentElement = $element.parent();
+//var $parentElement = $(this).parent();
 /*
-		const $firstElement = ( $element.length > 1 ) ? $element[0] : $element;
+		const $firstElement = ( $(this).length > 1 ) ? $(this)[0] : $(this);
 		if ( $firstElement ) {
 
 		}
-		let $current = $element;
+		let $current = $(this);
 		let zIndex = 1;
 		while ( $current.length ) {
 			zIndex = $current.css('z-index');
@@ -748,13 +751,13 @@ const overlayZIndex = 1;
 			return false;
 		});
 		// adjust {position} style of element
-		const originalPosition = $element.css('position');
+		const originalPosition = $(this).css('position');
 		if ( originalPosition === 'static') {
-			$element.data('bsx-blockui-original-position', originalPosition);
-			$element.css('position', 'relative');
+			$(this).data('bsx-blockui-original-position', originalPosition);
+			$(this).css('position', 'relative');
 		}
 		// put overlay into target element & stretch it over
-		$overlay.appendTo($element).css({
+		$overlay.css({
 			alignItems     : 'center',
 			cursor         : 'wait',
 			display        : 'flex',
@@ -763,6 +766,7 @@ const overlayZIndex = 1;
 			position       : 'absolute',
 			zIndex         : overlayZIndex,
 		});
+		$(this).addClass('blocking').append($overlay);
 		// done!
 		return this;
 	};
