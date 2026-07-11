@@ -355,7 +355,7 @@ $(function(){
 	- data-bsx-target     = ~targetElement|targetForm~
 	- data-bsx-confirm    = ~confirmationMessage~
 	- data-bsx-mode       = {replace*|prepend|append|before|after}
-	- data-bsx-overlay    = {progress*|dim|dimmer|light|lighter|none}
+	- data-bsx-overlay    = {progress*|dim|dimmer|dimmest|light|lighter|lightest|none}
 	- data-bsx-transition = {slide*|fade|none}
 	- data-bsx-callback   = ~function|functionName~
 	- data-bsx-selector   = ~partialResponseToShow~
@@ -690,20 +690,26 @@ function bsxBlockUI(selector, actionOrOptions) {
 	// proceed to block...
 	// ===> determine default options
 	options['icon']  ??= $element.attr('data-bsx-blockui-icon')  || '';
-	options['class'] ??= $element.attr('data-bsx-blockui-class') || 'progress-bar progress-bar-striped bg-dark-subtle';
+	options['class'] ??= $element.attr('data-bsx-blockui-class') || 'progress-bar progress-bar-striped progress-bar-animated bg-dark op-20';
 	options['style'] ??= $element.attr('data-bsx-blockui-style') || '';
-	// fix class according to attributes of ajax element
-	const toggleOverlay = $element.attr('data-bsx-overlay');
-	if ( toggleOverlay == 'none'    ) options['class'] = '';
-	if ( toggleOverlay == 'dim'     ) options['class'] = 'bg-dark op-10';
-	if ( toggleOverlay == 'dimmer'  ) options['class'] = 'bg-dark op-40';
-	if ( toggleOverlay == 'light'   ) options['class'] = 'bg-white op-30';
-	if ( toggleOverlay == 'lighter' ) options['class'] = 'bg-white op-60';
+	// when ajax-load, ajax-submit, etc.
+	// ===> determine class by [data-bsx-overlay] of trigger element
+	options['class'] = {
+		'none'     : 'op-0',
+		'dim'      : 'bg-dark op-20',
+		'dimmer'   : 'bg-dark op-50',
+		'dimmest'  : 'bg-dark op-70',
+		'light'    : 'bg-white op-30',
+		'lighter'  : 'bg-white op-60',
+		'lightest' : 'bg-white op-80',
+	}[ $element.attr('data-bsx-overlay') ] ?? options['class'];
+//options['class'] = 'b-5 b-danger bg-danger-subtle op-50';
+//options['style'] = 'height: 5rem;';
 	// calculate overlay z-index
-const overlayZIndex = 1;
-/*
 	// get overlay z-index
-var $parentElement = $element.parent();
+const overlayZIndex = 1;
+//var $parentElement = $element.parent();
+/*
 	const $firstElement = ( $element.length > 1 ) ? $element[0] : $element;
 	if ( $firstElement ) {
 
@@ -716,7 +722,7 @@ var $parentElement = $element.parent();
 	}
 */
 	// create overlay
-	let $overlay = $('<div class="bsx-blockui-overlay"></div>');
+	let $overlay = $('<div class="progress h-auto r-0"><div class="bsx-blockui-overlay"></div></div>');
 	$overlay.addClass(options['class']).attr('style', options['style']);
 	$overlay.append(options['icon'] ? `<i class="${options['icon']}"></i>` : '');
 	// prevent all interaction (e.g. click, scroll, ...)
@@ -744,16 +750,14 @@ var $parentElement = $element.parent();
 		$element.data('bsx-blockui-original-position', originalPosition);
 		$element.css('position', 'relative');
 	}
-/*
 	// put overlay into target element & stretch it over
-	$overlay.append($element).css({
+	$overlay.appendTo($element).css({
 		alignItems     : 'center',
-		cursor         : 'not-allowed',
+		cursor         : 'wait',
 		display        : 'flex',
 		inset          : 0,
 		justifyContent : 'center',
 		position       : 'absolute',
-		zIndex         : overlayZIndex,
+//		zIndex         : overlayZIndex,
 	});
-*/
 } // bsxBlockUI
