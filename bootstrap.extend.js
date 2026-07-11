@@ -451,7 +451,7 @@ $(function(){
 			}
 			// block
 			if ( $triggerElement.is('form') ) {
-				bsxBlockUI(triggerElement);
+				bsxBlockUI($triggerElement);
 				$triggerElement.find('[type=submit]').attr('disabled', true);
 			} else {
 				$triggerElement.attr('disabled', true);
