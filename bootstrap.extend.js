@@ -299,7 +299,7 @@ $(function(){
 		<div class="dropdown-menu"></div>
 	</div>
 	*/
-	$(document).on('click', '[href][data-bsx-toggle=ajax-dropdown],[data-bsx-href][data-bsx-toggle=ajax-dropdown]', function(evt){
+	$(document).on('click', '[data-bsx-toggle=ajax-dropdown][href],[data-bsx-toggle=ajax-dropdown][data-bsx-href]', function(evt){
 		evt.preventDefault();
 		var $btn = $(this);
 		var $parent = $btn.closest('.dropdown,.dropup,.dropstart,.dropend,.dropleft,.dropright');
