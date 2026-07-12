@@ -16,8 +16,6 @@ $(function(){
 	});
 
 
-
-
 	/*--------------------------------+
 	|  DATA-BSX-TOGGLE : AUTO-SUBMIT  |
 	+--------------------------------*/
@@ -25,8 +23,6 @@ $(function(){
 		evt.preventDefault();
 		bsxAutoSubmit(this);
 	});
-
-
 
 
 	/*-------------------------------+
@@ -44,8 +40,6 @@ $(function(){
 	});
 
 
-
-
 	/*----------------------------------+
 	|  DATA-BSX-TOGGLE : AJAX-DROPDOWN  |
 	+----------------------------------*/
@@ -53,8 +47,6 @@ $(function(){
 		evt.preventDefault();
 		bsxAjaxDropdown(this);
 	});
-
-
 
 
 	/*--------------------------------------------+
@@ -694,39 +686,48 @@ $('#div1,#div2,#div').bsxBlockUI('hide');
 */
 (function($){
 	$.fn.bsxBlockUI = function(actionOrOptions) {
+		$element = $(this);
 		// fix param
 		let action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
 		let options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
 		// when no element
 		// ===> simply quit
-		if ( !$(this).length ) return;
+		if ( !$element.length ) return;
 		// when multi-elements
 		// ===> loop over & quit
-		if ( $(this).length > 1 ) {
-			$(this).each(function(){ $(this).bsxBlockUI(actionOrOptions); });
-			return $(this).length;
+		if ( $element.length > 1 ) {
+			$element.each(function(){ $(this).bsxBlockUI(actionOrOptions); });
+			return $element.length;
 		}
 		// when unblock
 		// ===> restore element style
 		// ===> remove overlay & quit
 		if ( action == 'hide' ) {
-			const originalPosition = $(this).data('bsx-blockui-original-position');
-			if ( originalPosition ) $(this).css('position', originalPosition);
-			$(this).removeData('bsx-blockui-original-position');
-			$(this).find('.bsx-blockui-overlay').remove();
-			$(this).removeClass('blocking');
+			const originalPosition = $element.data('bsx-blockui-original-position');
+			if ( originalPosition ) $element.css('position', originalPosition);
+			$element.removeData('bsx-blockui-original-position');
+			$element.find('.bsx-blockui-overlay').remove();
+			$element.removeClass('blocking');
 			return;
 		}
 		// proceed to block element
-		// ===> when already blocking
+		// ===> check whether element is blockable
+		// ===> only allow tags which could have children
+		const elementTag = $element.prop('tagName').toLowerCase();
+		const voidElements = ['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'];
+		if ( voidElements.includes(elementTag) ) {
+			console.error('[Error] bsxBlockUI does not work on void element <'+elementTag+'>');
+			return;
+		}
+		//  when already blocking
 		// ===> simply quit
-		if ( $(this).is('.blocking') ) return;
+		if ( $element.is('.blocking') ) return;
 		// default value of options
-		options['style'] ??= $(this).attr('data-bsx-blockui-style') || '';
-		options['overlay'] ??= $(this).attr('data-bsx-blockui-overlay') || 'progress';
+		options['style'] ??= $element.attr('data-bsx-blockui-style') || '';
+		options['overlay'] ??= $element.attr('data-bsx-blockui-overlay') || 'progress';
 		// when custom [class] not specified
 		// ===> use pre-defined class derived from [overlay]
-		options['class'] ??= $(this).attr('data-bsx-blockui-class') || {
+		options['class'] ??= $element.attr('data-bsx-blockui-class') || {
 			'progress' : 'progress h-auto r-0 progress-bar progress-bar-striped progress-bar-animated bg-dark op-15',
 			'none'     : 'op-0',
 			'dim'      : 'bg-dark op-20',
@@ -738,13 +739,13 @@ $('#div1,#div2,#div').bsxBlockUI('hide');
 		}[ options['overlay'] ] || '';
 		// calculate position & z-index for overlay
 const overlayZIndex = 1;
-//let $parentElement = $(this).parent();
+//let $parentElement = $element.parent();
 /*
-		const $firstElement = ( $(this).length > 1 ) ? $(this)[0] : $(this);
+		const $firstElement = ( $element.length > 1 ) ? $element[0] : $element;
 		if ( $firstElement ) {
 
 		}
-		let $current = $(this);
+		let $current = $element;
 		let zIndex = 1;
 		while ( $current.length ) {
 			zIndex = $current.css('z-index');
@@ -774,10 +775,10 @@ const overlayZIndex = 1;
 			return false;
 		});
 		// adjust {position} style of element
-		const originalPosition = $(this).css('position');
+		const originalPosition = $element.css('position');
 		if ( originalPosition === 'static') {
-			$(this).data('bsx-blockui-original-position', originalPosition);
-			$(this).css('position', 'relative');
+			$element.data('bsx-blockui-original-position', originalPosition);
+			$element.css('position', 'relative');
 		}
 		// put overlay into target element & stretch it over
 		$overlay.css({
@@ -789,7 +790,7 @@ const overlayZIndex = 1;
 			position       : 'absolute',
 			zIndex         : overlayZIndex,
 		});
-		$(this).addClass('blocking').append($overlay);
+		$element.addClass('blocking').append($overlay);
 		// done!
 		return this;
 	}; // bsxBlockUI
