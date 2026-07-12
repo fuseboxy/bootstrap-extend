@@ -9,7 +9,7 @@ $(function(){
 	$(document).on('show.bs.modal', '.modal', function(){
 		const zIndex = 1040 + 10 * $('.modal:visible').length;
 		$(this).css('z-index', zIndex);
-		setTimeout(() => $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack'));
+		setTimeout(() => $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex-1).addClass('modal-stack'));
 	});
 	$(document).on('hidden.bs.modal', '.modal', function(){
 		$('.modal:visible').length && $(document.body).addClass('modal-open');
@@ -686,7 +686,7 @@ $('#div1,#div2,#div').bsxBlockUI('hide');
 */
 (function($){
 	$.fn.bsxBlockUI = function(actionOrOptions) {
-		$element = $(this);
+		let $element = $(this);
 		// fix param
 		let action  = ( typeof actionOrOptions === 'string' ) ? actionOrOptions : '';
 		let options = ( typeof actionOrOptions === 'object' ) ? actionOrOptions : {};
@@ -697,12 +697,18 @@ $('#div1,#div2,#div').bsxBlockUI('hide');
 		// ===> loop over & quit
 		if ( $element.length > 1 ) {
 			$element.each(function(){ $(this).bsxBlockUI(actionOrOptions); });
-			return $element.length;
+			return;
 		}
+		// check whether target is void element
+		// ===> wrap target by <div>...</div>
+		// ===> block this parent wrapper instead
+		const voidElements = ['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'];
+		const isVoidElement = voidElements.includes( $element.prop('tagName').toLowerCase() );
 		// when unblock
 		// ===> restore element style
 		// ===> remove overlay & quit
 		if ( action == 'hide' ) {
+			if ( isVoidElement ) $element = $element.parent();
 			const originalPosition = $element.data('bsx-blockui-original-position');
 			if ( originalPosition ) $element.css('position', originalPosition);
 			$element.removeData('bsx-blockui-original-position');
@@ -711,13 +717,13 @@ $('#div1,#div2,#div').bsxBlockUI('hide');
 			return;
 		}
 		// proceed to block element
-		// ===> check whether element is blockable
-		// ===> only allow tags which could have children
-		const elementTag = $element.prop('tagName').toLowerCase();
-		const voidElements = ['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'];
-		if ( voidElements.includes(elementTag) ) {
-			console.error('[Error] bsxBlockUI does not work on void element <'+elementTag+'>');
-			return;
+		// ===> when target is void element
+		// ===> wrap target by <div>...</div>
+		// ===> block this parent wrapper instead
+		if ( isVoidElement ) {
+			let $wrapper = $('<div></div>');
+			$wrapper.css('display', ( $element.css('display') == 'block' || $element.prop('tagName') == 'BR' ) ? 'block' : 'inline-block');
+			$element = $element.wrap($wrapper).parent();
 		}
 		//  when already blocking
 		// ===> simply quit
@@ -737,21 +743,6 @@ $('#div1,#div2,#div').bsxBlockUI('hide');
 			'lighter'  : 'bg-white op-60',
 			'lightest' : 'bg-white op-80',
 		}[ options['overlay'] ] || '';
-		// calculate position & z-index for overlay
-const overlayZIndex = 1;
-//let $parentElement = $element.parent();
-/*
-		const $firstElement = ( $element.length > 1 ) ? $element[0] : $element;
-		if ( $firstElement ) {
-
-		}
-		let $current = $element;
-		let zIndex = 1;
-		while ( $current.length ) {
-			zIndex = $current.css('z-index');
-			if ( zIndex != 'auto' && !isNaN(parseInt(zIndex, 10)) ) zIndex = parseInt(zIndex, 10) + 1;
-		}
-*/
 		// create overlay
 		let $overlay = $('<div class="bsx-blockui-overlay"></div>');
 		$overlay.addClass(options['class']).attr('style', options['style']);
@@ -780,17 +771,21 @@ const overlayZIndex = 1;
 			$element.data('bsx-blockui-original-position', originalPosition);
 			$element.css('position', 'relative');
 		}
-		// put overlay into target element & stretch it over
+		// calculate z-index of overlay
+		// ===> slightly higher than target element
+		let zIndex = ( parseInt($element.css('z-index'), 10) || 1 ) + 1;
+		// put overlay as child node of target element
+		$element.append($overlay).addClass('blocking');
+		// stretch it over
 		$overlay.css({
-			alignItems     : 'center',
-			cursor         : 'wait',
-			display        : 'flex',
-			inset          : 0,
-			justifyContent : 'center',
-			position       : 'absolute',
-			zIndex         : overlayZIndex,
+			'alignItems'     : 'center',
+			'cursor'         : 'wait',
+			'display'        : 'flex',
+			'inset'          : 0,
+			'justifyContent' : 'center',
+			'position'       : 'absolute',
+			'zIndex'         : zIndex,
 		});
-		$element.addClass('blocking').append($overlay);
 		// done!
 		return this;
 	}; // bsxBlockUI
