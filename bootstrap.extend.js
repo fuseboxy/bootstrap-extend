@@ -358,18 +358,19 @@ function bsxAjaxLoadOrSubmit(triggerElement) {
 					$newElement.insertAfter( $targetElement );
 				}
 				// turn [toggle-callback] attribute to function
+				let callbackFunc;
 				if ( toggleCallback.trim() == '' ) {
 					// attribute is empty...
-					var callbackFunc = function(){};
+					callbackFunc = function(){};
 				} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
 					// attribute is function name...
-					eval('var callbackFunc = '+toggleCallback+'();');
+					eval('callbackFunc = '+toggleCallback+'();');
 				} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
 					// attribute is anonymous function...
-					eval('var callbackFunc = '+toggleCallback+';');
+					eval('callbackFunc = '+toggleCallback+';');
 				} else {
 					// attribute is function content...
-					eval('var callbackFunc = function(){ '+toggleCallback+' };');
+					eval('callbackFunc = function(){ '+toggleCallback+' };');
 				}
 				// show new element with effect
 				// ===> fire event after new element shown
@@ -576,18 +577,19 @@ function bsxAutoSubmit(triggerElement) {
 	// mark flag to all target elements to monitor the progress
 	$targetElements.addClass('pending-autosubmit');
 	// convert [toggle-callback] to function
+	let callbackFunc;
 	if ( toggleCallback.trim() == '' ) {
 		// attribute is empty...
-		var callbackFunc = function(){};
+		callbackFunc = function(){};
 	} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
 		// attribute is function name...
-		eval('var callbackFunc = '+toggleCallback+'();');
+		eval('callbackFunc = '+toggleCallback+'();');
 	} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
 		// attribute is anonymous function...
-		eval('var callbackFunc = '+toggleCallback+';');
+		eval('callbackFunc = '+toggleCallback+';');
 	} else {
 		// attribute is function content...
-		eval('var callbackFunc = function(){ '+toggleCallback+' };');
+		eval('callbackFunc = function(){ '+toggleCallback+' };');
 	}
 	// other elements
 	// ===> element to stop the auto process
