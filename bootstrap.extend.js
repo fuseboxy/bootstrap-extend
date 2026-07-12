@@ -449,14 +449,17 @@ $(function(){
 			} else {
 				formData = {};
 			}
-			// block trigger & target
-			// ===> both use same style of overlay
-			if ( $triggerElement.is('form') ) {
+			// block trigger element
+			// ===> avoid double-clicking the button and submit the form multiple times
+			if ( eventType == 'ajaxSubmit' ) {
 				$triggerElement.bsxBlockUI({ 'overlay' : $triggerElement.attr('data-bsx-overlay') });
 				$triggerElement.find('[type=submit]').attr('disabled', true);
+			} else if ( $triggerElement.is('a,[type=button]') ) {
+				$triggerElement.addClass('disabled').attr('disabled', true);
 			} else {
-				$triggerElement.attr('disabled', true);
+				$triggerElement.bsxBlockUI({ 'overlay' : $triggerElement.attr('data-bsx-overlay') });
 			}
+			// block target element
 			$targetElement.bsxBlockUI({ 'overlay' : $triggerElement.attr('data-bsx-overlay') });
 			// load result remotely
 			$.ajax({
@@ -539,13 +542,9 @@ $(function(){
 					// until new element shown
 					window.setTimeout(function(){
 						// unblock trigger element
-						if ( $triggerElement.is('form') ) {
-							$triggerElement.bsxBlockUI('hide');
-							$triggerElement.find('[type=submit]').attr('disabled', false);
-						} else {
-							$triggerElement.attr('disabled', false);
-						}
-						// unblock old element
+						$triggerElement.find('[type=submit]').attr('disabled', false);
+						$triggerElement.removeClass('disabled').attr('disabled', false).bsxBlockUI('hide');
+						// unblock target element
 						$targetElement.bsxBlockUI('hide');
 					}, ['fade','slide'].includes(toggleTransition) ? 400 : 0);
 				}
@@ -608,7 +607,7 @@ function bsxAjaxErrorHandler($triggerElement, jqXHR, ajaxSettings, errorThrown) 
 		// ===> fade-in (when refresh message)
 		$errFlash.filter(':visible').hide().fadeIn().end().filter(':hidden').slideDown();
 		// scroll to message
-		$modalVisible.find('.modal-body').animate({ scrollTop : 0 });
+		$visibleModal.find('.modal-body').animate({ scrollTop : 0 });
 	// error @ modal
 	} else {
 		// create modal (when not available)
