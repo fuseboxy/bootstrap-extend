@@ -243,9 +243,13 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
-/*-----------------------------+
-|  ICON ANIMATION : HOURGLASS  |
-+-----------------------------*/
+/*------------------------+
+|  (MORE) BOOTSTRAP ICON  |
++------------------------*/
+/* empty placeholder */
+.bi-empty { visibility: hidden; }
+.bi-empty::before { content: "\2003"; }
+/* hourglass animated */
 @keyframes hourglassAnimationContainer {
 	87.5% { transform: rotateX(0deg); }
 	100%  { transform: rotateX(180deg); }
