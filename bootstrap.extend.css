@@ -1335,55 +1335,105 @@ article:hover .article-hover-d-inline-block { display: inline-block !important; 
 |  (MORE) POSITIONING  |
 +---------------------*/
 /* positive */
-.top-1 { top: .25rem !important; }
-.top-2 { top: .5rem !important; }
-.top-3 { top: 1rem !important; }
-.top-4 { top: 1.5rem !important; }
-.top-5 { top: 3rem !important; }
-.left-1 { left: .25rem !important; }
-.left-2 { left: .5rem !important; }
-.left-3 { left: 1rem !important; }
-.left-4 { left: 1.5rem !important; }
-.left-5 { left: 3rem !important; }
-.right-1 { right: .25rem !important; }
-.right-2 { right: .5rem !important; }
-.right-3 { right: 1rem !important; }
-.right-4 { right: 1.5rem !important; }
-.right-5 { right: 3rem !important; }
-.bottom-1 { bottom: .25rem !important; }
-.bottom-2 { bottom: .5rem !important; }
-.bottom-3 { bottom: 1rem !important; }
-.bottom-4 { bottom: 1.5rem !important; }
-.bottom-5 { bottom: 3rem !important; }
+.top-1       { top:    .25rem !important; }
+.top-2       { top:     .5rem !important; }
+.top-3       { top:      1rem !important; }
+.top-4       { top:    1.5rem !important; }
+.top-5       { top:      3rem !important; }
+.top-50      { /*    already exists    */ }
+.top-100     { /*    already exists    */ }
+.left-1      { left:   .25rem !important; }
+.left-2      { left:    .5rem !important; }
+.left-3      { left:     1rem !important; }
+.left-4      { left:   1.5rem !important; }
+.left-5      { left:     3rem !important; }
+.left-50     { /*    already exists    */ }
+.left-100    { /*    already exists    */ }
+.right-1     { right:  .25rem !important; }
+.right-2     { right:   .5rem !important; }
+.right-3     { right:    1rem !important; }
+.right-4     { right:  1.5rem !important; }
+.right-5     { right:    3rem !important; }
+.right-50    { /*    already exists    */ }
+.right-100   { /*    already exists    */ }
+.bottom-1    { bottom: .25rem !important; }
+.bottom-2    { bottom:  .5rem !important; }
+.bottom-3    { bottom:   1rem !important; }
+.bottom-4    { bottom: 1.5rem !important; }
+.bottom-5    { bottom:   3rem !important; }
+.bottom-50   { /*    already exists    */ }
+.bottom-100  { /*    already exists    */ }
 /* negative */
-.top-n1 { top: -.25rem !important; }
-.top-n2 { top: -.5rem !important; }
-.top-n3 { top: -1rem !important; }
-.top-n4 { top: -1.5rem !important; }
-.top-n5 { top: -3rem !important; }
-.top-n50 { top: -50% !important; }
-.top-n100 { top: -100% !important; }
-.left-n1 { left: -.25rem !important; }
-.left-n2 { left: -.5rem !important; }
-.left-n3 { left: -1rem !important; }
-.left-n4 { left: -1.5rem !important; }
-.left-n5 { left: -3rem !important; }
-.left-n50 { left: -50% !important; }
-.left-n100 { left: -100% !important; }
-.right-n1 { right: -.25rem !important; }
-.right-n2 { right: -.5rem !important; }
-.right-n3 { right: -1rem !important; }
-.right-n4 { right: -1.5rem !important; }
-.right-n5 { right: -3rem !important; }
-.right-n50 { right: -50% !important; }
-.right-n100 { right: -100% !important; }
-.bottom-n1 { bottom: -.25rem !important; }
-.bottom-n2 { bottom: -.5rem !important; }
-.bottom-n3 { bottom: -1rem !important; }
-.bottom-n4 { bottom: -1.5rem !important; }
-.bottom-n5 { bottom: -3rem !important; }
-.bottom-n50 { bottom: -50% !important; }
-.bottom-n100 { bottom: -100% !important; }
+.top-n1      { top:    -.25rem !important; }
+.top-n2      { top:     -.5rem !important; }
+.top-n3      { top:      -1rem !important; }
+.top-n4      { top:    -1.5rem !important; }
+.top-n5      { top:      -3rem !important; }
+.top-n50     { top:       -50% !important; }
+.top-n100    { top:      -100% !important; }
+.left-n1     { left:   -.25rem !important; }
+.left-n2     { left:    -.5rem !important; }
+.left-n3     { left:     -1rem !important; }
+.left-n4     { left:   -1.5rem !important; }
+.left-n5     { left:     -3rem !important; }
+.left-n50    { left:      -50% !important; }
+.left-n100   { left:     -100% !important; }
+.right-n1    { right:  -.25rem !important; }
+.right-n2    { right:   -.5rem !important; }
+.right-n3    { right:    -1rem !important; }
+.right-n4    { right:  -1.5rem !important; }
+.right-n5    { right:    -3rem !important; }
+.right-n50   { right:     -50% !important; }
+.right-n100  { right:    -100% !important; }
+.bottom-n1   { bottom: -.25rem !important; }
+.bottom-n2   { bottom:  -.5rem !important; }
+.bottom-n3   { bottom:   -1rem !important; }
+.bottom-n4   { bottom: -1.5rem !important; }
+.bottom-n5   { bottom:   -3rem !important; }
+.bottom-n50  { bottom:    -50% !important; }
+.bottom-n100 { bottom:   -100% !important; }
+/* positive (px) */
+.top-1px     { top:    1px !important; }
+.top-2px     { top:    2px !important; }
+.top-3px     { top:    3px !important; }
+.top-4px     { top:    4px !important; }
+.top-5px     { top:    5px !important; }
+.left-1px    { left:   1px !important; }
+.left-2px    { left:   2px !important; }
+.left-3px    { left:   3px !important; }
+.left-4px    { left:   4px !important; }
+.left-5px    { left:   5px !important; }
+.right-1px   { right:  1px !important; }
+.right-2px   { right:  2px !important; }
+.right-3px   { right:  3px !important; }
+.right-4px   { right:  4px !important; }
+.right-5px   { right:  5px !important; }
+.bottom-1px  { bottom: 1px !important; }
+.bottom-2px  { bottom: 2px !important; }
+.bottom-3px  { bottom: 3px !important; }
+.bottom-4px  { bottom: 4px !important; }
+.bottom-5px  { bottom: 5px !important; }
+/* negative (px) */
+.top-n1px    { top:    -1px !important; }
+.top-n2px    { top:    -2px !important; }
+.top-n3px    { top:    -3px !important; }
+.top-n4px    { top:    -4px !important; }
+.top-n5px    { top:    -5px !important; }
+.left-n1px   { left:   -1px !important; }
+.left-n2px   { left:   -2px !important; }
+.left-n3px   { left:   -3px !important; }
+.left-n4px   { left:   -4px !important; }
+.left-n5px   { left:   -5px !important; }
+.right-n1px  { right:  -1px !important; }
+.right-n2px  { right:  -2px !important; }
+.right-n3px  { right:  -3px !important; }
+.right-n4px  { right:  -4px !important; }
+.right-n5px  { right:  -5px !important; }
+.bottom-n1px { bottom: -1px !important; }
+.bottom-n2px { bottom: -2px !important; }
+.bottom-n3px { bottom: -3px !important; }
+.bottom-n4px { bottom: -4px !important; }
+.bottom-n5px { bottom: -5px !important; }
 
 
 /*======================================================================================================================================================*/
