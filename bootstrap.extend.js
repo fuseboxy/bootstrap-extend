@@ -605,7 +605,7 @@ function bsxAutoSubmit(triggerElement) {
 		// ===> count block-overlay to monitor any active item
 		// ===> because cannot ensure jQuery properly remove the element after run
 		let countTotal      = $targetElements.length;
-		let countActive     = $('.blockOverlay').length;
+		let countActive     = $('.blocking').length;
 		let countUndone     = $targetElements.filter('.pending-autosubmit').length + countActive;
 		let countDone       = countTotal - countUndone;
 		let progressRatio   = countDone+'/'+countTotal;
