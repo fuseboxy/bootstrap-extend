@@ -350,20 +350,7 @@ function bsxAjaxLoadOrSubmit(triggerElement) {
 					$newElement.insertAfter( $targetElement );
 				}
 				// turn [toggle-callback] attribute to function
-				let callbackFunc;
-				if ( toggleCallback.trim() == '' ) {
-					// attribute is empty...
-					callbackFunc = function(){};
-				} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
-					// attribute is function name...
-					eval('callbackFunc = '+toggleCallback+'();');
-				} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
-					// attribute is anonymous function...
-					eval('callbackFunc = '+toggleCallback+';');
-				} else {
-					// attribute is function content...
-					eval('callbackFunc = function(){ '+toggleCallback+' };');
-				}
+				let callbackFunc = bsxCallbackFunc(toggleCallback);
 				// show new element with effect
 				// ===> fire event after new element shown
 				let callbackEvent = eventType + 'Callback.bsx';
@@ -569,20 +556,7 @@ function bsxAutoSubmit(triggerElement) {
 	// mark flag to all target elements to monitor the progress
 	$targetElements.addClass('pending-autosubmit');
 	// convert [toggle-callback] to function
-	let callbackFunc;
-	if ( toggleCallback.trim() == '' ) {
-		// attribute is empty...
-		callbackFunc = function(){};
-	} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
-		// attribute is function name...
-		eval('callbackFunc = '+toggleCallback+'();');
-	} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
-		// attribute is anonymous function...
-		eval('callbackFunc = '+toggleCallback+';');
-	} else {
-		// attribute is function content...
-		eval('callbackFunc = function(){ '+toggleCallback+' };');
-	}
+	let callbackFunc = bsxCallbackFunc(toggleCallback);
 	// other elements
 	// ===> element to stop the auto process
 	// ===> element to display the progress message
@@ -605,7 +579,7 @@ function bsxAutoSubmit(triggerElement) {
 		// ===> count block-overlay to monitor any active item
 		// ===> because cannot ensure jQuery properly remove the element after run
 		let countTotal      = $targetElements.length;
-		let countActive     = $('.blockOverlay').length;
+		let countActive     = $('.blocking').length;
 		let countUndone     = $targetElements.filter('.pending-autosubmit').length + countActive;
 		let countDone       = countTotal - countUndone;
 		let progressRatio   = countDone+'/'+countTotal;
@@ -790,3 +764,38 @@ $('#div1,#div2,#div').bsxBlockUI('hide');
 		return this;
 	}; // bsxBlockUI
 }(jQuery));
+
+
+
+
+/*----------------+
+|  CALLBACK-FUNC  |
++-----------------+
+
+[Usage]
+Convert string value of [data-bsx-callback] into an anonymous function
+
+[Examples]
+<button ... data-bsx-callback>...</button>
+<button ... data-bsx-callback="anotherFunc">...</button>
+<button ... data-bsx-callback="function(){ alert(1); }">...</button>
+<button ... data-bsx-callback="alert(1);">...</button>
+*/
+function bsxCallbackFunc(toggleCallback) {
+	let callbackFunc;
+	// attribute is empty...
+	if ( toggleCallback.trim() == '' ) {
+		callbackFunc = function(){};
+	// attribute is function name...
+	} else if ( toggleCallback.trim().replace(/[\W_]+/g, '') == '' ) {
+		eval('callbackFunc = '+toggleCallback+'();');
+	// attribute is anonymous function...
+	} else if ( toggleCallback.replace(/\s/g, '').indexOf('function(') == 0 ) {
+		eval('callbackFunc = '+toggleCallback+';');
+	// attribute is function content...
+	} else {
+		eval('callbackFunc = function(){ '+toggleCallback+' };');
+	}
+	// done!
+	return callbackFunc;
+}
