@@ -274,6 +274,21 @@ https://getbootstrap.com/docs/5.3/utilities/borders/
 /*======================================================================================================================================================*/
 
 
+/*----------------------+
+|  (MORE) SPINNER SIZE  |
++----------------------*/
+/* xs */
+.spinner-grow-xs,
+.spinner-border-xs { --bs-spinner-height: .75rem; --bs-spinner-width: .75rem; }
+.spinner-border-xs { --bs-spinner-border-width: .1em; }
+/* lg */
+.spinner-grow-lg,
+.spinner-border-lg { --bs-spinner-height: 3rem; --bs-spinner-width: 3rem; }
+
+
+/*======================================================================================================================================================*/
+
+
 /*------------------+
 |  NEGATIVE MARGIN  |
 +------------------*/
