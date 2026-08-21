@@ -1,4 +1,3 @@
-console.log('bootstrap.extend.dev');
 $(function(){
 
 
