@@ -969,28 +969,28 @@ tr:hover .tr-hover-op-85  { opacity: .85 !important; }
 tr:hover .tr-hover-op-90  { opacity: .90 !important; }
 tr:hover .tr-hover-op-95  { opacity: .95 !important; }
 tr:hover .tr-hover-op-100 { opacity:   1 !important; }
-/* hover parent <td> element */
-td:hover .td-hover-op-0   { opacity:   0 !important; }
-td:hover .td-hover-op-5   { opacity: .05 !important; }
-td:hover .td-hover-op-10  { opacity: .10 !important; }
-td:hover .td-hover-op-15  { opacity: .15 !important; }
-td:hover .td-hover-op-20  { opacity: .20 !important; }
-td:hover .td-hover-op-25  { opacity: .25 !important; }
-td:hover .td-hover-op-30  { opacity: .30 !important; }
-td:hover .td-hover-op-35  { opacity: .35 !important; }
-td:hover .td-hover-op-40  { opacity: .40 !important; }
-td:hover .td-hover-op-45  { opacity: .45 !important; }
-td:hover .td-hover-op-50  { opacity: .50 !important; }
-td:hover .td-hover-op-55  { opacity: .55 !important; }
-td:hover .td-hover-op-60  { opacity: .60 !important; }
-td:hover .td-hover-op-65  { opacity: .65 !important; }
-td:hover .td-hover-op-70  { opacity: .70 !important; }
-td:hover .td-hover-op-75  { opacity: .75 !important; }
-td:hover .td-hover-op-80  { opacity: .80 !important; }
-td:hover .td-hover-op-85  { opacity: .85 !important; }
-td:hover .td-hover-op-90  { opacity: .90 !important; }
-td:hover .td-hover-op-95  { opacity: .95 !important; }
-td:hover .td-hover-op-100 { opacity:   1 !important; }
+/* hover parent <th|td> element */
+:is(th,td):hover .td-hover-op-0   { opacity:   0 !important; }
+:is(th,td):hover .td-hover-op-5   { opacity: .05 !important; }
+:is(th,td):hover .td-hover-op-10  { opacity: .10 !important; }
+:is(th,td):hover .td-hover-op-15  { opacity: .15 !important; }
+:is(th,td):hover .td-hover-op-20  { opacity: .20 !important; }
+:is(th,td):hover .td-hover-op-25  { opacity: .25 !important; }
+:is(th,td):hover .td-hover-op-30  { opacity: .30 !important; }
+:is(th,td):hover .td-hover-op-35  { opacity: .35 !important; }
+:is(th,td):hover .td-hover-op-40  { opacity: .40 !important; }
+:is(th,td):hover .td-hover-op-45  { opacity: .45 !important; }
+:is(th,td):hover .td-hover-op-50  { opacity: .50 !important; }
+:is(th,td):hover .td-hover-op-55  { opacity: .55 !important; }
+:is(th,td):hover .td-hover-op-60  { opacity: .60 !important; }
+:is(th,td):hover .td-hover-op-65  { opacity: .65 !important; }
+:is(th,td):hover .td-hover-op-70  { opacity: .70 !important; }
+:is(th,td):hover .td-hover-op-75  { opacity: .75 !important; }
+:is(th,td):hover .td-hover-op-80  { opacity: .80 !important; }
+:is(th,td):hover .td-hover-op-85  { opacity: .85 !important; }
+:is(th,td):hover .td-hover-op-90  { opacity: .90 !important; }
+:is(th,td):hover .td-hover-op-95  { opacity: .95 !important; }
+:is(th,td):hover .td-hover-op-100 { opacity:   1 !important; }
 /* hover parent <li> element */
 li:hover .li-hover-op-0   { opacity:   0 !important; }
 li:hover .li-hover-op-5   { opacity: .05 !important; }
@@ -1066,24 +1066,24 @@ a:hover .a-hover-op-100 { opacity:   1 !important; }
 |  HOVER : DISPLAY  |
 +------------------*/
 /* hover parent <a> element */
-a:hover .a-hover-d-none         { display: none !important; }
-a:hover .a-hover-d-block        { display: block !important; }
+a:hover .a-hover-d-none { display: none !important; }
+a:hover .a-hover-d-block { display: block !important; }
 a:hover .a-hover-d-inline-block { display: inline-block !important; }
 /* hover parent <li> element */
-li:hover .li-hover-d-none         { display: none !important; }
-li:hover .li-hover-d-block        { display: block !important; }
+li:hover .li-hover-d-none { display: none !important; }
+li:hover .li-hover-d-block { display: block !important; }
 li:hover .li-hover-d-inline-block { display: inline-block !important; }
 /* hover parent <tr> element */
-tr:hover .tr-hover-d-none         { display: none !important; }
-tr:hover .tr-hover-d-block        { display: block !important; }
+tr:hover .tr-hover-d-none { display: none !important; }
+tr:hover .tr-hover-d-block { display: block !important; }
 tr:hover .tr-hover-d-inline-block { display: inline-block !important; }
-/* hover parent <tr> element */
-td:hover .td-hover-d-none         { display: none !important; }
-td:hover .td-hover-d-block        { display: block !important; }
-td:hover .td-hover-d-inline-block { display: inline-block !important; }
+/* hover parent <th|td> element */
+:is(th,td):hover .td-hover-d-none { display: none !important; }
+:is(th,td):hover .td-hover-d-block { display: block !important; }
+:is(th,td):hover .td-hover-d-inline-block { display: inline-block !important; }
 /* hover parent <article> element */
-article:hover .article-hover-d-none         { display: none !important; }
-article:hover .article-hover-d-block        { display: block !important; }
+article:hover .article-hover-d-none { display: none !important; }
+article:hover .article-hover-d-block { display: block !important; }
 article:hover .article-hover-d-inline-block { display: inline-block !important; }
 
 
